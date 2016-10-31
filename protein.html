@@ -7,7 +7,10 @@
 <div id=viewer></div>
 </body>
 <script type='text/javascript' src='pv/bio-pv.min.js'></script>
+<script type='text/javascript' src='node_modules/jquery/dist/jquery.min.js'></script>
+
 <script type='text/javascript'>
+    
 // override the default options with something less restrictive.
 var options = {
   width: 1000,
@@ -15,15 +18,40 @@ var options = {
   antialias: true,
   quality : 'high'
 };
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+var param = getQueryVariable("name");
+    
+var json;
+var code;
+$.getJSON('receptor_protein_translator.json').done(function (data) {
+    json = data;
+    for(var i = 0; i < json.length; i++) {
+        var obj = json[i];
+        if(obj.protein.includes(param)) {
+            code = obj.pdb_code;   
+            console.log(code);
+        }
+    }
+});
+
 // insert the viewer under the Dom element with id 'gl'.
 var viewer = pv.Viewer(document.getElementById('viewer'), options);
 </script>
 <script type='text/javascript'>
 
 function loadMethylTransferase() {
-  // asynchronously load the PDB file for the dengue methyl transferase
-  // from the server and display it in the viewer.
-  pv.io.fetchPdb('1r6a.pdb', function(structure) {
+    setTimeout(function() {
+        console.log(code);
+        pv.io.fetchPdb(code+".pdb", function(structure) {
       // display the protein as cartoon, coloring the secondary structure
       // elements in a rainbow gradient.
       viewer.cartoon('protein', structure, { color : color.ssSuccession() });
@@ -35,6 +63,9 @@ function loadMethylTransferase() {
       viewer.ballsAndSticks('ligands', ligands);
       viewer.centerOn(structure);
   });
+    },200);
+  // asynchronously load the PDB file for the dengue methyl transferase
+  // from the server and display it in the viewer.
 }
 
 // load the methyl transferase once the DOM has finished loading. That's
