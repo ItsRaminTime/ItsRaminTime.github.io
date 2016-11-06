@@ -1,11 +1,14 @@
-.first {
+#first {
     font-size: 24px;
+    font-family: bold;
 }
 
 li {
     list-style-type: none;
+    font-family: cursive;
 }
 
 ul {
      list-style-type: none;
+    font-family: cursive;
 }
