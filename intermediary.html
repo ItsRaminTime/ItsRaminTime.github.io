@@ -49,14 +49,7 @@ $.getJSON('receptor_protein_translator.json').done(function (data) {
     }
     $("div").append("<ul></ul>");
     for(var i in code) {
-        var li = "<li>";
-        $("ul").append("<ul>".concat(code[i].pdb_code)).append(li.concat(code[i].species)).append(li.concat(code[i].protein));
-        $(".sub").append("<li>".concat(code[i].family));
-        $(".sub").append("<li>".concat(code[i].resolution));
-        $(".sub").append("<li>".concat(code[i].publication));
-        $(".sub").append("<li>".concat(code[i].type));
-        $(".sub").append("<li>".concat(code[i].preferred_chain));
-        $(".sub").append("<li>".concat(code[i].publication_date));
+        var li = "<li>"; $("ul").append(li.concat(code[i].pdb_code)).append(li.concat(code[i].species)).append(li.concat(code[i].protein)).append("<li>".concat(code[i].family)).append("<li>".concat(code[i].resolution)).append("<li>".concat(code[i].publication)).append("<li>".concat(code[i].type)).append("<li>".concat(code[i].preferred_chain)).append("<li>".concat(code[i].publication_date));
     }
 });
 </script>
