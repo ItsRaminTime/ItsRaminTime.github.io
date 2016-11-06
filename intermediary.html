@@ -36,7 +36,7 @@ var param = getQueryVariable("name");
     
 var json;
 var code;
-var j = {};
+var j = [];
 $.getJSON('receptor_protein_translator.json').done(function (data) {
     json = data;
     for(var i = 0; i < json.length; i++) {
