@@ -10,6 +10,6 @@ li {
 
 ul {
     list-style-type: none;
-    font-family: cursive;
+    font-family: monospace;
     padding-bottom: 10px;
 }
