@@ -32,20 +32,8 @@ function getQueryVariable(variable)
        return(false);
 }
 var param = getQueryVariable("name");
-    
-var json;
-var code;
-$.getJSON('receptor_protein_translator.json').done(function (data) {
-    json = data;
-    for(var i = 0; i < json.length; i++) {
-        var obj = json[i];
-        if(obj.protein.includes(param)) {
-            code = obj.pdb_code;   
-            console.log(code);
-        }
-    }
-    loadMethylTransferase();
-});
+
+loadMethylTransferase();
 
 // insert the viewer under the Dom element with id 'gl'.
 var viewer = pv.Viewer(document.getElementById('viewer'), options);
@@ -53,7 +41,7 @@ var viewer = pv.Viewer(document.getElementById('viewer'), options);
 function loadMethylTransferase() {
 //    setTimeout(function() {
         console.log(code);
-        pv.io.fetchPdb("Proteins/" + code + ".pdb", function(structure) {
+        pv.io.fetchPdb("Proteins/" + param + ".pdb", function(structure) {
       // display the protein as cartoon, coloring the secondary structure
       // elements in a rainbow gradient.
       viewer.cartoon('protein', structure, { color : color.ssSuccession() });
