@@ -50,7 +50,7 @@ $.getJSON('receptor_protein_translator.json').done(function (data) {
     $("div").append("<ul></ul>");
     for(var i in code) {
         var li = "<li>";
-        $("ul").append(li.concat(code[i].pdb_code)).append(li.concat(code[i].species)).append(li.concat(code[i].protein));
+        $("ul").append("<ul>".concat(code[i].pdb_code)).append(li.concat(code[i].species)).append(li.concat(code[i].protein));
         $(".sub").append("<li>".concat(code[i].family));
         $(".sub").append("<li>".concat(code[i].resolution));
         $(".sub").append("<li>".concat(code[i].publication));
