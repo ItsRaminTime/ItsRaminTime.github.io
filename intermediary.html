@@ -49,8 +49,16 @@ $.getJSON('receptor_protein_translator.json').done(function (data) {
     }
     $("div").append("<ul></ul>");
     for(var i in code) {
-        var li = "<li>";
-        $("ul").append(li.concat(code[i]))
+        var ul = "<ul>";
+        $("ul").append(ul.concat(code[i].pdb_code));
+        $ul.append("<li>".concat(code[i].species));
+        $ul.append("<li>".concat(code[i].protein));
+        $ul.append("<li>".concat(code[i].family));
+        $ul.append("<li>".concat(code[i].resolution));
+        $ul.append("<li>".concat(code[i].publication));
+        $ul.append("<li>".concat(code[i].type));
+        $ul.append("<li>".concat(code[i].preferred_chain));
+        $ul.append("<li>".concat(code[i].publication_date));
     }
 });
 </script>
