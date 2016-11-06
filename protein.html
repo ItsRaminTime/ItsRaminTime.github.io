@@ -44,15 +44,14 @@ $.getJSON('receptor_protein_translator.json').done(function (data) {
             console.log(code);
         }
     }
+    loadMethylTransferase();
 });
 
 // insert the viewer under the Dom element with id 'gl'.
 var viewer = pv.Viewer(document.getElementById('viewer'), options);
-</script>
-<script type='text/javascript'>
 
 function loadMethylTransferase() {
-    setTimeout(function() {
+//    setTimeout(function() {
         console.log(code);
         pv.io.fetchPdb(code+".pdb", function(structure) {
       // display the protein as cartoon, coloring the secondary structure
@@ -66,12 +65,12 @@ function loadMethylTransferase() {
       viewer.ballsAndSticks('ligands', ligands);
       viewer.centerOn(structure);
   });
-    },200);
+//    },200);
   // asynchronously load the PDB file for the dengue methyl transferase
   // from the server and display it in the viewer.
 }
 
 // load the methyl transferase once the DOM has finished loading. That's
 // the earliest point the WebGL context is available.
-document.addEventListener('DOMContentLoaded', loadMethylTransferase);
+//document.addEventListener('DOMContentLoaded', loadMethylTransferase);
 </script>
