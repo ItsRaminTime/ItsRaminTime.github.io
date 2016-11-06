@@ -42,7 +42,7 @@ $.getJSON('receptor_protein_translator.json').done(function (data) {
     for(var i = 0; i < json.length; i++) {
         var obj = json[i];
         if(obj.protein.includes(param)) {
-            code[j] = obj.pdb_code;  
+            code[j] = obj;  
             j = j + 1;
             console.log(code);
         }
