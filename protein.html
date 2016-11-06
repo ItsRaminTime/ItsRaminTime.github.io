@@ -53,7 +53,7 @@ var viewer = pv.Viewer(document.getElementById('viewer'), options);
 function loadMethylTransferase() {
 //    setTimeout(function() {
         console.log(code);
-        pv.io.fetchPdb(code+".pdb", function(structure) {
+        pv.io.fetchPdb("Proteins/" + code + ".pdb", function(structure) {
       // display the protein as cartoon, coloring the secondary structure
       // elements in a rainbow gradient.
       viewer.cartoon('protein', structure, { color : color.ssSuccession() });
