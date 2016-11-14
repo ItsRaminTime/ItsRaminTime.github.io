@@ -44,7 +44,7 @@ $.getJSON('table.json').done(function (data) {
     json = data;
     for(var i = 0; i < json.length; i++) {
         var obj = json[i];
-        if(obj.protein.includes(param)) {
+        if(obj.uniprot.includes(param)) {
             code[j] = obj;  
             j = j + 1;
             console.log(code);
