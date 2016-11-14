@@ -11,10 +11,14 @@
   <style type="text/css">
 
   </style>
-  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3.v3.js"></script>
   <script type="text/javascript" src="./parse.js"></script>
   <script type="text/javascript" src="pv.min.js"></script>
   <script type="text/javascript" src="./main.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
 </head>
 <body>
 <section class="main-head">
@@ -91,7 +95,7 @@ var param = getQueryVariable("name");
   function loadMOR() {
     // asynchronously load the PDB file for the dengue methyl transferase
     // from the server and display it in the viewer.
-    pv.io.fetchPdb(param + '.pdb', function(structure) {
+    pv.io.fetchPdb("Proteins/" + param + ".pdb", function(structure) {
       struc = structure;
       viewer.trace('protein', structure, { color : color.ssSuccession() });
       var ligands = structure.select({ rnames : ['YCM', '4VO', 'OLC', 'CLR', 'P04', 'P6G'] });
