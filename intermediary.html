@@ -68,8 +68,8 @@ $.getJSON('table.json').done(function (data) {
             .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
             .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
             .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
-            .append("<li>".concat("3.5A Inter Dict Dir: " + code[i].3.5A_inter_dict_dir))
-            .append("<li>".concat("3.2A Inter Dict Dir: " + code[i].3.2A_inter_dict_dir))
+            .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]."3.5A_inter_dict_dir"))
+            .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]."3.2A_inter_dict_dir"))
             .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
             .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
     }
