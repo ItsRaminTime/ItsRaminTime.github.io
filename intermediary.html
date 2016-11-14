@@ -37,9 +37,6 @@ var param = getQueryVariable("name");
     
 var json;
 var code = [];
-var threeFiveInterDict = "3.5A_inter_dict_dir";
-var threeTwoInterDict = "3.2A_inter_dict_dir";
-var conditionRep = "condition/rep";
 var j = 0;
 $.getJSON('table.json').done(function (data) {
     json = data;
@@ -54,13 +51,13 @@ $.getJSON('table.json').done(function (data) {
     $("div").append("<ul></ul>");
     for(var i in code) {
         var li = "<li id=first><a href='"; 
-        $("ul").append(li.concat("protein.html?name=" + code[i].pdb+"'>"+code[i].pdb))
+        $("ul").append(li.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
             .append("<li>".concat("Receptor: " + code[i].receptor))
             .append("<li>".concat("Uniprot: " + code[i].uniprot))
             .append("<li>".concat("State: " + code[i].state))
             .append("<li>".concat("Ligand: " + code[i].ligand))
             .append("<li>".concat("Publication: " + code[i].publication))
-            .append("<li>".concat("Condition/Rep: " + code[i].conditionrep))
+            .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
             .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
             .append("<li>".concat("Top Dir: " + code[i].top_dir))
             .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
@@ -71,8 +68,8 @@ $.getJSON('table.json').done(function (data) {
             .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
             .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
             .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
-            .append("<li>".concat("3.5A Inter Dict Dir: " + code[i].threeFiveInterDict))
-            .append("<li>".concat("3.2A Inter Dict Dir: " + code[i].threeTwoInterDict))
+            .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]]))
+            .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))
             .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
             .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
     }
