@@ -73,7 +73,7 @@
     width: 500,
     height: 800,
     antialias: true,
-    quality : 'medium'
+    quality : 'medium',
   };
     
 function getQueryVariable(variable)
@@ -88,7 +88,22 @@ function getQueryVariable(variable)
 }
 var param = getQueryVariable("name");
   // insert the viewer under the Dom element with id 'gl'.
-  var viewer = pv.Viewer(document.getElementById('pviewer'), options);
+    var viewer = pv.Viewer(document.getElementById('pviewer'), options);
+    viewer.addListener('click', function(picked) {
+        if (picked === null) return;
+            var target = picked.target();
+            viewer.points(target, color="red");
+        if (target.qualifiedName !== undefined) {
+            console.log('clicked atom', target.qualifiedName(), 'on object', picked.node().name());
+        }
+    }); 
+    viewer.on('doubleClick', function(picked) {
+        if (picked === null) {
+            viewer.fitTo(structure);
+        return;
+    }
+    viewer.setCenter(picked.pos(), 500);
+    });
   var struc;
 
 
@@ -116,11 +131,11 @@ var param = getQueryVariable("name");
       //  acount++;
       //});
 
-      var cm = viewer.customMesh('interactions');
-      cm.addTube( structure.atom('A.95.CA').pos(), structure.atom('A.116.CA').pos(), 0.5, {cap:false, color:'black'});
+      //var cm = viewer.customMesh('interactions');
+      //cm.addTube( structure.atom('A.95.CA').pos(), structure.atom('A.116.CA').pos(), 0.5, {cap:false, color:'black'});
 
-      viewer.rm('interaction');
-      cm.addTube( structure.atom('A.95.CA').pos(), structure.atom('A.116.CA').pos(), 0.5, {cap:false, color:'black'});
+      //viewer.rm('interaction');
+      //cm.addTube( structure.atom('A.95.CA').pos(), structure.atom('A.116.CA').pos(), 0.5, {cap:false, color:'black'});
 
 
     });
