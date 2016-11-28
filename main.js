@@ -868,7 +868,7 @@ function toggleNode(d,i){
     d3.select(this.parentNode)
         .classed("toggledNode", function(d){return toggled; });
 
-    console.log((d.name));
+    console.log((d.name.substr(1)));
     var name = d.name.substring(d.name.lastIndexOf(".")+1);
     if(!toggled)
         delete toggledNodes[name];
