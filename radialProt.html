@@ -117,7 +117,7 @@ parent.addEventListener('mousemove', function(event) {
     if (picked !== null) {
       var atom = picked.target();
       var atomNum = atom.qualifiedName().match(/\d+/)[0];
-      var toggleName = d.name.substring(d.name.lastIndexOf(".")+1);
+      var toggleName = resiToName(atomNum);
       console.log(atomNum);
       console.log(toggleName);
       if(toggledNodes[toggleName] == "")
@@ -466,6 +466,17 @@ parent.addEventListener('mousemove', function(event) {
       return undefined;
     }
   }
+    
+  function resiToName(name){
+    for (var i = 0; i < nameToResiTable.length; i++){
+      if (nameToResiTable[i][0] == name){
+        return nameToResiTable[name];
+      else{
+        console.log("Error looking up "+name);
+        return undefined;
+      }
+  }
+    
   function updateInteractions(frame){
     viewer.rm('interactions');
     var cm = viewer.customMesh('interactions');
