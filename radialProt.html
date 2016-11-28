@@ -116,7 +116,7 @@ parent.addEventListener('mousemove', function(event) {
     }
     if (picked !== null) {
       var atom = picked.target();
-      console.log(atom.qualifiedName().substr(5,atom.qualifiedName().length - 2));
+      console.log(atom.qualifiedName().match(/\d+/)[0]);
       document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
       // get RGBA color and store in the color array, so we know what it was
       // before changing it to the highlight color.
