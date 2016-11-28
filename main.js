@@ -864,12 +864,14 @@ function forward(){
 
 
 function toggleNode(d,i){
+    console.log(this);
     var toggled = !d3.select(this.parentNode).classed("toggledNode");
     d3.select(this.parentNode)
         .classed("toggledNode", function(d){return toggled; });
 
     console.log(nameToResi(d.name.substr(2)));
     var name = d.name.substring(d.name.lastIndexOf(".")+1);
+    console.log(name);
     if(!toggled)
         delete toggledNodes[name];
     else

@@ -116,7 +116,23 @@ parent.addEventListener('mousemove', function(event) {
     }
     if (picked !== null) {
       var atom = picked.target();
-      console.log(atom.qualifiedName().match(/\d+/)[0]);
+      var atomNum = atom.qualifiedName().match(/\d+/)[0];
+      var toggleName = d.name.substring(d.name.lastIndexOf(".")+1);
+      console.log(atomNum);
+      console.log(toggleName);
+      if(toggledNodes[toggleName] == "")
+        delete toggledNodes[name];
+      else
+        toggledNodes[name] = "";
+
+      path = svg.selectAll("path.link")
+        .classed("toggled", function(d) {
+            return ( d.source.key in toggledNodes || d.target.key in toggledNodes)
+        });
+
+      //svg.selectAll("path.link/target-"+d.key);
+      fireTickListeners(curFrame);
+      
       document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
       // get RGBA color and store in the color array, so we know what it was
       // before changing it to the highlight color.
