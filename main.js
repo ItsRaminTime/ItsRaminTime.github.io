@@ -877,8 +877,10 @@ function toggleNode(d,i){
     path = svg.selectAll("path.link").classed("toggled", function(d) {
             return ( d.source.key in toggledNodes || d.target.key in toggledNodes)
     });
-    
-    var picked = viewer.pick(struc.atom("A."+nameToResi(name)+".CA").pos());
+    var picked = viewer.pick({
+          x: struc.atom("A."+nameToResi(name)+".CA").pos()[0],
+          y: struc.atom("A."+nameToResi(name)+".CA").pos()[1]
+        });
     var atom = picked.target();
     if (picked === null || picked.target() === null) {
         return;
