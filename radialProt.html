@@ -118,25 +118,7 @@ parent.addEventListener('mousemove', function(event) {
       var atom = picked.target();
       var flag = true;
       var atomNum = atom.qualifiedName().match(/\d+/)[0];
-      var toggleName = resiToName(atomNum);
-      for (var key in toggledNodes){
-        if(key === toggleName) {
-          delete toggledNodes[toggleName];
-          flag = false;
-        } 
-      }
-      if(false) {
-        toggledNodes[toggleName] = "";
-      }
-      console.log(svg);
-        console.log(toggleName in toggledNodes);
-      path = svg.selectAll("path.link")
-        .classed("toggled", function(toggleName) {
-            return ( toggleName in toggledNodes || toggleName in toggledNodes)
-        });
-
-      svg.selectAll("path.link/target-"+toggleName);
-      fireTickListeners(curFrame);
+      toggleResi(atomNum);
       
       document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
       // get RGBA color and store in the color array, so we know what it was
@@ -472,10 +454,25 @@ parent.addEventListener('mousemove', function(event) {
     }
   }
     
-  function resiToName(name){
+  function toggleResi(name){
     for (var key in nameToResiTable){
       if(nameToResiTable[key][0] === name) {
-        return key;
+        for (var toggleKey in toggledNodes){
+          if(key === toggleKey) {
+            delete toggledNodes[key];
+            flag = false;
+          } 
+        }
+        if(false) {
+          toggledNodes[key] = "";
+        }
+        console.log(key in toggledNodes);
+        path = svg.selectAll("path.link").classed("toggled", function(key) {
+            return ( key in toggledNodes || key in toggledNodes)
+        });
+
+        //svg.selectAll("path.link/target-"+toggleName);
+        fireTickListeners(curFrame);
       } 
     }
     console.log("Error looking up "+name);
