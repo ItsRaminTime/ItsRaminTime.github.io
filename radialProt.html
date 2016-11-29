@@ -474,11 +474,10 @@ parent.addEventListener('mousemove', function(event) {
         console.log(nameToResiTable[key][0]);
       if(nameToResiTable[key][0] === name) {
         return key;
-      } else {
-        console.log("Error looking up "+name);
-        return undefined;
-      }
+      } 
     }
+    console.log("Error looking up "+name);
+    return undefined;
   }
     
   function updateInteractions(frame){
