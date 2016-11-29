@@ -106,6 +106,7 @@ parent.addEventListener('mousemove', function(event) {
     var rect = viewer.boundingClientRect();
     var picked = viewer.pick({ x : event.clientX - rect.left,
                                y : event.clientY - rect.top });
+    console.log(picked);
     if (prevPicked !== null && picked !== null &&
         picked.target() === prevPicked.atom) {
       return;
