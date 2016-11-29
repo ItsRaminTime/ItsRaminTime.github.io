@@ -864,7 +864,7 @@ function forward(){
 
 
 function toggleNode(d,i){
-    console.log(structure.select(nameToResi(name)));
+    console.log(struc.atom(nameToResi(name)));
     var toggled = !d3.select(this.parentNode).classed("toggledNode");
     d3.select(this.parentNode)
         .classed("toggledNode", function(d){return toggled; });
