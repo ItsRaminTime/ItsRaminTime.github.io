@@ -878,7 +878,7 @@ function toggleNode(d,i){
             return ( d.source.key in toggledNodes || d.target.key in toggledNodes)
     });
     
-    var picked = struc.pick(struc.atom("A."+nameToResi(name)+".CA").pos());
+    var picked = viewer.pick(struc.atom("A."+nameToResi(name)+".CA").pos());
     var atom = picked.target();
     if (picked === null || picked.target() === null) {
         return;
