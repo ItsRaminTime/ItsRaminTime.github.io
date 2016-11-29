@@ -881,8 +881,8 @@ function toggleNode(d,i){
     
     for(var i = 0; i < atomsList.length; i++) {
         console.log(atomsList[i].pos());
-        console.log(("A."+nameToResi(name)+".CA").pos());
-        if(atomsList[i].pos() == ("A."+nameToResi(name)+".CA").pos()) {
+        console.log(struc.atom(("A."+nameToResi(name)+".CA").pos());
+        if(atomsList[i].pos() == struc.atom(("A."+nameToResi(name)+".CA").pos()) {
           picked = atomsList[i];
         }
     }
