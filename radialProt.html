@@ -120,10 +120,11 @@ parent.addEventListener('mousemove', function(event) {
       var toggleName = resiToName(atomNum);
       console.log(atomNum);
       console.log(toggleName);
+      
       if(toggleName in toggledNodes) {
-        delete toggledNodes[name];
+        delete toggledNodes[toggleName];
       } else {
-        toggledNodes[name] = "";
+        toggledNodes[toggleName] = "";
       }
       path = svg.selectAll("path.link")
         .classed("toggled", function(d) {
