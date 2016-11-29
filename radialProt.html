@@ -468,9 +468,9 @@ parent.addEventListener('mousemove', function(event) {
   }
     
   function resiToName(name){
-    for (var i = 0; i < nameToResiTable.length; i++){
-      if(nameToResiTable[i][0] === name) {
-        return nameToResiTable[name];
+    for (var key in nameToResiTable){
+      if(nameToResiTable[key][0] === name) {
+        return key;
       } else {
         console.log("Error looking up "+name);
         return undefined;
