@@ -869,6 +869,7 @@ function toggleNode(d,i){
         .classed("toggledNode", function(d){return toggled; });
 
     var name = d.name.substring(d.name.lastIndexOf(".")+1);
+    
     if(!toggled)
         delete toggledNodes[name];
     else

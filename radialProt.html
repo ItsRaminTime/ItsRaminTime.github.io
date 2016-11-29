@@ -181,6 +181,7 @@ viewer.on('click', function(picked, ev) {
     pv.io.fetchPdb("Proteins/" + param + ".pdb", function(structure) {
       struc = structure;
       viewer.trace('protein', structure, { color : color.ssSuccession() });
+        console.log(structure);
       var ligands = structure.select({ rnames : ['YCM', '4VO', 'OLC', 'CLR', 'P04', 'P6G'] });
       viewer.ballsAndSticks('ligands', ligands);
       viewer.fitTo(structure);
