@@ -869,18 +869,44 @@ function toggleNode(d,i){
         .classed("toggledNode", function(d){return toggled; });
 
     var name = d.name.substring(d.name.lastIndexOf(".")+1);
-    console.log(struc.atom("A."+nameToResi(name)+".CA"));
     if(!toggled)
         delete toggledNodes[name];
     else
         toggledNodes[name] = "";
 
-    path = svg.selectAll("path.link")
-        .classed("toggled", function(d) {
+    path = svg.selectAll("path.link").classed("toggled", function(d) {
             return ( d.source.key in toggledNodes || d.target.key in toggledNodes)
-        });
-
-    //svg.selectAll("path.link/target-"+d.key);
+    });
+    
+    var picked = struc.atom("A."+nameToResi(name)+".CA");
+    var atom = picked.target();
+    if (picked === null || picked.target() === null) {
+        return;
+    }
+    // don't to anything if the clicked structure does not have an atom.
+    if (picked.node().structure === undefined) {
+        return;
+    }
+    // when the shift key is pressed, extend the selection, otherwise
+    // only select the clicke atom.
+    var extendSelection = ev.shiftKey;
+    var sel;
+    if (extendSelection) {
+        var sel = picked.node().selection();
+    } else {
+        var sel = picked.node().structure().createEmptyView();
+    }
+    // in case atom was not part of the view, we have to add it, because
+    // it wasn't selected before. Otherwise removeAtom took care of it
+    // and we don't have to do anything.
+    if (!sel.removeAtom(picked.target(), true)) {
+        sel.addAtom(picked.target());
+    }
+    picked.node().setSelection(sel);
+    viewer.requestRedraw();
+    document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
+    var atomNum = atom.qualifiedName().match(/\d+/)[0];
+    
     fireTickListeners(curFrame);
 }
 
