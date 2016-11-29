@@ -456,6 +456,8 @@ parent.addEventListener('mousemove', function(event) {
     
   function toggleResi(name){
     for (var key in nameToResiTable){
+      console.log("key: " + key);
+      console.log("nameToResiTable[key][0]= " + nameToResiTable[key][0]);
       if(nameToResiTable[key][0] === name) {
         for (var toggleKey in toggledNodes){
             console.log(key);
