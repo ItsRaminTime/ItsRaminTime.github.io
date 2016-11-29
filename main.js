@@ -864,20 +864,17 @@ function forward(){
 
 
 function toggleNode(d,i){
-    console.log(d);
+    console.log(this);
     var toggled = !d3.select(this.parentNode).classed("toggledNode");
     d3.select(this.parentNode)
         .classed("toggledNode", function(d){return toggled; });
 
-    console.log(nameToResi(d.name.substr(2)));
     var name = d.name.substring(d.name.lastIndexOf(".")+1);
-    console.log(name);
     if(!toggled)
         delete toggledNodes[name];
     else
         toggledNodes[name] = "";
 
-          console.log(svg);
     path = svg.selectAll("path.link")
         .classed("toggled", function(d) {
             return ( d.source.key in toggledNodes || d.target.key in toggledNodes)
