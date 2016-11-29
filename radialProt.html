@@ -172,7 +172,6 @@ viewer.on('click', function(picked, ev) {
 */
     
   var struc;
-  var atomsList;
 
 
   function loadMOR() {
@@ -180,7 +179,6 @@ viewer.on('click', function(picked, ev) {
     // from the server and display it in the viewer.
     pv.io.fetchPdb("Proteins/" + param + ".pdb", function(structure) {
       struc = structure;
-      atomsList = struc.atoms();
       viewer.trace('protein', structure, { color : color.ssSuccession() });
       var ligands = structure.select({ rnames : ['YCM', '4VO', 'OLC', 'CLR', 'P04', 'P6G'] });
       viewer.ballsAndSticks('ligands', ligands);
