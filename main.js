@@ -879,7 +879,7 @@ function toggleNode(d,i){
     
     var atom = struc.atom("A."+nameToResi(name)+".CA");
     
-    var sel = picked.node().structure().createEmptyView();
+    var sel = atom.structure().createEmptyView();
     // in case atom was not part of the view, we have to add it, because
     // it wasn't selected before. Otherwise removeAtom took care of it
     // and we don't have to do anything.
