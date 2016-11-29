@@ -879,6 +879,7 @@ function toggleNode(d,i){
     });
     
     var atom = struc.atom("A."+nameToResi(name)+".CA");
+    console.log(atom);
     if (picked === null || atom === null) {
         return;
     }
