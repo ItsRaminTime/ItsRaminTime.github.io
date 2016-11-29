@@ -878,31 +878,30 @@ function toggleNode(d,i){
             return ( d.source.key in toggledNodes || d.target.key in toggledNodes)
     });
     
-    var picked = struc.atom("A."+nameToResi(name)+".CA");
-    var atom = picked.target();
-    if (picked === null || picked.target() === null) {
+    var atom = struc.atom("A."+nameToResi(name)+".CA");
+    if (picked === null || atom === null) {
         return;
     }
     // don't to anything if the clicked structure does not have an atom.
-    if (picked.node().structure === undefined) {
-        return;
-    }
+    //if (atom.node().structure === undefined) {
+    //    return;
+    //}
     // when the shift key is pressed, extend the selection, otherwise
     // only select the clicke atom.
     var extendSelection = ev.shiftKey;
     var sel;
     if (extendSelection) {
-        var sel = picked.node().selection();
+        var sel = atom.node().selection();
     } else {
-        var sel = picked.node().structure().createEmptyView();
+        var sel = atom.node().structure().createEmptyView();
     }
     // in case atom was not part of the view, we have to add it, because
     // it wasn't selected before. Otherwise removeAtom took care of it
     // and we don't have to do anything.
-    if (!sel.removeAtom(picked.target(), true)) {
-        sel.addAtom(picked.target());
+    if (!sel.removeAtom(atom, true)) {
+        sel.addAtom(atom);
     }
-    picked.node().setSelection(sel);
+    atom.node().setSelection(sel);
     viewer.requestRedraw();
     document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
     var atomNum = atom.qualifiedName().match(/\d+/)[0];
