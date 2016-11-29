@@ -105,6 +105,7 @@ var prevPicked = null;
     
 viewer.on('click', function(picked, ev) {
   var atom = picked.target();
+  console.log(atom);
   if (picked === null || picked.target() === null) {
     return;
   }
