@@ -455,10 +455,10 @@ parent.addEventListener('mousemove', function(event) {
   }
     
   function toggleResi(name){
+    var flag = true;
     for (var key in nameToResiTable){
-      console.log("name: " + name);
-      console.log("nameToResiTable[key][0]= " + nameToResiTable[key][0]);
       if(nameToResiTable[key][0] === name) {
+          console.log("!!!!");
         for (var toggleKey in toggledNodes){
             console.log(key);
             console.log(toggleKey);
@@ -468,7 +468,7 @@ parent.addEventListener('mousemove', function(event) {
             flag = false;
           } 
         }
-        if(false) {
+        if(flag) {
           toggledNodes[key] = "";
         }
         console.log(key in toggledNodes);
