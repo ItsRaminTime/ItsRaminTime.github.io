@@ -459,6 +459,8 @@ parent.addEventListener('mousemove', function(event) {
       if(nameToResiTable[key][0] === name) {
         for (var toggleKey in toggledNodes){
           if(key === toggleKey) {
+            console.log(key);
+            console.log(toggleKey);
             delete toggledNodes[key];
             flag = false;
           } 
