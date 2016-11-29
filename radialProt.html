@@ -120,7 +120,7 @@ parent.addEventListener('mousemove', function(event) {
       var toggleName = resiToName(atomNum);
       console.log(atomNum);
       console.log(toggleName);
-      if(toggledNodes[toggleName] === "") {
+      if(toggleName in toggledNodes) {
         delete toggledNodes[name];
       } else {
         toggledNodes[name] = "";
