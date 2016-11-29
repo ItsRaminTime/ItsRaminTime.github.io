@@ -880,7 +880,7 @@ function toggleNode(d,i){
     
     var atom = struc.atom("A."+nameToResi(name)+".CA");
     console.log(atom);
-    if (picked === null || atom === null) {
+    if (atom === null) {
         return;
     }
     // don't to anything if the clicked structure does not have an atom.
