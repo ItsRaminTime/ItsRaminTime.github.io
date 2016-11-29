@@ -886,7 +886,7 @@ function toggleNode(d,i){
     if (!sel.removeAtom(atom, true)) {
         sel.addAtom(atom);
     }
-    //picked.node().setSelection(sel);
+    a.setSelection(sel);
     viewer.requestRedraw();
     document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
     var atomNum = atom.qualifiedName().match(/\d+/)[0];
