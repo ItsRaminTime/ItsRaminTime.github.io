@@ -116,14 +116,18 @@ parent.addEventListener('mousemove', function(event) {
     }
     if (picked !== null) {
       var atom = picked.target();
+      var flag = true;
       var atomNum = atom.qualifiedName().match(/\d+/)[0];
       var toggleName = resiToName(atomNum);
       console.log(atomNum);
       console.log(toggleName);
-      
-      if(toggleName in toggledNodes) {
-        delete toggledNodes[toggleName];
-      } else {
+      for (var key in toggledNodes){
+        if(key === toggleName) {
+          delete toggledNodes[toggleName];
+          flag = false;
+        } 
+      }
+      if(false) {
         toggledNodes[toggleName] = "";
       }
       path = svg.selectAll("path.link")
