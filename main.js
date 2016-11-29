@@ -889,13 +889,7 @@ function toggleNode(d,i){
     //}
     // when the shift key is pressed, extend the selection, otherwise
     // only select the clicke atom.
-    var extendSelection = ev.shiftKey;
-    var sel;
-    if (extendSelection) {
-        var sel = atom.node().selection();
-    } else {
-        var sel = atom.node().structure().createEmptyView();
-    }
+    var sel = atom.node().structure().createEmptyView();
     // in case atom was not part of the view, we have to add it, because
     // it wasn't selected before. Otherwise removeAtom took care of it
     // and we don't have to do anything.
