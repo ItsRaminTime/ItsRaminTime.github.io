@@ -458,8 +458,9 @@ parent.addEventListener('mousemove', function(event) {
     var flag = true;
     for (var key in nameToResiTable){
       if(nameToResiTable[key][0] === name) {
-          console.log("!!!!");
-        for (var toggleKey in toggledNodes){
+          var toggled = !d3.select(document.getElementById('node-'+key)).classed("toggledNode");
+          d3.select(document.getElementById('node-'+key)).classed("toggledNode", function(name){return toggled; });
+          for (var toggleKey in toggledNodes){
             console.log(key);
             console.log(toggleKey);
           if(key === toggleKey) {

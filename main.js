@@ -864,7 +864,6 @@ function forward(){
 
 
 function toggleNode(d,i){
-    console.log(this.parentNode);
     var toggled = !d3.select(this.parentNode).classed("toggledNode");
     d3.select(this.parentNode)
         .classed("toggledNode", function(d){return toggled; });
