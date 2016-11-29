@@ -498,28 +498,25 @@ viewer.on('click', function(picked, ev) {
           var toggled = !d3.select(document.getElementById('node-'+key)).classed("toggledNode");
           d3.select(document.getElementById('node-'+key)).classed("toggledNode", function(name){return toggled; });
           for (var toggleKey in toggledNodes){
-            console.log(key);
-            console.log(toggleKey);
-          if(key === toggleKey) {
-            
-            delete toggledNodes[key];
-            flag = false;
-          } 
-        }
-        if(flag) {
-          toggledNodes[key] = "";
-        }
-        console.log(key in toggledNodes);
-        path = svg.selectAll("path.link").classed("toggled", function(key) {
+            if(key === toggleKey) {
+              delete toggledNodes[key];
+              flag = false;
+            } 
+          }
+          if(flag) {
+            toggledNodes[key] = "";
+          }
+          path = svg.selectAll("path.link").classed("toggled", function(key) {
             return ( key in toggledNodes || key in toggledNodes)
-        });
+          });
 
-        //svg.selectAll("path.link/target-"+toggleName);
-        fireTickListeners(curFrame);
-      } 
-    }
-    console.log("Error looking up "+name);
-    return undefined;
+          //svg.selectAll("path.link/target-"+toggleName);
+          fireTickListeners(curFrame);
+          return;
+        } 
+      }
+      console.log("Error looking up "+name);
+      return undefined;
   }
     
   function updateInteractions(frame){
