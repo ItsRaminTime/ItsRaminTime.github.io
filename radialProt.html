@@ -469,6 +469,9 @@ parent.addEventListener('mousemove', function(event) {
     
   function resiToName(name){
     for (var key in nameToResiTable){
+        console.log(key);
+        console.log(name);
+        console.log(nameToResiTable[key][0]);
       if(nameToResiTable[key][0] === name) {
         return key;
       } else {
