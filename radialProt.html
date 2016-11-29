@@ -131,8 +131,8 @@ parent.addEventListener('mousemove', function(event) {
         toggledNodes[toggleName] = "";
       }
       path = svg.selectAll("path.link")
-        .classed("toggled", function(d) {
-            return ( d.source.key in toggledNodes || d.target.key in toggledNodes)
+        .classed("toggled", function(toggleName) {
+            return ( toggleName in toggledNodes || toggleName in toggledNodes)
         });
 
       //svg.selectAll("path.link/target-"+d.key);
