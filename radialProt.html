@@ -105,10 +105,6 @@ var prevPicked = null;
     
 viewer.on('click', function(picked, ev) {
   var atom = picked.target();
-        var rect = viewer.boundingClientRect();
-
-  console.log(ev.clientX - rect.left);
-    console.log(ev.clientY - rect.top);
   if (picked === null || picked.target() === null) {
     return;
   }

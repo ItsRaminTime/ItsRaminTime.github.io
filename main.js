@@ -862,6 +862,7 @@ function forward(){
     //setFrame(maxVal);
 }
 
+var atomsList = struc.atoms();
 
 function toggleNode(d,i){
     var toggled = !d3.select(this.parentNode).classed("toggledNode");
@@ -877,10 +878,17 @@ function toggleNode(d,i){
     path = svg.selectAll("path.link").classed("toggled", function(d) {
             return ( d.source.key in toggledNodes || d.target.key in toggledNodes)
     });
-    var picked = viewer.pick({
-          x: struc.atom("A."+nameToResi(name)+".CA").pos()[1],
-          y: struc.atom("A."+nameToResi(name)+".CA").pos()[2]
-        });
+    
+    var picked;
+    
+    for(atom in atomsList) {
+        console.log(atom.pos());
+        console.log(("A."+nameToResi(name)+".CA").pos());
+        if(atom.pos() == ("A."+nameToResi(name)+".CA").pos()) {
+          picked = atom;
+        }
+    }
+    
     var atom = picked.target();
     if (picked === null || picked.target() === null) {
         return;
