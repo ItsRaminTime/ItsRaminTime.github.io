@@ -877,6 +877,7 @@ function toggleNode(d,i){
     else
         toggledNodes[name] = "";
 
+          console.log(svg);
     path = svg.selectAll("path.link")
         .classed("toggled", function(d) {
             return ( d.source.key in toggledNodes || d.target.key in toggledNodes)

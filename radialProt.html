@@ -119,8 +119,6 @@ parent.addEventListener('mousemove', function(event) {
       var flag = true;
       var atomNum = atom.qualifiedName().match(/\d+/)[0];
       var toggleName = resiToName(atomNum);
-      console.log(atomNum);
-      console.log(toggleName);
       for (var key in toggledNodes){
         if(key === toggleName) {
           delete toggledNodes[toggleName];
@@ -130,12 +128,14 @@ parent.addEventListener('mousemove', function(event) {
       if(false) {
         toggledNodes[toggleName] = "";
       }
+      console.log(svg);
+        console.log(toggleName in toggledNodes);
       path = svg.selectAll("path.link")
         .classed("toggled", function(toggleName) {
             return ( toggleName in toggledNodes || toggleName in toggledNodes)
         });
 
-      //svg.selectAll("path.link/target-"+d.key);
+      svg.selectAll("path.link/target-"+toggleName);
       fireTickListeners(curFrame);
       
       document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
