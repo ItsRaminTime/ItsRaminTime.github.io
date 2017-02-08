@@ -249,6 +249,11 @@ viewer.on('click', function(picked, ev) {
     //load_dataset(rawtext);
     create_bundle(rawtext);
   });
+  
+  var btn = document.createElement("BUTTON");        // Create a <button> element
+  var t = document.createTextNode("DESELECT ALL");       // Create a text node
+  btn.appendChild(t);                                // Append the text to <button>
+  document.body.appendChild(btn);                    // Append <button> to <body>
 
   var nameToResiTable = {
     "1x28":["64",""],
