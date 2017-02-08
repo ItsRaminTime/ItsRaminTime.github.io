@@ -151,7 +151,7 @@ viewer.on('click', function(picked, ev) {
       prevPicked = { atom : atom, color : color, node : picked.node() };
 
       setColorForAtom(picked.node(), atom, 'red');
-      console.log(picked.node)
+      console.log(picked.node())
     } else {
       document.getElementById('picked-atom-name').innerHTML = '&nbsp;';
       prevPicked = null;
