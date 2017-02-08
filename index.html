@@ -40,13 +40,13 @@
         var diameter = 1500 
 
         var tree = d3.layout.tree()
-            .size([360, 1500 / 1.5 - 380])
+            .size([360, diameter / 1.5 - 380])
             .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
         var diagonal = d3.svg.diagonal.radial()
             .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 
-        var svg = d3.select(body).append("svg")
+        var svg = d3.select("body").append("svg")
             .attr("width", diameter)
             .attr("height", diameter - 50)
           .append("g")
