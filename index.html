@@ -20,13 +20,42 @@
           stroke: #ccd;
           stroke-width: 1.5px;
         }
+            
+        div.box {
+          background: #EEE;
+          height: 100px;
+          width: 600px;
+        }
+
+        #tree {
+          background: #999;
+          float: left;
+          height: 100%;
+          width: auto;
+        }
+
+        #intermediary {
+          background: #666;
+          height: 100%;
+        }
+
+        div.clear {
+          clear: both;
+          height: 1px;
+          overflow: hidden;
+          font-size: 0pt;
+          margin-top: -1px;
+        }
         </style>
 
         <title>D3 Test</title>
     </head>
     <body>
-        <div id="tree"></div>
-        <div id="intermediary"></div>
+        <div class="box">
+            <div id="tree"></div>
+            <div id="intermediary"></div>
+            <div class="clear"></div>
+        </div>
         <script src="https://d3js.org/d3.v3.js"></script>
         <!--<script type="text/javascript" src="d3.v3.js"></script>-->
 
