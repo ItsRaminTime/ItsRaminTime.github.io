@@ -862,6 +862,8 @@ function forward(){
     //setFrame(maxVal);
 }
 
+var prevPicked = null;
+
 function toggleNode(d,i){
     var toggled = !d3.select(this.parentNode).classed("toggledNode");
     d3.select(this.parentNode)
