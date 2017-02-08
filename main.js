@@ -1015,7 +1015,10 @@ function deselectAll(){
   });
 
           //svg.selectAll("path.link/target-"+toggleName);
+  console.log(toggledNodes)
+  console.log(curFrame)
   fireTickListeners(curFrame);
+  updateInteractions(curFrame);
 }
 
 function transitionToSummary(){
