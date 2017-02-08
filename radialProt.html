@@ -104,7 +104,7 @@ var prevPicked = null;
 // the mouse moves, use viewer.pick() to get the current atom under the cursor.
     
 viewer.on('click', function(picked, ev) {
-  var atom = picked.target();
+  /*var atom = picked.target();
   if (picked === null || picked.target() === null) {
     return;
   }
@@ -129,6 +129,34 @@ viewer.on('click', function(picked, ev) {
   }
   picked.node().setSelection(sel);
   viewer.requestRedraw();
+ */    
+    var rect = viewer.boundingClientRect();
+    var picked = viewer.pick({ x : ev.clientX - rect.left,
+                               y : ev.clientY - rect.top });
+    if (prevPicked !== null && picked !== null &&
+        picked.target() === prevPicked.atom) {
+      return;
+    }
+    if (prevPicked !== null) {
+      // reset color of previously picked atom.
+      setColorForAtom(prevPicked.node, prevPicked.atom, prevPicked.color);
+    }
+    if (picked !== null) {
+      var atom = picked.target();
+      document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
+      // get RGBA color and store in the color array, so we know what it was
+      // before changing it to the highlight color.
+      var color = [0,0,0,0];
+      picked.node().getColorForAtom(atom, color);
+      prevPicked = { atom : atom, color : color, node : picked.node() };
+
+      setColorForAtom(picked.node(), atom, 'red');
+    } else {
+      document.getElementById('picked-atom-name').innerHTML = '&nbsp;';
+      prevPicked = null;
+    }
+    viewer.requestRedraw();
+    
   document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
   var atomNum = atom.qualifiedName().match(/\d+/)[0];
   toggleResi(atomNum);
@@ -182,10 +210,10 @@ viewer.on('click', function(picked, ev) {
       struc = structure;
       a = viewer.trace('protein', structure, { color : color.ssSuccession() });
       var ligands = structure.select({ rnames : ['YCM', '4VO', 'OLC', 'CLR', 'P04', 'P6G'] });
-      //viewer.ballsAndSticks('ligands', ligands);
-      //viewer.fitTo(structure);
-      viewer.cartoon('crambin', struc);
-      viewer.autoZoom();
+      viewer.ballsAndSticks('ligands', ligands);
+      viewer.fitTo(structure);
+      //viewer.cartoon('crambin', struc);
+      //viewer.autoZoom();
       //var rotation = pv.viewpoint.principalAxes(viewer.all()[0]);
       //viewer.setRotation(rotation);
       viewer.setRotation([1,0,0,0,0,1,0,-1,0]);
