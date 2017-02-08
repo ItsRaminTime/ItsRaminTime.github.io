@@ -530,7 +530,7 @@ viewer.on('click', function(picked, ev) {
   function toggleResi(name){
     var flag = true;
     for (var key in nameToResiTable){
-      *if(nameToResiTable[key][0] === name) {
+      if(nameToResiTable[key][0] === name) {
           var toggled = !d3.select(document.getElementById('node-'+key)).classed("toggledNode");
           d3.select(document.getElementById('node-'+key)).classed("toggledNode", function(name){return toggled; });
           for (var toggleKey in toggledNodes){
