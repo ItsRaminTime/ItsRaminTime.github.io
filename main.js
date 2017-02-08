@@ -1010,11 +1010,6 @@ function deselectAll(){
   for (var key in toggledNodes){
     delete toggledNodes[key];
   }
-  path = svg.selectAll("path.link").classed("toggled", function(key) {
-            return ( key in toggledNodes || key in toggledNodes)
-  });
-
-          //svg.selectAll("path.link/target-"+toggleName);
   console.log(toggledNodes)
   console.log(curFrame)
   fireTickListeners(curFrame);
