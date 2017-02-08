@@ -64,10 +64,9 @@
 
           node.append("circle")
               .attr("r", 6.5)
-              .attr("class", "click-circle")
               .style("fill", function(d) {return d.colorid;})
               .on("click", function(d) {
-                return "intermediary.html" + "?name=" + d.name;
+                window.location = "intermediary.html" + "?name=" + d.name;
                }); 
 
           node.append("text")
