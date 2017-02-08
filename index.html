@@ -25,6 +25,8 @@
         <title>D3 Test</title>
     </head>
     <body>
+        <div id="tree"></div>
+        <div id="intermediary"></div>
         <script src="https://d3js.org/d3.v3.js"></script>
         <!--<script type="text/javascript" src="d3.v3.js"></script>-->
 
@@ -38,7 +40,7 @@
         var diagonal = d3.svg.diagonal.radial()
             .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 
-        var svg = d3.select("body").append("svg")
+        var svg = d3.select("#tree").append("svg")
             .attr("width", diameter)
             .attr("height", diameter - 50)
           .append("g")
