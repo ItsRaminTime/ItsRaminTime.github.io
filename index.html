@@ -65,6 +65,13 @@
           node.append("circle")
               .attr("r", 6.5)
               .style("fill", function(d) {return d.colorid;})
+              .on({"mouseover": function(d) {
+                d.style("cursor", "pointer")
+                },
+                "mouseout": function(d) {
+                d.style("cursor", "default")
+                }
+            })
               .on("click", function(d) {
                 window.location = "intermediary.html" + "?name=" + d.name;
                }); 
