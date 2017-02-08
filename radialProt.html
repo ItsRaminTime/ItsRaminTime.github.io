@@ -215,10 +215,10 @@ viewer.on('click', function(picked, ev) {
       struc = structure;
       a = viewer.trace('protein', structure, { color : color.ssSuccession() });
       var ligands = structure.select({ rnames : ['YCM', '4VO', 'OLC', 'CLR', 'P04', 'P6G'] });
-      viewer.ballsAndSticks('ligands', ligands);
-      viewer.fitTo(structure);
-      //viewer.cartoon('crambin', struc);
-      //viewer.autoZoom();
+      //viewer.ballsAndSticks('ligands', ligands);
+      //viewer.fitTo(structure);
+      viewer.cartoon('crambin', struc);
+      viewer.autoZoom();
       //var rotation = pv.viewpoint.principalAxes(viewer.all()[0]);
       //viewer.setRotation(rotation);
       viewer.setRotation([1,0,0,0,0,1,0,-1,0]);
