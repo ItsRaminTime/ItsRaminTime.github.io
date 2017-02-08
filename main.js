@@ -100,6 +100,10 @@ function create_bundle(rawText) {
     d3.select(".summaryButton").on("click", function() {
         transitionToSummary();
     });
+  
+    d3.select(".deselectButton").on("click", function() {
+        deselectAll();
+    });
 
     d3.select(".sortButton").on("click", function() {
         changeSortingOrder();
@@ -1001,7 +1005,12 @@ var summaryLinks;
 
 var D;
 
-
+function deselectAll(){
+  console.log(toggledNodes)
+  for (var key in toggledNodes){
+    delete toggledNodes[key];
+  }
+}
 
 function transitionToSummary(){
     //links contains all the frames
