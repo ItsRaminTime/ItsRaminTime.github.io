@@ -79,24 +79,24 @@
                 //window.location = "intermediary.html" + "?name=" + d.name;
                 var json;
                 var code = [];
-var j = 0;
-$.getJSON('table.json').done(function (data) {
-    json = data;
-    for(var i = 0; i < json.length; i++) {
-        var obj = json[i];
-        if(obj.uniprot.includes(d.name)) {
-            code[j] = obj;  
-            j = j + 1;
-            console.log(code);
-        }
-    }
-    $("intermediary").append("<ul></ul>");
-    for(var i in code) {
-        var li = "<li id=first><a href='"; 
-        $("ul").append(li.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
-            .append("<li>".concat("Receptor: " + code[i].receptor))
-            .append("<li>".concat("Uniprot: " + code[i].uniprot))
-            .append("<li>".concat("State: " + code[i].state))
+                var j = 0;
+                $.getJSON('table.json').done(function (data) {
+                  json = data;
+                  for(var i = 0; i < json.length; i++) {
+                  var obj = json[i];
+                  if(obj.uniprot.includes(d.name)) {
+                    code[j] = obj;  
+                    j = j + 1;
+                    console.log(code);
+                  }
+                }
+                $("intermediary").append("<ul></ul>");
+                for(var i in code) {
+                var li = "<li id=first><a href='"; 
+                $("ul").append(li.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
+                .append("<li>".concat("Receptor: " + code[i].receptor))
+                .append("<li>".concat("Uniprot: " + code[i].uniprot))
+                .append("<li>".concat("State: " + code[i].state))
             .append("<li>".concat("Ligand: " + code[i].ligand))
             .append("<li>".concat("Publication: " + code[i].publication))
             .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
@@ -115,6 +115,7 @@ $.getJSON('table.json').done(function (data) {
             .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
             .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
     }
+                  });
                }); 
 
           node.append("text")
