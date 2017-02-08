@@ -63,7 +63,8 @@
               .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
 
           node.append("circle")
-              .attr("r", 6.5).style("fill", function(d){return d.colorid});
+              .attr("r", 6.5).style("fill", function(d){return d.colorid})
+              .attr("xlink:href", function (d) { return "intermediary.html" + "?name=" + d.name; });
 
           node.append("text")
               .attr("dy", ".31em")
