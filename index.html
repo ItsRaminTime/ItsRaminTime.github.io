@@ -40,7 +40,7 @@
         var diameter = document.getElementById("tree").offsetWidth;
 
         var tree = d3.layout.tree()
-            .size([diameter/3, diameter / 3])
+            .size([360, diameter - 380])
             .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
         var diagonal = d3.svg.diagonal.radial()
