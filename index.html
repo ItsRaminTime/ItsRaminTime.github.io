@@ -20,6 +20,10 @@
           stroke: #ccd;
           stroke-width: 1.5px;
         }
+          
+        li {
+          font: 12px sans-serif;
+        }
             
  .row { vertical-align: top; height:auto !important; }
  .list {display:none; }
@@ -48,7 +52,7 @@
         var diameter = document.getElementById("tree").offsetWidth;
 
         var tree = d3.layout.tree()
-            .size([360, diameter / 2.6])
+            .size([360, diameter / 3])
             .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
         var diagonal = d3.svg.diagonal.radial()
