@@ -24,72 +24,32 @@
         li {
           font: 10px sans-serif;
         }
-            
-<button class="accordion">Section 1</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div>
-
-<button class="accordion">Section 2</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div>
-
-<button class="accordion">Section 3</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div>
-Step 2) Add CSS:
-
-Style the accordion:
-
-Example
-/* Style the buttons that are used to open and close the accordion panel */
-button.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-div.panel {
-    padding: 0 18px;
-    background-color: white;
-    display: none;
-}
-Step 3) Add JavaScript:
-
-Example
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-    acc[i].onclick = function(){
-        /* Toggle between adding and removing the "active" class,
-        to highlight the button that controls the panel */
-        this.classList.toggle("active");
-
-        /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-        } else {
-            panel.style.display = "block";
+        
+        /* Style the buttons that are used to open and close the accordion panel */
+        button.accordion {
+          background-color: #eee;
+          color: #444;
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          text-align: left;
+          border: none;
+          outline: none;
+          transition: 0.4s;
         }
-    }
-}
 
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        button.accordion.active, button.accordion:hover {
+          background-color: #ddd;
+        }
+
+        /* Style the accordion panel. Note: hidden by default */
+        div.panel {
+          padding: 0 18px;
+          background-color: white;
+          display: none;
+        }
+          
         </style>
 
         <title>D3 Test</title>
@@ -159,33 +119,56 @@ for (i = 0; i < acc.length; i++) {
                     console.log(code);
                   }
                 }
+                  
                 $("#intermediary").append("<ul></ul>");
                 for(var i in code) {
-                var li = "<li id=first><a href='"; 
-                $("ul").append(li.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
-                .append("<li>".concat("Receptor: " + code[i].receptor))
-                .append("<li>".concat("Uniprot: " + code[i].uniprot))
-                .append("<li>".concat("State: " + code[i].state))
-            .append("<li>".concat("Ligand: " + code[i].ligand))
-            .append("<li>".concat("Publication: " + code[i].publication))
-            .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
-            .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
-            .append("<li>".concat("Top Dir: " + code[i].top_dir))
-            .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
-            .append("<li>".concat("Filetype: " + code[i].filetype))
-            .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
-            .append("<li>".concat("Strip Water: " + code[i].strip_water))
-            .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
-            .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
-            .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
-            .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
-            .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
-            .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))
-            .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
-            .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
-    }
-                  });
-               }); 
+                  var button = "<button class="accordion"><a href='";
+                  //var li = "<li id=first><a href='"; 
+                  $("ul")
+                  .append(button.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
+                  .append("<div class='panel'>")
+                  .append("<li>".concat("Receptor: " + code[i].receptor))
+                  .append("<li>".concat("Uniprot: " + code[i].uniprot))
+                  .append("<li>".concat("State: " + code[i].state))
+                  .append("<li>".concat("Ligand: " + code[i].ligand))
+                  .append("<li>".concat("Publication: " + code[i].publication))
+                  .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
+                  .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
+                  .append("<li>".concat("Top Dir: " + code[i].top_dir))
+                  .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
+                  .append("<li>".concat("Filetype: " + code[i].filetype))
+                  .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
+                  .append("<li>".concat("Strip Water: " + code[i].strip_water))
+                  .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
+                  .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
+                  .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
+                  .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
+                  .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
+                  .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))
+                  .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
+                  .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
+                }
+              });
+                
+              var acc = document.getElementsByClassName("accordion");
+              var i;
+
+              for (i = 0; i < acc.length; i++) {
+                acc[i].onclick = function(){
+                  /* Toggle between adding and removing the "active" class,
+                  to highlight the button that controls the panel */
+                  this.classList.toggle("active");
+
+                  /* Toggle between hiding and showing the active panel */
+                  var panel = this.nextElementSibling;
+                  if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                  } else {
+                    panel.style.display = "block";
+                  }
+                }
+              }
+          }); 
 
           node.append("text")
               .attr("dy", ".31em")
