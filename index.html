@@ -125,11 +125,7 @@
                 }
                    
                 for(var i in code) {
-                  $("#intermediary").append("<ul class='collapsibleList'><a href='" + code[i].pdb+ "</ul>");
-                  //var button = "<button class='accordion'><a href='";
-                  //var div = "<div class='panel'>";
-                  //var li = "<li id=first><a href='"; 
-                  $("ul")
+                  $("#intermediary").append("<ul class='collapsibleList'><a href='".concat(code[i].pdb + "</ul>")
                     .append("<li>".concat("Receptor: " + code[i].receptor))
                     .append("<li>".concat("Uniprot: " + code[i].uniprot))
                     .append("<li>".concat("State: " + code[i].state))
@@ -149,7 +145,7 @@
                     .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
                     .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))
                     .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
-                    .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
+                    .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn)));
                 }
               });
           
