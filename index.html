@@ -44,7 +44,7 @@
             .size([360, diameter / 2.5])
             .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
-        var diagonal = d3.svg.diagonal.radial().5
+        var diagonal = d3.svg.diagonal.radial()
             .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 
         var svg = d3.select("#tree").append("svg")
