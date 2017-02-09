@@ -76,8 +76,8 @@
               .style("fill", function(d) {return d.colorid;})
               .style("cursor", "pointer")
               .on("click", function(d) {
-                window.location = "intermediary.html" + "?name=" + d.name;
-                /*var json;
+                //window.location = "intermediary.html" + "?name=" + d.name;
+                var json;
                 var code = [];
                 var j = 0;
                 $.getJSON('table.json').done(function (data) {
@@ -115,7 +115,7 @@
             .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
             .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
     }
-                  });*/
+                  });
                }); 
 
           node.append("text")
