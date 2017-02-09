@@ -127,13 +127,13 @@
                 $("#intermediary").append("<ul></ul>");
                 for(var i in code) {
                   var button = "<button class='accordion'><a href='";
-                  var div = "<div id='panel'>";
+                  var div = "<div class='panel'" + d.name + ">";
                   //var li = "<li id=first><a href='"; 
                   $("ul")
                   .append(button.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
                   .append(div)
                   
-                  $("#panel")
+                  $(".panel" + d.name)
                     .append("<li>".concat("Receptor: " + code[i].receptor))
                     .append("<li>".concat("Uniprot: " + code[i].uniprot))
                     .append("<li>".concat("State: " + code[i].state))
