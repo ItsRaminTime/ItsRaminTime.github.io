@@ -123,9 +123,9 @@
                     j = j + 1;
                   }
                 }
-                  
-                $("#intermediary").append("<ul class='collapsibleList'><a href='" + code[i].pdb+ "</ul>");
+                   
                 for(var i in code) {
+                  $("#intermediary").append("<ul class='collapsibleList'><a href='" + code[i].pdb+ "</ul>");
                   //var button = "<button class='accordion'><a href='";
                   //var div = "<div class='panel'>";
                   //var li = "<li id=first><a href='"; 
@@ -152,7 +152,7 @@
                     .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
                 }
               });
-          CollapsibleLists.apply();
+          
           }); 
 
           node.append("text")
