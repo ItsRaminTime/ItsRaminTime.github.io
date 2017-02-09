@@ -59,7 +59,7 @@
         <title>D3 Test</title>
     </head>
     <body>
-        <script type="text/javascript" src="./indexJS.js"></script>
+        <script type="text/javascript" src="./CollapsibleLists.js"></script>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <div style="width: 100%;">
           <div id="tree" style="float:left; width: 70%"></div>
@@ -124,16 +124,12 @@
                   }
                 }
                   
-                $("#intermediary").append("<ul></ul>");
+                $("#intermediary").append("<ul class='collapsibleList'><a href='" + code[i].pdb+ "</ul>");
                 for(var i in code) {
-                  var button = "<button class='accordion'><a href='";
-                  var div = "<div class='panel'>";
+                  //var button = "<button class='accordion'><a href='";
+                  //var div = "<div class='panel'>";
                   //var li = "<li id=first><a href='"; 
                   $("ul")
-                  .append(button.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
-                  .append(div)
-                  
-                  $(".panel")
                     .append("<li>".concat("Receptor: " + code[i].receptor))
                     .append("<li>".concat("Uniprot: " + code[i].uniprot))
                     .append("<li>".concat("State: " + code[i].state))
@@ -156,6 +152,7 @@
                     .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
                 }
               });
+          CollapsibleLists.apply();
           }); 
 
           node.append("text")
@@ -194,32 +191,5 @@
 
         d3.select(self.frameElement).style("height", diameter - 150 + "px");
         </script>
-      
-        <script>
-      var acc = document.getElementsByClassName("accordion");
-console.log(acc)
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  console.log("!");
-  console.log(acc.classList);
-  console.log(acc.nextElementSibling);
-  acc[i].onclick = function(){
-    /* Toggle between adding and removing the "active" class,
-    to highlight the button that controls the panel */
-    acc.classList.toggle("active");
-    console.log(acc.classList)
-
-    /* Toggle between hiding and showing the active panel */
-    var panel = acc.nextElementSibling;
-    console.log(panel)
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  }
-}
-      </script>
     </body>
 </html>
