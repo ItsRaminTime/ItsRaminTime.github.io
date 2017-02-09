@@ -27,26 +27,26 @@
         <title>D3 Test</title>
     </head>
     <body>
-        <!--<div style="width: 100%;">
+        <div style="width: 100%;">
           <div id="tree" style="float:left; width: 50%; height: 100%"></div>
           <div id= "intermediary" style="float:right; width: 50%; height: 100%"></div>
         </div>
-        <div style="clear:both"></div>-->
+        <div style="clear:both"></div>
 
         <script src="https://d3js.org/d3.v3.js"></script>
         <!--<script type="text/javascript" src="d3.v3.js"></script>-->
 
         <script>
-        var diameter = 1500 
+        var diameter = document.getElementById("tree").offsetWidth;
 
         var tree = d3.layout.tree()
-            .size([360, diameter / 1.5 - 380])
+            .size([diameter/4, diameter / 1.5 - 380])
             .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
         var diagonal = d3.svg.diagonal.radial()
             .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 
-        var svg = d3.select("body").append("svg")
+        var svg = d3.select("#tree").append("svg")
             .attr("width", diameter)
             .attr("height", diameter - 50)
           .append("g")
