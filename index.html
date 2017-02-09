@@ -73,7 +73,7 @@
         var diameter = document.getElementById("tree").offsetWidth;
 
         var tree = d3.layout.tree()
-            .size([360, diameter / 2.5])
+            .size([360, diameter / 2.2])
             .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
         var diagonal = d3.svg.diagonal.radial()
@@ -127,11 +127,13 @@
                 $("#intermediary").append("<ul></ul>");
                 for(var i in code) {
                   var button = "<button class='accordion'><a href='";
-                  var div = "<div class='panel'>";
+                  var div = "<div id='panel'>";
                   //var li = "<li id=first><a href='"; 
                   $("ul")
                   .append(button.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
-                  .append(div
+                  .append(div)
+                  
+                  $("#panel")
                     .append("<li>".concat("Receptor: " + code[i].receptor))
                     .append("<li>".concat("Uniprot: " + code[i].uniprot))
                     .append("<li>".concat("State: " + code[i].state))
@@ -151,7 +153,7 @@
                     .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
                     .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))
                     .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
-                    .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn)));
+                    .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
                 }
               });
                 
