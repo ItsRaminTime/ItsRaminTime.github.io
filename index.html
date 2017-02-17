@@ -123,12 +123,11 @@
                     j = j + 1;
                   }
                 }
-                   
-                $("#intermediary").append("<ul id='list'></ul>");
                 $("#list").remove()
+                $("#intermediary").append("<ul id='list'></ul>");
                 for(var i in code) {
                   var li = "<li id=first><a href='"; 
-                  $("ul").append(li.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
+                  $("#list").append(li.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
                   .append("<li>".concat("Receptor: " + code[i].receptor))
                   .append("<li>".concat("Uniprot: " + code[i].uniprot))
                   .append("<li>".concat("State: " + code[i].state))
