@@ -62,12 +62,12 @@
         <script type="text/javascript" src="./CollapsibleLists.js"></script>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <div id="searchContainer" class="cf sb">
-          <div class="right magnifier"></div>
           <input class="right" type="text" id="searchBox" placeholder="search"/>
+          <div class="right"></div>
         </div>
         <script>
-          $("#searchContainer").on("click", ".magnifier", function() {
-            var text=$("#searchBox").val();
+          $('#searchContainer').on('keyup', function(){
+            var searchTerm = $(this).val().toLowerCase();
             var json;
             var code = [];
             var j = 0;
@@ -75,7 +75,7 @@
               json = data;
               for(var i = 0; i < json.length; i++) {
                 var obj = json[i];
-                if(obj.uniprot.includes(text)) {
+                if(obj.uniprot.includes(searchTerm)) {
                   code[j] = obj;  
                   j = j + 1;
                 }
