@@ -69,10 +69,13 @@
             var code = e.which; // recommended to use e.which, it's normalized across browsers
             if(code==13)e.preventDefault();
             if(code==32||code==13||code==188||code==186){
-              console.log($("#searchbox"))
-              console.log($("#searchbox").val())
-              console.log($("#searchbox").val().toLowerCase())
-              var searchTerm = $("#searchbox").val().toLowerCase();
+              //var searchTerm = $("#searchbox").val().toLowerCase();
+              var searchstring = $('#searchBox');
+              console.log(searchstring)
+              searchstring.focus();
+              console.log(searchstring)
+              var searchTerm = searchstring.val();
+              console.log(searchTerm)
               var json;
               var code = [];
               var j = 0;
