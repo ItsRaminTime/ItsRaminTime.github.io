@@ -78,6 +78,7 @@
                 json = data;
                 for(var i = 0; i < json.length; i++) {
                   var obj = json[i];
+                  console.log(searchTerm)
                   if(obj.uniprot.includes(searchTerm)) {
                     code[j] = obj;  
                     j = j + 1;
@@ -169,12 +170,12 @@
                 $.getJSON('table.json').done(function (data) {
                   json = data;
                   for(var i = 0; i < json.length; i++) {
-                  var obj = json[i];
-                  if(obj.uniprot.includes(d.name)) {
-                    code[j] = obj;  
-                    j = j + 1;
+                    var obj = json[i];
+                    if(obj.uniprot.includes(d.name)) {
+                      code[j] = obj;  
+                      j = j + 1;
+                    }
                   }
-                }
                 $("#list").remove()
                 $("#intermediary").append("<ul id='list'></ul>");
                 for(var i in code) {
