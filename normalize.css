@@ -20,6 +20,11 @@ body {
   margin: 0;
 }
 
+#picked-atom-name {
+  padding-top: 10px
+}
+
+
 /* HTML5 display definitions
    ========================================================================== */
 
