@@ -63,17 +63,16 @@
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <div id="searchContainer" class="cf sb">
           <input class="right" type="text" id="searchBox" placeholder="search"/>
-          <div class="right"></div>
         </div>
         <script>
           $('#searchContainer').on('keyup', function(e){
             var code = e.which; // recommended to use e.which, it's normalized across browsers
             if(code==13)e.preventDefault();
             if(code==32||code==13||code==188||code==186){
-              console.log($(this))
-              console.log($(this).val())
-              console.log($(this).val().toLowerCase())
-              var searchTerm = $(this).val().toLowerCase();
+              console.log($("#searchbox"))
+              console.log($("#searchbox").val())
+              console.log($("#searchbox").val().toLowerCase())
+              var searchTerm = $("#searchbox").val().toLowerCase();
               var json;
               var code = [];
               var j = 0;
