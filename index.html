@@ -171,6 +171,7 @@
                   json = data;
                   for(var i = 0; i < json.length; i++) {
                     var obj = json[i];
+                    console.log(d.name)
                     if(obj.uniprot.includes(d.name)) {
                       code[j] = obj;  
                       j = j + 1;
