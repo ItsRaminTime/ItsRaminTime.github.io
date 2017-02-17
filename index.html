@@ -66,47 +66,51 @@
           <div class="right"></div>
         </div>
         <script>
-          $('#searchContainer').on('keyup', function(){
-            var searchTerm = $(this).val().toLowerCase();
-            var json;
-            var code = [];
-            var j = 0;
-            $.getJSON('table.json').done(function (data) {
-              json = data;
-              for(var i = 0; i < json.length; i++) {
-                var obj = json[i];
-                if(obj.uniprot.includes(searchTerm)) {
-                  code[j] = obj;  
-                  j = j + 1;
+          $('#searchContainer').on('keyup', function(e){
+            var code = e.which; // recommended to use e.which, it's normalized across browsers
+            if(code==13)e.preventDefault();
+            if(code==32||code==13||code==188||code==186){
+              var searchTerm = $(this).val().toLowerCase();
+              var json;
+              var code = [];
+              var j = 0;
+              $.getJSON('table.json').done(function (data) {
+                json = data;
+                for(var i = 0; i < json.length; i++) {
+                  var obj = json[i];
+                  if(obj.uniprot.includes(searchTerm)) {
+                    code[j] = obj;  
+                    j = j + 1;
+                  }
                 }
-              }
-            $("#list").remove()
-            $("#intermediary").append("<ul id='list'></ul>");
-            for(var i in code) {
-              var li = "<li id=first><a href='"; 
-              $("#list").append(li.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
-              .append("<li>".concat("Receptor: " + code[i].receptor))
-              .append("<li>".concat("Uniprot: " + code[i].uniprot))
-              .append("<li>".concat("State: " + code[i].state))
-              .append("<li>".concat("Ligand: " + code[i].ligand))
-              .append("<li>".concat("Publication: " + code[i].publication))
-              .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
-              .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
-              .append("<li>".concat("Top Dir: " + code[i].top_dir))
-              .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
-              .append("<li>".concat("Filetype: " + code[i].filetype))
-              .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
-              .append("<li>".concat("Strip Water: " + code[i].strip_water))
-              .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
-              .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
-              .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
-              .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
-              .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
-              .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))                
-              .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
-              .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
-              }
-            });
+              $("#list").remove()
+              $("#intermediary").append("<ul id='list'></ul>");
+              for(var i in code) {
+                var li = "<li id=first><a href='"; 
+                $("#list").append(li.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
+                .append("<li>".concat("Receptor: " + code[i].receptor))
+                .append("<li>".concat("Uniprot: " + code[i].uniprot))
+                .append("<li>".concat("State: " + code[i].state))
+                .append("<li>".concat("Ligand: " + code[i].ligand))
+                .append("<li>".concat("Publication: " + code[i].publication))
+                .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
+                .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
+                .append("<li>".concat("Top Dir: " + code[i].top_dir))
+                .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
+                .append("<li>".concat("Filetype: " + code[i].filetype))
+                .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
+                .append("<li>".concat("Strip Water: " + code[i].strip_water))
+                .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
+                .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
+                .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
+                .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
+                .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
+                .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))                
+                .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
+                .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
+                }
+              });
+            }
         });
       </script>
         <div style="width: 100%;">
