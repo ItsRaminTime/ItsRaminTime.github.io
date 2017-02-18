@@ -575,6 +575,8 @@ viewer.on('click', function(picked, ev) {
         if(resi1!==undefined && resi2!==undefined){
           var atom1 = struc.atom('A.'+resi1+'.CA');
           var atom2 = struc.atom('A.'+resi2+'.CA');
+          console.log(d)
+
           cm.addTube(atom1.pos(), atom2.pos(), 0.5, {cap:false, color:'black'});
         }
 
