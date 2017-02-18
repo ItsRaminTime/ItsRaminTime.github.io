@@ -90,7 +90,7 @@
               $("#intermediary").append("<ul id='list'></ul>");
               for(var i in code) {
                 var li = "<li id=first><a href='"; 
-                $("#list").append(li.concat("radialProt.html?name=" + code[i].pdb+"&plotname='>"+code[i].pdb))
+                $("#list").append(li.concat("radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp + "'>"+code[i].pdb))
                 .append("<li>".concat("Receptor: " + code[i].receptor))
                 .append("<li>".concat("Uniprot: " + code[i].uniprot))
                 .append("<li>".concat("State: " + code[i].state))
