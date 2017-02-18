@@ -57,7 +57,7 @@ function parse(graph){
       });
     });
 
-  console.log(graph.edges);
+  //console.log(graph.edges);
 
   return graph;
 }
