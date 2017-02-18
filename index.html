@@ -71,11 +71,8 @@
             if(code==32||code==13||code==188||code==186){
               //var searchTerm = $("#searchbox").val().toLowerCase();
               var searchstring = $('#searchBox');
-              console.log(searchstring)
               searchstring.focus();
-              console.log(searchstring)
               var searchTerm = searchstring.val();
-              console.log(searchTerm)
               var json;
               var code = [];
               var j = 0;
@@ -93,7 +90,7 @@
               $("#intermediary").append("<ul id='list'></ul>");
               for(var i in code) {
                 var li = "<li id=first><a href='"; 
-                $("#list").append(li.concat("radialProt.html?name=" + code[i].pdb+"'>"+code[i].pdb))
+                $("#list").append(li.concat("radialProt.html?name=" + code[i].pdb+"&plotname='>"+code[i].pdb))
                 .append("<li>".concat("Receptor: " + code[i].receptor))
                 .append("<li>".concat("Uniprot: " + code[i].uniprot))
                 .append("<li>".concat("State: " + code[i].state))
