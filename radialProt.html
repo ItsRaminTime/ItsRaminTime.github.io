@@ -65,7 +65,7 @@
       }
       
       function store_group(group_name) {
-        console.log("group_name")
+        console.log(group_name)
         interaction_group = group_name
         d3.text("/Interactions/" + interaction_group + "/" + plot_name + ".json", function(rawtext){
           //load_dataset(rawtext);
