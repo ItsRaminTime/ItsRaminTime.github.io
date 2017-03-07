@@ -6,6 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>Flare-plot</title>
   <link rel="stylesheet" type="text/css" href="normalize.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="dropdown.css" media="screen">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="gpcr_demo.css" media="screen">
   <style type="text/css">
@@ -32,6 +33,16 @@
 
 <section class="main-content">
   <div class="evoBundleChart">
+    
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
+    </div>
+    
     <div id="evobundlediv">
 
     </div>
@@ -256,7 +267,7 @@ viewer.on('click', function(picked, ev) {
   document.addEventListener('DOMContentLoaded', loadMOR);
 
 
-  d3.text("hbss/" + plot_name + ".json", function(rawtext){
+  d3.text("/Interactions/hbss/" + plot_name + ".json", function(rawtext){
     //load_dataset(rawtext);
     create_bundle(rawtext);
   });
