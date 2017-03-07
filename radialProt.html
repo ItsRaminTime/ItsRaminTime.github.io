@@ -35,20 +35,37 @@
   <div class="evoBundleChart">
     
     <div class="dropdown">
-      <button onclick="drop()" class="dropbtn">Dropdown</button>
+      <button onclick="drop()" class="dropbtn">Interactions</button>
       <div id="myDropdown" class="dropdown-content">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        <p onclick="store_group('hbbb')">hbbb</p>
+        <p onclick="store_group('hbsb')">hbsb</p>
+        <p onclick="store_group('hbss')">hbss</p>
+        <p onclick="store_group('hlb')">hlb</p>
+        <p onclick="store_group('hls')">hls</p>
+        <p onclick="store_group('lwb')">lwb</p>
+        <p onclick="store_group('lwb2')">lwb2</p>
+        <p onclick="store_group('pc')">pc</p>
+        <p onclick="store_group('ps')">ps</p>
+        <p onclick="store_group('sb')">sb</p>
+        <p onclick="store_group('ts')">ts</p>
+        <p onclick="store_group('vdw')">vdw</p>
+        <p onclick="store_group('water-network')">water-network</p>
+        <p onclick="store_group('wb')">wb</p>
+        <p onclick="store_group('wb2')">wb2</p>
       </div>
     </div>
     
     <script>
     
+      var interaction_group = 'hbbb'
       /* When the user clicks on the button, 
       toggle between hiding and showing the dropdown content */
       function drop() {
         document.getElementById("myDropdown").classList.toggle("show");
+      }
+      
+      function store_group(group_name) {
+        interaction_group = group_name
       }
 
       // Close the dropdown menu if the user clicks outside of it
@@ -291,7 +308,7 @@ viewer.on('click', function(picked, ev) {
   document.addEventListener('DOMContentLoaded', loadMOR);
 
 
-  d3.text("/Interactions/hbss/" + plot_name + ".json", function(rawtext){
+  d3.text("/Interactions/" + interaction_group + "/" + plot_name + ".json", function(rawtext){
     //load_dataset(rawtext);
     create_bundle(rawtext);
   });
