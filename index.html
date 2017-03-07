@@ -267,6 +267,7 @@
           }) 
             .append("rect")
             .attr("class", "clickable")
+            .attr("cursor", "pointer")
             .attr("y", -6)
             .attr("x", function (d) { return d.children || d._children ? -60 : 10; })
             .attr("width", 50) //2*4.5)
