@@ -79,6 +79,7 @@ svg text::selection {
 }
 
 .evoBundleChart{
+    margin-top: 10%;
     margin-left:10%;
     float: left;
     max-width: 800px;
@@ -93,6 +94,10 @@ svg text::selection {
     padding:2px;
     /*border: 2px solid gray;*/
     float: right;
+}
+
+#pviewerEncompasser {
+  margin-top: 10%;
 }
 
 body{
