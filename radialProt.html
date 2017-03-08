@@ -163,9 +163,34 @@
   
   var gpcrdb_numbers_file = "gpcrdb_numbers.txt";
   
-  var resTable = {};
+  var nameToResiTable = {};
   
-  var rawFile = new XMLHttpRequest();
+  $.ajax({
+    url : "gpcrdb_numbers.txt",
+    dataType: "text",
+    success : function (data) {
+      var value_array = [];
+      var num = "";
+      var lines = data.split('\n');
+      for (var i = 0; i < lines.length; i++) {
+        var tabs = lines[i].split('\t');
+        if (tabs[0].toLowerCase() !== uniprot) {
+          //i = i + 459;
+        } else {
+          if (tabs[4] !== "None") {
+            value_array.push(tabs[1]);
+            value_array.push("");
+            num = tabs[4].substring(0, tabs[4].indexOf(".")) + tabs[4].substring(tabs[4].indexOf(".") + 3, tabs[4].length);
+            nameToResiTable[num] = value_array;
+            value_array = [];
+            num = "";
+          }
+        }
+      }
+    }
+  }); 
+  
+  /*var rawFile = new XMLHttpRequest();
     rawFile.open("GET", "gpcrdb_numbers.txt", true);
     rawFile.onreadystatechange = function ()
     {
@@ -175,7 +200,7 @@
             {
               var allText = rawFile.responseText;
               var value_array = [];
-              var num = ""
+              var num = "";
               var resTable = {};
               var lines = allText.split('\n');
               lines.map(function(item) {
@@ -194,7 +219,7 @@
             }
         }
     }
-    rawFile.send(null);
+    rawFile.send(null);*/
 
   //var reader = new FileReader();
   //reader.onload = function(progressEvent){
@@ -381,7 +406,7 @@ viewer.on('click', function(picked, ev) {
   });
   
   
-  var nameToResiTable = {
+  /*var nameToResiTable = {
     "1x28":["64",""],
     "1x29":["65",""],
     "1x30":["66",""],
@@ -642,7 +667,7 @@ viewer.on('click', function(picked, ev) {
     "8x57":["350",""],
     "8x58":["351",""],
     "8x59":["352",""]
-  };
+  };*/
 
   function nameToResi(name){
     if( name in nameToResiTable )
