@@ -86,15 +86,11 @@
         }
       }
     }
-
-    var fso = new ActiveXObject("Scripting.FileSystemObject");
-    var fh = fso.OpenTextFile(gpcrdb_numbers_file, 1, false, 0);
-    var output = fh.ReadAll();
     
     var value_array = [];
     var num = ""
     var resTable = {};
-    var lines = output.split('\n');
+    var lines = gpcrdb_numbers_text_content.split('\n');
     lines.map(function(item) {
       var tabs = item.split('\t');
       console.log("0",tabs[0], "1",tabs[1], "2",tabs[2],"3", tabs[3],"4", tabs[4]);
