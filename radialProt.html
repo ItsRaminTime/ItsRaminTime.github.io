@@ -111,6 +111,29 @@
     });
 
 
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var fh = fso.OpenTextFile(gpcrdb_numbers_file, 1, false, 0);
+    var output = fh.ReadAll();
+    
+    var value_array = [];
+    var num = ""
+    var resTable = {};
+    var lines = output.split('\n');
+    lines.map(function(item) {
+      var tabs = item.split('\t');
+      console.log("0",tabs[0], "1",tabs[1], "2",tabs[2],"3", tabs[3],"4", tabs[4]);
+      if (tabs[0].toLowerCase == uniprot && tabs[4] != "None") {
+        console.log("0",tabs[0], "1",tabs[1], "2",tabs[2],"3", tabs[3],"4", tabs[4]);
+        value_array.push(tabs[1]);
+        value_array.push("");
+        console.log(value_array)
+        num = tabs[4].substring(0, tabs[4].indexOf(".")) + tabs[4].substring(tabs[4].indexOf("."), tabs[4].length);
+        console.log(num)
+        resTable[num] = value_array;
+        console.log(resTable)
+      }
+    });
+      
     </script>
     
     <div id="evobundlediv">
