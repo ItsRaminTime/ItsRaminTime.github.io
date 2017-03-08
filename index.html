@@ -90,7 +90,7 @@
               $("#intermediary").append("<ul id='list'></ul>");
               for(var i in code) {
                 var li = "<li id=first><a href='"; 
-                var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description +"'>"+code[i].pdb;
+                var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "'>"+code[i].pdb;
                 $("#list").append(li.concat(name))
                 .append("<li>".concat("Receptor: " + code[i].receptor))
                 .append("<li>".concat("Uniprot: " + code[i].uniprot))
@@ -184,7 +184,7 @@
                 $("#intermediary").append("<ul id='list'></ul>");
                 for(var i in code) {
                   var li = "<li id=first><a href='"; 
-                  var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description +"'>"+code[i].pdb;
+                  var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "'>"+code[i].pdb;
                   $("#list").append(li.concat(name))
                   .append("<li>".concat("Receptor: " + code[i].receptor))
                   .append("<li>".concat("Uniprot: " + code[i].uniprot))
@@ -239,7 +239,7 @@
                 $("#intermediary").append("<ul id='list'></ul>");
                 for(var i in code) {
                   var li = "<li id=first><a href='"; 
-                  var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description +"'>"+code[i].pdb;
+                  var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "'>"+code[i].pdb;
                   $("#list").append(li.concat(name))
                   .append("<li>".concat("Receptor: " + code[i].receptor))
                   .append("<li>".concat("Uniprot: " + code[i].uniprot))

@@ -57,7 +57,7 @@
     
     <script>
     
-      var interaction_group = 'hbbb'
+      var interaction_group = 'hbsb'
       /* When the user clicks on the button, 
       toggle between hiding and showing the dropdown content */
       function drop() {
@@ -65,9 +65,9 @@
       }
       
       function store_group(group_name) {
-        console.log(group_name)
-        interaction_group = group_name
-        d3.text("/Interactions/" + interaction_group + "/" + plot_name + ".json", function(rawtext){
+        interaction_group = group_name;
+        document.getElementById("evobundlediv").innerHTML = "";
+        d3.text("/Interactions/" + interaction_group + "/" + plot_name + ".json", function(rawtext) {
           //load_dataset(rawtext);
           create_bundle(rawtext);
         });
@@ -141,22 +141,54 @@
     quality : 'medium',
   };
     
-function getQueryVariable()
-{
-       var query = window.location.search.substring(1);
-       var params = []
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-          var pair = vars[i].split("=");
-          params.push(pair[1])
-       }
-       return params;
-}
-var params = getQueryVariable("name");
-var param = params[0];
-console.log(param)
-var plot_name = params[1]
-console.log(plot_name)
+  function getQueryVariable()
+  {
+    var query = window.location.search.substring(1);
+    var params = []
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      params.push(pair[1])
+    }
+    return params;
+  }
+  
+  var params = getQueryVariable("name");
+  var param = params[0];
+  console.log(param);
+  var plot_name = params[1];
+  console.log(plot_name);
+  var uniprot = params[2];
+  console.log(uniprot);
+  
+  var gpcrdb_numbers_file = "gpcrdb_numbers.txt";
+  
+  var resTable = {};
+
+  var reader = new FileReader();
+  reader.onload = function(progressEvent){
+    // By lines
+    var val_array = [];
+    var num = ""
+    var lines = this.result.split('\n');
+    lines.map(function(item){
+      var tabs = item.split('\t');
+      console.log("0",tabs[0], "1",tabs[1], "2",tabs[2],"3", tabs[3],"4", tabs[4]);
+      if ((tabs[0].toLowerCase == uniprot) && (tabs[4] != "None")) {
+        console.log("0",tabs[0], "1",tabs[1], "2",tabs[2],"3", tabs[3],"4", tabs[4]);
+        val_array.push(tabs[1]);
+        val_array.push("");
+        num = tabs[4].substring(0, tabs[4].indexOf('.')) + tabs[4].substring(tabs[4].indexOf('.'), tabs[4].length);
+        console.log(num);
+        console.log(val_array);
+        resTable[num] = val_array;
+        console.log(resTable)
+      }
+    });
+  };
+  reader.readAsText(gpcrdb_numbers_file);
+  console.log(resTable)
+
   // insert the viewer under the Dom element with id 'gl'.
     var viewer = pv.Viewer(document.getElementById('pviewer'), options);
     
