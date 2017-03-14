@@ -55,23 +55,53 @@
       </div>
     </div>
     
-    <script>
-    
-      var interaction_group = 'hbsb'
-      /* When the user clicks on the button, 
-      toggle between hiding and showing the dropdown content */
-      function drop() {
-        document.getElementById("myDropdown").classList.toggle("show");
-      }
+    <div class="dropdown">
+      <div id="searchContainer" class="cf sb">
+        <input class="right" type="text" id="searchBox" placeholder="search"/>
+      </div>
+    </div>
       
-      function store_group(group_name) {
-        interaction_group = group_name;
-        document.getElementById("evobundlediv").innerHTML = "";
-        d3.text("/Interactions/" + interaction_group + "/" + plot_name + ".json", function(rawtext) {
-          //load_dataset(rawtext);
-          create_bundle(rawtext);
-        });
-      }
+    <script>
+        
+          var interaction_group = 'hbsb'
+          var compare_interaction_group = "hbsb"
+        
+          function drop_mol(index) {
+            var name = "myDropdown_" + index + "";
+            document.getElementById(name).classList.toggle("show");
+          }
+        
+          /* When the user clicks on the button, 
+          toggle between hiding and showing the dropdown content */
+          function drop() {
+            document.getElementById("myDropdown").classList.toggle("show");
+          }
+      
+          function store_group(group_name) {
+            interaction_group = group_name;
+            document.getElementById("evobundlediv").innerHTML = "";
+            d3.text("/Interactions/" + interaction_group + "/" + plot_name + ".json", function(rawtext) {
+              //load_dataset(rawtext);
+              create_bundle(rawtext);
+            });
+          }
+    
+          function store_group_two(group_number) {
+            var list = ["hbbb", "hbsb", "hbss", "hlb", "hls", "lwb", "lwb2", "pc", "ps", "sb", "ts", "vdw", "water-network", "wb", "wb2"];
+            var new_interaction_group = list[group_number];
+            document.getElementById("evobundlediv_two").deleteContents;
+            d3.text("/Interactions/" + new_interaction_group + "/" + plot_name + ".json", function(rawtext) {
+              //load_dataset(rawtext);
+              create_bundle(rawtext);
+            });
+            document.getElementById("evobundlediv_three").deleteContents;
+            d3.text("/Interactions/" + new_interaction_group + "/" + plot_name + ".json", function(rawtext) {
+              //load_dataset(rawtext);
+              create_bundle(rawtext);
+            });
+            //create set
+        
+          }
 
       // Close the dropdown menu if the user clicks outside of it
       window.onclick = function(event) {
@@ -87,9 +117,70 @@
       }
     }
     
+        
+          $('#searchContainer').on('keyup', function(e){
+            var code = e.which; // recommended to use e.which, it's normalized across browsers
+            var searchTerm = "";
+            if(code==13)e.preventDefault();
+            if(code==32||code==13||code==188||code==186){
+              //var searchTerm = $("#searchbox").val().toLowerCase();
+              var searchstring = $('#searchBox');
+              searchstring.focus();
+              searchTerm = searchstring.val();
+              console.log(searchTerm);
+              var json;
+              var code = [];
+              var j = 0;
+              $.getJSON('table.json').done(function (data) {
+                json = data;
+                for(var i = 0; i < json.length; i++) {
+                  var obj = json[i];
+                  console.log(searchTerm)
+                  if(obj.uniprot.includes(searchTerm)) {
+                    code[j] = obj;  
+                    j = j + 1;
+                  }
+                }
+              $("#list").remove();
+               console.log(searchTerm)";"
+              $("#searchContainer").append("<ul id='list'></ul>");
+              for(var i in code) {
+                var button = "<button onclick='drop_mol(" + i + ")' class='dropbtn'>" + code[i].pdb + "</button>";
+                var dropdown_dynamic_name = "myDropdown_" + i + "";
+                var dropdown = "<div id='" + dropdown_dynamic_name + "' class='dropdown-content'>";
+                dropdown = dropdown.concat("<a onclick='store_group_two(0,searchTerm)'>hbbb</a>")
+                .concat("<a onclick='store_group_two(1,searchTerm)'>hbsb</a>")
+                .concat("<a onclick='store_group_two(2,searchTerm)'>hbss</a>")
+                .concat("<a onclick='store_group_two(3,searchTerm)'>hlb</a>")
+                .concat("<a onclick='store_group_two(4,searchTerm)'>hls</a>")
+                .concat("<a onclick='store_group_two(5,searchTerm)'>lwb</a>")
+                .concat("<a onclick='store_group_two(6,searchTerm)'>lwb2</a>")
+                .concat("<a onclick='store_group_two(7,searchTerm)'>pc</a>")
+                .concat("<a onclick='store_group_two(8,searchTerm)'>ps</a>")
+                .concat("<a onclick='store_group_two(9,searchTerm)'>sb</a>")
+                .concat("<a onclick='store_group_two(10,searchTerm)'>ts</a>")
+                .concat("<a onclick='store_group_two(11,searchTerm)'>vdw</a>")
+                .concat("<a onclick='store_group_two(12,searchTerm)'>water_network</a>")
+                .concat("<a onclick='store_group_two(13,searchTerm)'>wb</a>")
+                .concat("<a onclick='store_group_two(14,searchTerm)'>wb2</a>")
+                .concat("</div>");
+                $("#list").append(button).append(dropdown);
+                }
+              });
+            }
+        });
+
     </script>
     
     <div id="evobundlediv">
+
+    </div>
+    
+    <div id="evobundlediv_two">
+
+    </div>
+    
+    <div id="evobundlediv_three">
 
     </div>
     <!--<div class="tensionControl">Tension: <input style="" type="range" min="0" max="100" value="85" /></div>-->
