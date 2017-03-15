@@ -86,16 +86,16 @@
             });
           }
     
-          function store_group_two(group_number) {
+          function store_group_two(group_number, term) {
             var list = ["hbbb", "hbsb", "hbss", "hlb", "hls", "lwb", "lwb2", "pc", "ps", "sb", "ts", "vdw", "water-network", "wb", "wb2"];
             var new_interaction_group = list[group_number];
             document.getElementById("evobundlediv_two").deleteContents;
-            d3.text("/Interactions/" + new_interaction_group + "/" + plot_name + ".json", function(rawtext) {
+            d3.text("/Interactions/" + new_interaction_group + "/" + term + ".json", function(rawtext) {
               //load_dataset(rawtext);
               create_bundle(rawtext);
             });
             document.getElementById("evobundlediv_three").deleteContents;
-            d3.text("/Interactions/" + new_interaction_group + "/" + plot_name + ".json", function(rawtext) {
+            d3.text("/Interactions/" + new_interaction_group + "/" + term + ".json", function(rawtext) {
               //load_dataset(rawtext);
               create_bundle(rawtext);
             });
@@ -135,34 +135,32 @@
                 json = data;
                 for(var i = 0; i < json.length; i++) {
                   var obj = json[i];
-                  console.log(searchTerm)
                   if(obj.uniprot.includes(searchTerm)) {
                     code[j] = obj;  
                     j = j + 1;
                   }
                 }
               $("#list").remove();
-              console.log(searchTerm);
               $("#searchContainer").append("<ul id='list'></ul>");
               for(var i in code) {
                 var button = "<button onclick='drop_mol(" + i + ")' class='dropbtn'>" + code[i].pdb + "</button>";
                 var dropdown_dynamic_name = "myDropdown_" + i + "";
                 var dropdown = "<div id='" + dropdown_dynamic_name + "' class='dropdown-content'>";
-                dropdown = dropdown.concat("<a onclick='store_group_two(0,searchTerm)'>hbbb</a>")
-                .concat("<a onclick='store_group_two(1,searchTerm)'>hbsb</a>")
-                .concat("<a onclick='store_group_two(2,searchTerm)'>hbss</a>")
-                .concat("<a onclick='store_group_two(3,searchTerm)'>hlb</a>")
-                .concat("<a onclick='store_group_two(4,searchTerm)'>hls</a>")
-                .concat("<a onclick='store_group_two(5,searchTerm)'>lwb</a>")
-                .concat("<a onclick='store_group_two(6,searchTerm)'>lwb2</a>")
-                .concat("<a onclick='store_group_two(7,searchTerm)'>pc</a>")
-                .concat("<a onclick='store_group_two(8,searchTerm)'>ps</a>")
-                .concat("<a onclick='store_group_two(9,searchTerm)'>sb</a>")
-                .concat("<a onclick='store_group_two(10,searchTerm)'>ts</a>")
-                .concat("<a onclick='store_group_two(11,searchTerm)'>vdw</a>")
-                .concat("<a onclick='store_group_two(12,searchTerm)'>water_network</a>")
-                .concat("<a onclick='store_group_two(13,searchTerm)'>wb</a>")
-                .concat("<a onclick='store_group_two(14,searchTerm)'>wb2</a>")
+                dropdown = dropdown.concat("<a onclick='store_group_two(0,code[i].short_exp_cond_description)'>hbbb</a>")
+                .concat("<a onclick='store_group_two(1,code[i].short_exp_cond_description)'>hbsb</a>")
+                .concat("<a onclick='store_group_two(2,code[i].short_exp_cond_description)'>hbss</a>")
+                .concat("<a onclick='store_group_two(3,code[i].short_exp_cond_description)'>hlb</a>")
+                .concat("<a onclick='store_group_two(4,code[i].short_exp_cond_description)'>hls</a>")
+                .concat("<a onclick='store_group_two(5,code[i].short_exp_cond_description)'>lwb</a>")
+                .concat("<a onclick='store_group_two(6,code[i].short_exp_cond_description)'>lwb2</a>")
+                .concat("<a onclick='store_group_two(7,code[i].short_exp_cond_description)'>pc</a>")
+                .concat("<a onclick='store_group_two(8,code[i].short_exp_cond_description)'>ps</a>")
+                .concat("<a onclick='store_group_two(9,code[i].short_exp_cond_description)'>sb</a>")
+                .concat("<a onclick='store_group_two(10,code[i].short_exp_cond_description)'>ts</a>")
+                .concat("<a onclick='store_group_two(11,code[i].short_exp_cond_description)'>vdw</a>")
+                .concat("<a onclick='store_group_two(12,code[i].short_exp_cond_description)'>water_network</a>")
+                .concat("<a onclick='store_group_two(13,code[i].short_exp_cond_description)'>wb</a>")
+                .concat("<a onclick='store_group_two(14,code[i].short_exp_cond_description)'>wb2</a>")
                 .concat("</div>");
                 $("#list").append(button).append(dropdown);
                 }
