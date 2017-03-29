@@ -80,7 +80,7 @@
           function store_group(group_name) {
             interaction_group = group_name;
             document.getElementById("evobundlediv").innerHTML = "";
-            d3.text("/Interactions/" + interaction_group + "/" + plot_name + ".json", function(rawtext) {
+            d3.text("/Interactions/Multi Frame/" + interaction_group + "/" + plot_name + ".json", function(rawtext) {
               //load_dataset(rawtext);
               create_bundle(rawtext);
             });
@@ -90,12 +90,12 @@
             var list = ["hbbb", "hbsb", "hbss", "hlb", "hls", "lwb", "lwb2", "pc", "ps", "sb", "ts", "vdw", "water-network", "wb", "wb2"];
             var new_interaction_group = list[group_number];
             document.getElementById("evobundlediv_two").deleteContents;
-            d3.text("/Interactions/" + new_interaction_group + "/" + term + ".json", function(rawtext) {
+            d3.text("/Interactions/Multi Frame/" + new_interaction_group + "/" + term + ".json", function(rawtext) {
               //load_dataset(rawtext);
               create_bundle(rawtext);
             });
             document.getElementById("evobundlediv_three").deleteContents;
-            d3.text("/Interactions/" + new_interaction_group + "/" + term + ".json", function(rawtext) {
+            d3.text("/Interactions/Multi Frame/" + new_interaction_group + "/" + term + ".json", function(rawtext) {
               //load_dataset(rawtext);
               create_bundle(rawtext);
             });
@@ -489,7 +489,7 @@ viewer.on('click', function(picked, ev) {
   document.addEventListener('DOMContentLoaded', loadMOR);
 
 
-  d3.text("/Interactions/" + interaction_group + "/" + plot_name + ".json", function(rawtext){
+  d3.text("/Interactions/Multi Frame/" + interaction_group + "/" + plot_name + ".json", function(rawtext){
     //load_dataset(rawtext);
     create_bundle(rawtext);
   });
