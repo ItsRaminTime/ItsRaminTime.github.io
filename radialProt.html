@@ -82,7 +82,7 @@
             document.getElementById("evobundlediv").innerHTML = "";
             d3.text("/Interactions/Multi Frame/" + interaction_group + "/" + plot_name + ".json", function(rawtext) {
               //load_dataset(rawtext);
-              create_bundle(rawtext);
+              create_bundle(rawtext, "evobundlediv");
             });
           }
     
@@ -94,16 +94,83 @@
             document.getElementById("evobundlediv_three").innerHTML = "";
             d3.text("/Interactions/Single Frame/4N6H_edited_Hadded.pdb.json", function(rawtext) {
               //load_dataset(rawtext);
-              create_bundle(rawtext);
+              create_bundle(rawtext, "evobundlediv");
             });
-            document.getElementById("evobundlediv_three").deleteContents;
             d3.text("/Interactions/Single Frame/5C1M_edited_Hadded.pdb.json", function(rawtext) {
               //load_dataset(rawtext);
-              create_bundle(rawtext);
+              create_bundle(rawtext, "evobundlediv_two");
             });
-            //create set
-        
+            create_intersection_set();
+            d3.text("/Interactions/Single Frame/5C1M_edited_Hadded.pdb.json", function(rawtext) {
+              //load_dataset(rawtext);
+              create_bundle(rawtext, "evobundlediv_three");
+            });
           }
+        
+        function create_intersection_set() {
+            var frame_one_json = (function() {
+                var json = null;
+                $.ajax({
+                    'async': false,
+                    'global': false,
+                    'url': "/Interactions/Single Frame/4N6H_edited_Hadded.pdb.json",
+                    'dataType': "json",
+                    'success': function (data) {
+                        console.log("!");
+                        json = data;
+                    }
+                });
+                return json;
+            })();
+            var frame_two_json = (function() {
+                var json = null;
+                $.ajax({
+                    'async': false,
+                    'global': false,
+                    'url': "/Interactions/Single Frame/5C1M_edited_Hadded.pdb.json",
+                    'dataType': "json",
+                    'success': function (data) {
+                        console.log("!");
+                        json = data;
+                    }
+                });
+                return json;
+            })();
+            
+            var frame_one_data = [];
+            
+            var intersections = [];
+
+            for (i = 0; i < frame_one_json["edges"].length; i++) {
+                frame_one_data.push({
+                    first: frame_one_json["edges"][i]["name1"],
+                    second: frame_one_json["edges"][i]["name2"]
+                });
+            }
+            
+            for (i = 0; i < frame_two_json["edges"].length; i++) {
+                if (frame_two_json["edges"][i]["name1"] in frame_one_data) {
+                    if (frame_two_json["edges"][i]["name2"] in frame_one_data[frame_two_json["edges"][i]["name1"]]) {
+                        intersections.push({
+                            first: frame_two_json["edges"][i]["name1"],
+                            second: frame_two_json["edges"][i]["name2"]
+                        });
+                    }
+                }
+            }
+            console.log(intersections);
+            
+            var frame_one_json["edges"] = [];
+            for (var name1 in intersections) {
+                frame_one_json["edges"].push({
+                    name1: name1,
+                    name2: intersections[name1],
+                    frames: [0]
+                });
+            }
+            
+            console.log(frame_one_json);
+        }
 
       // Close the dropdown menu if the user clicks outside of it
       window.onclick = function(event) {
@@ -493,7 +560,7 @@ viewer.on('click', function(picked, ev) {
 
   d3.text("/Interactions/Multi Frame/" + interaction_group + "/" + plot_name + ".json", function(rawtext){
     //load_dataset(rawtext);
-    create_bundle(rawtext);
+    create_bundle(rawtext, "evobundlediv");
   });
   
   

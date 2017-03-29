@@ -34,7 +34,7 @@ var splinesMap = {};
 
 var newSplinesMap = {};
 // create a table with column headers, types, and data
-function create_bundle(rawText) {
+function create_bundle(rawText, div) {
     originalText = rawText;
     var cluster = d3.layout.cluster()
         .size([360, ry - 120])
@@ -75,7 +75,7 @@ function create_bundle(rawText) {
         .radius(function(d) { return d.y; })
         .angle(function(d) { return d.x / 180 * Math.PI; });
 
-    d3.select("#evobundlediv").style("position","relative");
+    d3.select("#" + div).style("position","relative");
 
     // Chrome 15 bug: <http://code.google.com/p/chromium/issues/detail?id=98951>
     div = d3.select("#evobundlediv").insert("div")
