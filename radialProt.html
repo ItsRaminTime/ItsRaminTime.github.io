@@ -89,13 +89,15 @@
           function store_group_two(group_number, term) {
             var list = ["hbbb", "hbsb", "hbss", "hlb", "hls", "lwb", "lwb2", "pc", "ps", "sb", "ts", "vdw", "water-network", "wb", "wb2"];
             var new_interaction_group = list[group_number];
-            document.getElementById("evobundlediv_two").deleteContents;
-            d3.text("/Interactions/Multi Frame/" + new_interaction_group + "/" + term + ".json", function(rawtext) {
+            document.getElementById("evobundlediv").innerHTML = "";
+            document.getElementById("evobundlediv_two").innerHTML = "";
+            document.getElementById("evobundlediv_three").innerHTML = "";
+            d3.text("/Interactions/Single Frame/4N6H_edited_Hadded.pdb.json", function(rawtext) {
               //load_dataset(rawtext);
               create_bundle(rawtext);
             });
             document.getElementById("evobundlediv_three").deleteContents;
-            d3.text("/Interactions/Multi Frame/" + new_interaction_group + "/" + term + ".json", function(rawtext) {
+            d3.text("/Interactions/Single Frame/5C1M_edited_Hadded.pdb.json", function(rawtext) {
               //load_dataset(rawtext);
               create_bundle(rawtext);
             });
