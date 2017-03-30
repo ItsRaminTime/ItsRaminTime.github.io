@@ -34,7 +34,7 @@ var splinesMap = {};
 
 var newSplinesMap = {};
 // create a table with column headers, types, and data
-function create_bundle(rawText, div) {
+function create_bundle(rawText, div, isSingleFrame, isInteractionSet, interaction_set) {
     originalText = rawText;
     var cluster = d3.layout.cluster()
         .size([360, ry - 120])
@@ -126,7 +126,27 @@ function create_bundle(rawText, div) {
 
     //var classes = d3.csv.parseRows(rawText)
     //  .map(function(d){return {rawArr:d}; });
-    var json = JSON.parse(rawText);
+    var json;
+    if (isSingleFrame == false) {
+        json = JSON.parse(rawText);
+    } else {
+        if (isInteractionSet == false) {
+            var nodes = rawText["tracks"][0]["trackProperties"];
+            var new_nodes = [];
+            for (i = 0; i < nodes.length; i++) {
+               new_nodes.push({
+                    color: nodes[i].color,
+                    name: nodes[i].nodeName
+                });
+            } 
+            rawText["nodes"] = new_nodes;
+            json = rawText;
+        } else {
+            json = interaction_set;
+        }
+    }
+    console.log("!");
+    console.log(json);
     graph = parse(json);
     originalKeys = graph.nodes.map(function(n){
         return n.name;
@@ -969,7 +989,7 @@ function parseCluster(cluster) {
 
         clusterDefinition[keyValuesClusterArray[i * 2]] = keys;
         keys.forEach(function(k){
-            graph.nodeMap[k].present = true;
+   //         graph.nodeMap[k].present = true;
         });
     }
     var absentCluster = [];

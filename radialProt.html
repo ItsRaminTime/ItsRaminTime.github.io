@@ -82,29 +82,28 @@
             document.getElementById("evobundlediv").innerHTML = "";
             d3.text("/Interactions/Multi Frame/" + interaction_group + "/" + plot_name + ".json", function(rawtext) {
               //load_dataset(rawtext);
-              create_bundle(rawtext, "evobundlediv");
+              create_bundle(rawtext, "evobundlediv", false, false, null);
             });
           }
     
           function store_group_two(group_number, term) {
-            console.log("!")
             var list = ["hbbb", "hbsb", "hbss", "hlb", "hls", "lwb", "lwb2", "pc", "ps", "sb", "ts", "vdw", "water-network", "wb", "wb2"];
             var new_interaction_group = list[group_number];
             document.getElementById("evobundlediv").innerHTML = "";
             document.getElementById("evobundlediv_two").innerHTML = "";
             document.getElementById("evobundlediv_three").innerHTML = "";
-            d3.text("/Interactions/Single Frame/4N6H_edited_Hadded.pdb.json", function(rawtext) {
+            d3.json("/Interactions/Single Frame/4N6H_edited_Hadded.pdb.json", function(rawtext) {
               //load_dataset(rawtext);
-              create_bundle(rawtext, "evobundlediv");
+              create_bundle(rawtext, "evobundlediv", true, false, null);
             });
-            d3.text("/Interactions/Single Frame/5C1M_edited_Hadded.pdb.json", function(rawtext) {
+            d3.json("/Interactions/Single Frame/5C1M_edited_Hadded.pdb.json", function(rawtext) {
               //load_dataset(rawtext);
-              create_bundle(rawtext, "evobundlediv_two");
+              create_bundle(rawtext, "evobundlediv_two", true, false, null);
             });
-            create_intersection_set();
-            d3.text("/Interactions/Single Frame/5C1M_edited_Hadded.pdb.json", function(rawtext) {
+            var intersection_frame = create_intersection_set();
+            d3.json(intersection_frame, function(rawtext) {
               //load_dataset(rawtext);
-              create_bundle(rawtext, "evobundlediv_three");
+              create_bundle(rawtext, "evobundlediv_three", true, true, intersection_frame);
             });
           }
         
@@ -117,7 +116,6 @@
                     'url': "/Interactions/Single Frame/4N6H_edited_Hadded.pdb.json",
                     'dataType': "json",
                     'success': function (data) {
-                        console.log("!");
                         json = data;
                     }
                 });
@@ -131,27 +129,37 @@
                     'url': "/Interactions/Single Frame/5C1M_edited_Hadded.pdb.json",
                     'dataType': "json",
                     'success': function (data) {
-                        console.log("!");
                         json = data;
                     }
                 });
                 return json;
             })();
             
-            var frame_one_data = [];
+            var frame_one_data_first = [];
+            var frame_one_data_second = [];
+            var frame_one_data_dict = {};
             
             var intersections = [];
 
             for (i = 0; i < frame_one_json["edges"].length; i++) {
-                frame_one_data.push({
-                    first: frame_one_json["edges"][i]["name1"],
-                    second: frame_one_json["edges"][i]["name2"]
-                });
+                frame_one_data_first.push(frame_one_json["edges"][i]["name1"]);
+                frame_one_data_second.push(frame_one_json["edges"][i]["name2"]);
+                var key = frame_one_json["edges"][i]["name1"];
+                frame_one_data_dict[key] = frame_one_json["edges"][i]["name2"];
+                key = frame_one_json["edges"][i]["name2"];
+                frame_one_data_dict[key] = frame_one_json["edges"][i]["name1"];
             }
             
             for (i = 0; i < frame_two_json["edges"].length; i++) {
-                if (frame_two_json["edges"][i]["name1"] in frame_one_data) {
-                    if (frame_two_json["edges"][i]["name2"] in frame_one_data[frame_two_json["edges"][i]["name1"]]) {
+                if (frame_one_data_first.includes(frame_two_json["edges"][i]["name1"])) {
+                    if (frame_one_data_dict[frame_two_json["edges"][i]["name1"]] === frame_two_json["edges"][i]["name2"]) {
+                        intersections.push({
+                            first: frame_two_json["edges"][i]["name1"],
+                            second: frame_two_json["edges"][i]["name2"]
+                        });
+                    }
+                } else if (frame_one_data_second.includes(frame_two_json["edges"][i]["name1"])) {
+                    if (frame_one_data_dict[frame_two_json["edges"][i]["name1"]] === frame_two_json["edges"][i]["name2"]) {
                         intersections.push({
                             first: frame_two_json["edges"][i]["name1"],
                             second: frame_two_json["edges"][i]["name2"]
@@ -159,18 +167,26 @@
                     }
                 }
             }
-            console.log(intersections);
             
-            var frame_one_json["edges"] = [];
-            for (var name1 in intersections) {
+            frame_one_json["edges"] = [];
+            for (i = 0; i < intersections.length; i++) {
                 frame_one_json["edges"].push({
-                    name1: name1,
-                    name2: intersections[name1],
+                    name1: intersections[i].first,
+                    name2: intersections[i].second,
                     frames: [0]
                 });
             }
             
-            console.log(frame_one_json);
+            var nodes = frame_one_json["tracks"][0]["trackProperties"];
+            var new_nodes = [];
+            for (i = 0; i < nodes.length; i++) {
+               new_nodes.push({
+                    color: nodes[i].color,
+                    name: nodes[i].nodeName
+                });
+            } 
+            frame_one_json["nodes"] = new_nodes;
+            return frame_one_json;
         }
 
       // Close the dropdown menu if the user clicks outside of it
@@ -215,22 +231,23 @@
               for(var i in code) {
                 var button = "<button onclick='drop_mol(" + i + ")' class='dropbtn'>" + code[i].pdb + "</button>";
                 var dropdown_dynamic_name = "myDropdown_" + i + "";
+                var term = code[i].short_exp_cond_description;
                 var dropdown = "<div id='" + dropdown_dynamic_name + "' class='dropdown-content'>";
-                dropdown = dropdown.concat("<a onclick='store_group_two(0,code[i].short_exp_cond_description)'>hbbb</a>")
-                .concat("<a onclick='store_group_two(1,code[i].short_exp_cond_description)'>hbsb</a>")
-                .concat("<a onclick='store_group_two(2,code[i].short_exp_cond_description)'>hbss</a>")
-                .concat("<a onclick='store_group_two(3,code[i].short_exp_cond_description)'>hlb</a>")
-                .concat("<a onclick='store_group_two(4,code[i].short_exp_cond_description)'>hls</a>")
-                .concat("<a onclick='store_group_two(5,code[i].short_exp_cond_description)'>lwb</a>")
-                .concat("<a onclick='store_group_two(6,code[i].short_exp_cond_description)'>lwb2</a>")
-                .concat("<a onclick='store_group_two(7,code[i].short_exp_cond_description)'>pc</a>")
-                .concat("<a onclick='store_group_two(8,code[i].short_exp_cond_description)'>ps</a>")
-                .concat("<a onclick='store_group_two(9,code[i].short_exp_cond_description)'>sb</a>")
-                .concat("<a onclick='store_group_two(10,code[i].short_exp_cond_description)'>ts</a>")
-                .concat("<a onclick='store_group_two(11,code[i].short_exp_cond_description)'>vdw</a>")
-                .concat("<a onclick='store_group_two(12,code[i].short_exp_cond_description)'>water_network</a>")
-                .concat("<a onclick='store_group_two(13,code[i].short_exp_cond_description)'>wb</a>")
-                .concat("<a onclick='store_group_two(14,code[i].short_exp_cond_description)'>wb2</a>")
+                dropdown = dropdown.concat("<a onclick='store_group_two(0)'>hbbb</a>")
+                .concat("<a onclick='store_group_two(1)'>hbsb</a>")
+                .concat("<a onclick='store_group_two(2)'>hbss</a>")
+                .concat("<a onclick='store_group_two(3)'>hlb</a>")
+                .concat("<a onclick='store_group_two(4)'>hls</a>")
+                .concat("<a onclick='store_group_two(5)'>lwb</a>")                      //USE GLOBAL VARIABLE TO SAVE TERM
+                .concat("<a onclick='store_group_two(6)'>lwb2</a>")
+                .concat("<a onclick='store_group_two(7)'>pc</a>")
+                .concat("<a onclick='store_group_two(8)'>ps</a>")
+                .concat("<a onclick='store_group_two(9)'>sb</a>")
+                .concat("<a onclick='store_group_two(10)'>ts</a>")
+                .concat("<a onclick='store_group_two(11)'>vdw</a>")
+                .concat("<a onclick='store_group_two(12)'>water_network</a>")
+                .concat("<a onclick='store_group_two(13)'>wb</a>")
+                .concat("<a onclick='store_group_two(14)'>wb2</a>")
                 .concat("</div>");
                 $("#list").append(button).append(dropdown);
                 }
@@ -561,7 +578,7 @@ viewer.on('click', function(picked, ev) {
 
   d3.text("/Interactions/Multi Frame/" + interaction_group + "/" + plot_name + ".json", function(rawtext){
     //load_dataset(rawtext);
-    create_bundle(rawtext, "evobundlediv");
+    create_bundle(rawtext, "evobundlediv", false, false, null);
   });
   
   
