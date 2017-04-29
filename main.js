@@ -989,7 +989,7 @@ function parseCluster(cluster) {
 
         clusterDefinition[keyValuesClusterArray[i * 2]] = keys;
         keys.forEach(function(k){
-   //         graph.nodeMap[k].present = true;
+     //       graph.nodeMap[k].present = true;
         });
     }
     var absentCluster = [];
@@ -1070,7 +1070,7 @@ function transitionToSummary(){
     summaryMode = !summaryMode;
 
     //Initialize empty two-dim array
-    var n = nodes.length;
+    var n = graph.nodes.length;
     var countMatrix = new Array(n);
     for(var i=0;i<n;i++) {
         countMatrix[i] = new Array(n);

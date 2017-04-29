@@ -26,7 +26,7 @@
         }
         
         #tree {
-          margin-top: -20
+          margin-top: -20;
         }
         
         /* Style the buttons that are used to open and close the accordion panel */
@@ -64,7 +64,21 @@
         <div id="searchContainer" class="cf sb">
           <input class="right" type="text" id="searchBox" placeholder="search"/>
         </div>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style> 
+          .btn {
+            display: block; 
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script>
+          var counter = 0;
+          
           $('#searchContainer').on('keyup', function(e){
             var code = e.which; // recommended to use e.which, it's normalized across browsers
             if(code==13)e.preventDefault();
@@ -86,33 +100,43 @@
                     j = j + 1;
                   }
                 }
-              $("#list").remove()
-              $("#intermediary").append("<ul id='list'></ul>");
+              $("#list").remove();
+              $("#collaps").remove();
+              $(".btn").remove();
+              for (var i = 0; i < counter; i++) {
+                $("#list" + i + "").remove();
+                $("#collaps" + i + "").remove();
+              }
+              counter = 0;
               for(var i in code) {
+                $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps" + i + "'>" + code[i].pdb + "</button>");
+                $("#intermediary").append("<div id='collaps" + i + "' class='collapse'></div>");
+                $("#collaps" + i + "").append("<ul id='list" + i + "'></ul>");
                 var li = "<li id=first><a href='"; 
                 var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "'>"+code[i].pdb;
-                $("#list").append(li.concat(name))
-                .append("<li>".concat("Receptor: " + code[i].receptor))
-                .append("<li>".concat("Uniprot: " + code[i].uniprot))
-                .append("<li>".concat("State: " + code[i].state))
-                .append("<li>".concat("Ligand: " + code[i].ligand))
-                .append("<li>".concat("Publication: " + code[i].publication))
-                .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
-                .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
-                .append("<li>".concat("Top Dir: " + code[i].top_dir))
-                .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
-                .append("<li>".concat("Filetype: " + code[i].filetype))
-                .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
-                .append("<li>".concat("Strip Water: " + code[i].strip_water))
-                .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
-                .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
-                .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
-                .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
-                .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
-                .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))                
-                .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
-                .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
-                }
+                $("#list" + i + "").append(li.concat(name))
+                  .append("<li>".concat("Receptor: " + code[i].receptor))
+                  .append("<li>".concat("Uniprot: " + code[i].uniprot))
+                  .append("<li>".concat("State: " + code[i].state))
+                  .append("<li>".concat("Ligand: " + code[i].ligand))
+                  .append("<li>".concat("Publication: " + code[i].publication))
+                  .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
+                  .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
+                  .append("<li>".concat("Top Dir: " + code[i].top_dir))
+                  .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
+                  .append("<li>".concat("Filetype: " + code[i].filetype))
+                  .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
+                  .append("<li>".concat("Strip Water: " + code[i].strip_water))
+                  .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
+                  .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
+                  .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
+                  .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
+                  .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
+                  .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))                
+                  .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
+                  .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
+              counter = i;
+              }
               });
             }
         });
@@ -163,7 +187,26 @@
           node.append("circle")
               .attr("r", 6.5)
               .attr("id", "circleClicker")
-              .style("fill", function(d) {return d.colorid;})
+              .style("fill", function(d) {
+                var color = "white";
+                $.ajax({
+                  url: 'table.json',
+                  async: false,
+                  dataType: 'json',
+                  success: function (data) {
+                    json = data;
+                    for(var i = 0; i < json.length; i++) {
+                      var obj = json[i];
+                      if(obj.uniprot.includes(d.name)) {
+                        if (d.name !== "") {
+                          color = "red";
+                        }
+                      }
+                    }
+                  }
+                });
+                return color;
+              })
               .style("cursor", "pointer")
               .on("click", function(d) {
                 //window.location = "intermediary.html" + "?name=" + d.name;
@@ -180,35 +223,44 @@
                       j = j + 1;
                     }
                   }
-                $("#list").remove()
-                $("#intermediary").append("<ul id='list'></ul>");
+                $("#list").remove();
+                $("#collaps").remove();
+                $(".btn").remove();
+                for (var i = 0; i <= counter; i++) {
+                  $("#list" + i + "").remove();
+                  $("#collaps" + i + "").remove();
+                }
+                counter = 0;
                 for(var i in code) {
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps" + i + "'>" + code[i].pdb + "</button>");
+                  $("#intermediary").append("<div id='collaps" + i + "' class='collapse'></div>");
+                  $("#collaps" + i + "").append("<ul id='list" + i + "'></ul>");
                   var li = "<li id=first><a href='"; 
                   var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "'>"+code[i].pdb;
-                  $("#list").append(li.concat(name))
-                  .append("<li>".concat("Receptor: " + code[i].receptor))
-                  .append("<li>".concat("Uniprot: " + code[i].uniprot))
-                  .append("<li>".concat("State: " + code[i].state))
-                  .append("<li>".concat("Ligand: " + code[i].ligand))
-                  .append("<li>".concat("Publication: " + code[i].publication))
-                  .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
-                  .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
-                  .append("<li>".concat("Top Dir: " + code[i].top_dir))
-                  .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
-                  .append("<li>".concat("Filetype: " + code[i].filetype))
-                  .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
-                  .append("<li>".concat("Strip Water: " + code[i].strip_water))
-                  .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
-                  .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
-                  .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
-                  .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
-                  .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
-                  .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))
-                  .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
-                  .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
-              }
-              });
-          
+                  $("#list" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Receptor: " + code[i].receptor))
+                    .append("<li>".concat("Uniprot: " + code[i].uniprot))
+                    .append("<li>".concat("State: " + code[i].state))
+                    .append("<li>".concat("Ligand: " + code[i].ligand))
+                    .append("<li>".concat("Publication: " + code[i].publication))
+                    .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
+                    .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
+                    .append("<li>".concat("Top Dir: " + code[i].top_dir))
+                    .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
+                    .append("<li>".concat("Filetype: " + code[i].filetype))
+                    .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
+                    .append("<li>".concat("Strip Water: " + code[i].strip_water))
+                    .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
+                    .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
+                    .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
+                    .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
+                    .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
+                    .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))                
+                    .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
+                    .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
+                counter = i;
+                }
+              });  
           }); 
 
           node.append("text")
