@@ -1,0 +1,404 @@
+[
+  {
+    "id": "5HT1B",
+    "contains": [
+      "5HT1B_HUMAN_41AQ_A",
+      "5HT1B_HUMAN_41AR_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "5HT2B",
+    "contains": [
+      "5HT2B_HUMAN_4IB4_A",
+      "5HT2B_HUMAN_4NC3_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "AA2AR",
+    "contains": [
+      "AA2AR_HUMAN_2YDO_A",
+      "AA2AR_HUMAN_2YDV_A",
+      "AA2AR_HUMAN_3EML_A",
+      "AA2AR_HUMAN_3PWH_A",
+      "AA2AR_HUMAN_3QAK_A",
+      "AA2AR_HUMAN_3REY_A",
+      "AA2AR_HUMAN_3RFM_A",
+      "AA2AR_HUMAN_3UZA_A",
+      "AA2AR_HUMAN_3UZC_A",
+      "AA2AR_HUMAN_3VG9_A",
+      "AA2AR_HUMAN_3VG9_B",
+      "AA2AR_HUMAN_3VG9_C",
+      "AA2AR_HUMAN_3VGA_A",
+      "AA2AR_HUMAN_3VGA_B",
+      "AA2AR_HUMAN_3VGA_C",
+      "AA2AR_HUMAN_4EIY_A",
+      "AA2AR_HUMAN_4UG2_A",
+      "AA2AR_HUMAN_4UG2_B",
+      "AA2AR_HUMAN_4UHR_A",
+      "AA2AR_HUMAN_5G53_A",
+      "AA2AR_HUMAN_5G53_B",
+      "AA2AR_HUMAN_5G53_C",
+      "AA2AR_HUMAN_5G53_D",
+      "AA2AR_HUMAN_5IU4_A",
+      "AA2AR_HUMAN_5IU7_A",
+      "AA2AR_HUMAN_5IUA_A",
+      "AA2AR_HUMAN_5IUB_A",
+      "AA2AR_HUMAN_5K2A_A",
+      "AA2AR_HUMAN_5K2B_A",
+      "AA2AR_HUMAN_5K2C_A",
+      "AA2AR_HUMAN_5K2D_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "ACM1",
+    "contains": [
+      "ACM1_HUMAN_5CXV_A",
+      "ACM1_HUMAN_5CXV_C"
+    ],
+    "": ""
+  },
+  {
+    "id": "ACM2",
+    "contains": [
+      "ACM2_HUMAN_3UON_A",
+      "ACM2_HUMAN_4MQS_A",
+      "ACM2_HUMAN_4MQS_B",
+      "ACM2_HUMAN_4MQT_A",
+      "ACM2_HUMAN_4MQT_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "ACM3",
+    "contains": [
+      "ACM3_FIX_4DAJ_A",
+      "ACM3_FIX_4DAJ_B",
+      "ACM3_FIX_4DAJ_C",
+      "ACM3_FIX_4DAJ_D",
+      "ACM3_RAT_4U14_A",
+      "ACM3_RAT_4U15_A",
+      "ACM3_RAT_4U15_B",
+      "ACM3_RAT_4U16_A",
+      "ACM3_RAT_4U16_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "ACM4",
+    "contains": [
+      "ACM4_HUMAN_5DSG_A",
+      "ACM4_HUMAN_5DSG_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "ADRB1",
+    "contains": [
+      "ADRB1_MELGA_2VT4_A",
+      "ADRB1_MELGA_2VT4_B",
+      "ADRB1_MELGA_2VT4_C",
+      "ADRB1_MELGA_2VT4_D",
+      "ADRB1_MELGA_2Y00_A",
+      "ADRB1_MELGA_2Y00_B",
+      "ADRB1_MELGA_2Y01_A",
+      "ADRB1_MELGA_2Y01_B",
+      "ADRB1_MELGA_2Y02_A",
+      "ADRB1_MELGA_2Y02_B",
+      "ADRB1_MELGA_2Y03_A",
+      "ADRB1_MELGA_2Y03_B",
+      "ADRB1_MELGA_2Y04_A",
+      "ADRB1_MELGA_2Y04_B",
+      "ADRB1_MELGA_2YCW_A",
+      "ADRB1_MELGA_2YCW_B",
+      "ADRB1_MELGA_2YCX_A",
+      "ADRB1_MELGA_2YCX_B",
+      "ADRB1_MELGA_2YCY_A",
+      "ADRB1_MELGA_2YCY_B",
+      "ADRB1_MELGA_2YCZ_A",
+      "ADRB1_MELGA_2YCZ_B",
+      "ADRB1_MELGA_3ZPQ_A",
+      "ADRB1_MELGA_3ZPQ_B",
+      "ADRB1_MELGA_3ZPR_A",
+      "ADRB1_MELGA_3ZPR_B",
+      "ADRB1_MELGA_4AMI_A",
+      "ADRB1_MELGA_4AMI_B",
+      "ADRB1_MELGA_4AMJ_A",
+      "ADRB1_MELGA_4AMJ_B",
+      "ADRB1_MELGA_4BVN_A",
+      "ADRB1_MELGA_5A8E_A",
+      "ADRB1_MELGA_5F8U_A",
+      "ADRB1_MELGA_5F8U_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "ADRB2",
+    "contains": [
+      "ADRB2_HUMAN_3D4S_A",
+      "ADRB2_HUMAN_3NY8_A",
+      "ADRB2_HUMAN_3NY9_A",
+      "ADRB2_HUMAN_3NYA_A",
+      "ADRB2_HUMAN_3P0G_A",
+      "ADRB2_HUMAN_3P0G_B",
+      "ADRB2_HUMAN_3PDS_A",
+      "ADRB2_HUMAN_3SN6_A",
+      "ADRB2_HUMAN_3SN6_B",
+      "ADRB2_HUMAN_3SN6_G",
+      "ADRB2_HUMAN_3SN6_N",
+      "ADRB2_HUMAN_4GBR_A",
+      "ADRB2_HUMAN_4GBR_B",
+      "ADRB2_HUMAN_4LDE_A",
+      "ADRB2_HUMAN_4LDE_B",
+      "ADRB2_HUMAN_4LDL_A",
+      "ADRB2_HUMAN_4LDL_B",
+      "ADRB2_HUMAN_4LDO_A",
+      "ADRB2_HUMAN_4LDO_B",
+      "ADRB2_HUMAN_4QKX_A",
+      "ADRB2_HUMAN_4QKX_B",
+      "ADRB2_HUMAN_5D5A_A",
+      "ADRB2_HUMAN_5D5B_A",
+      "ADRB2_HUMAN_5D6L_A",
+      "ADRB2_HUMAN_5JQH_A",
+      "ADRB2_HUMAN_5JQH_B",
+      "ADRB2_HUMAN_5JQH_C",
+      "ADRB2_HUMAN_5JQH_D"
+    ],
+    "": ""
+  },
+  {
+    "id": "AGTR1",
+    "contains": [
+      "AGTR1_HUMAN_4ZUD_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "AT1R",
+    "contains": [
+      "AT1R_HUMAN_4YAY_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "CCR5",
+    "contains": [
+      "CCR5_HUMAN_4MBS_A",
+      "CCR5_HUMAN_4MBS_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "CNR1",
+    "contains": [
+      "CNR1_HUMAN_5TGZ_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "CXCR4",
+    "contains": [
+      "CXCR4_HUMAN_3ODU_A",
+      "CXCR4_HUMAN_3ODU_B",
+      "CXCR4_HUMAN_3OE0_A",
+      "CXCR4_HUMAN_3OE0_I",
+      "CXCR4_HUMAN_3OE6_A",
+      "CXCR4_HUMAN_3OE8_A",
+      "CXCR4_HUMAN_3OE8_B",
+      "CXCR4_HUMAN_3OE8_C",
+      "CXCR4_HUMAN_3OE9_A",
+      "CXCR4_HUMAN_3OE9_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "DRD3",
+    "contains": [
+      "DRD3_HUMAN_3PBL_A",
+      "DRD3_HUMAN_3PBL_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "FFAR1",
+    "contains": [
+      "FFAR1_HUMAN_4PHU_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "HRH1",
+    "contains": [
+      "HRH1_HUMAN_3RZE_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "LPAR1",
+    "contains": [
+      "LPAR1_HUMAN_4Z34_A",
+      "LPAR1_HUMAN_4Z35_A",
+      "LPAR1_HUMAN_4Z36_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "NTR1",
+    "contains": [
+      "NTR1_RAT_4BUO_A",
+      "NTR1_RAT_4BUO_B",
+      "NTR1_RAT_4BUO_C",
+      "NTR1_RAT_4BUO_D"
+    ],
+    "": ""
+  },
+  {
+    "id": "OPRD",
+    "contains": [
+      "OPRD_HUMAN_4N6H_A",
+      "OPRD_MOUSE_4EJ4_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "OPRK",
+    "contains": [
+      "OPRK_HUMAN_4DJH_A",
+      "OPRK_HUMAN_4DJH_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "OPRM",
+    "contains": [
+      "OPRM_MOUSE_4DKL_A",
+      "OPRM_MOUSE_5C1M_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "OPRX",
+    "contains": [
+      "OPRX_HUMAN_4EA3_A",
+      "OPRX_HUMAN_4EA3_B",
+      "OPRX_HUMAN_5DHG_A",
+      "OPRX_HUMAN_5DHG_B",
+      "OPRX_HUMAN_5DHH_A",
+      "OPRX_HUMAN_5DHH_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "OPSD",
+    "contains": [
+      "OPSD_BOVIN_1F88_A",
+      "OPSD_BOVIN_1F88_B",
+      "OPSD_BOVIN_1GZM_A",
+      "OPSD_BOVIN_1GZM_B",
+      "OPSD_BOVIN_1HZX_A",
+      "OPSD_BOVIN_1HZX_B",
+      "OPSD_BOVIN_1L9H_A",
+      "OPSD_BOVIN_1L9H_B",
+      "OPSD_BOVIN_1U19_A",
+      "OPSD_BOVIN_1U19_B",
+      "OPSD_BOVIN_2G87_A",
+      "OPSD_BOVIN_2G87_B",
+      "OPSD_BOVIN_2HPY_A",
+      "OPSD_BOVIN_2HPY_B",
+      "OPSD_BOVIN_2I35_A",
+      "OPSD_BOVIN_2J4Y_A",
+      "OPSD_BOVIN_2J4Y_B",
+      "OPSD_BOVIN_2PED_A",
+      "OPSD_BOVIN_2PED_B",
+      "OPSD_BOVIN_2X72_A",
+      "OPSD_BOVIN_2X72_B",
+      "OPSD_BOVIN_3C9L_A",
+      "OPSD_BOVIN_3C9M_A",
+      "OPSD_BOVIN_3DQB_A",
+      "OPSD_BOVIN_3DQB_B",
+      "OPSD_BOVIN_3OAX_A",
+      "OPSD_BOVIN_3OAX_B",
+      "OPSD_BOVIN_3PQR_A",
+      "OPSD_BOVIN_3PQR_B",
+      "OPSD_BOVIN_3PXO_A",
+      "OPSD_BOVIN_4A4M_A",
+      "OPSD_BOVIN_4A4M_B",
+      "OPSD_BOVIN_4BEY_A",
+      "OPSD_BOVIN_4BEY_B",
+      "OPSD_BOVIN_4BEZ_A",
+      "OPSD_BOVIN_4J4Q_A",
+      "OPSD_BOVIN_4J4Q_B",
+      "OPSD_BOVIN_4PXF_A",
+      "OPSD_BOVIN_4PXF_B",
+      "OPSD_BOVIN_4X1H_A",
+      "OPSD_BOVIN_4X1H_C",
+      "OPSD_BOVIN_5DGY_A",
+      "OPSD_BOVIN_5DGY_B",
+      "OPSD_BOVIN_5DGY_C",
+      "OPSD_BOVIN_5DGY_D",
+      "OPSD_BOVIN_5DYS_A",
+      "OPSD_BOVIN_5EN0_A",
+      "OPSD_BOVIN_5EN0_B",
+      "OPSD_TODPA_2Z73_A",
+      "OPSD_TODPA_2Z73_B",
+      "OPSD_TODPA_2ZIY_A",
+      "OPSD_TODPA_3AYM_A",
+      "OPSD_TODPA_3AYM_B",
+      "OPSD_TODPA_3AYN_A",
+      "OPSD_TODPA_3AYN_B",
+      "OPSD_TODPA_4WW3_A",
+      "OPSD_TODPA_4WW3_B"
+    ],
+    "": ""
+  },
+  {
+    "id": "OX1R",
+    "contains": [
+      "OX1R_HUMAN_4ZJ8_A",
+      "OX1R_HUMAN_4ZJC_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "OX2R",
+    "contains": [
+      "OX2R_HUMAN_4S0V_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "P2RY1",
+    "contains": [
+      "P2RY1_HUMAN_4XNV_A",
+      "P2RY1_HUMAN_4XNW_A",
+      "P2RY1_HUMAN_4XNW_C"
+    ],
+    "": ""
+  },
+  {
+    "id": "P2Y12",
+    "contains": [
+      "P2Y12_HUMAN_4NTJ_A",
+      "P2Y12_HUMAN_4PXZ_A",
+      "P2Y12_HUMAN_4PY0_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "PAR1",
+    "contains": [
+      "PAR1_HUMAN_3VW7_A"
+    ],
+    "": ""
+  },
+  {
+    "id": "S1PR1",
+    "contains": [
+      "S1PR1_HUMAN_3V2W_A",
+      "S1PR1_HUMAN_3V2Y_A"
+    ],
+    "": ""
+  }
+]

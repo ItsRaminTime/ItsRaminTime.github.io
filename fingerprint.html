@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  
+  <title>GPCR Fingerprint</title>
+  
+  <script src="https://d3js.org/d3.v3.js"></script>
+  
+  <!-- Javascript libs -->
+  <script type="text/javascript" src="./flareplot-main.js"></script>
+  <script type="text/javascript" src="./flareplot-selectors.js"></script>
+  <script type="text/javascript" src="./flareplot-fingerprintpanel.js"></script>
+
+  <!-- Visualization CSS -->
+  <link href="./flareplot-main.css" rel="stylesheet">
+  <link href="./flareplot-selectors.css" rel="stylesheet">
+  <link href="./flareplot-fingerprintpanel.css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="normalize.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="gpcr_demo.css" media="screen">
+  
+  <script type="text/javascript" src="./parse.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
+  
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+    
+  <!-- FlarePlot javascript files -->
+  <script src="http://cdn.rawgit.com/GPCRviz/FlarePlot/master/flareplot-main.js"></script>
+
+  <!-- FlarePlot styling -->
+  <link href="http://cdn.rawgit.com/GPCRviz/FlarePlot/master/flareplot-main.css" rel="stylesheet">
+    
+</head>
+  <body>
+    <div class="container" id="maincontent"></div>
+
+    <script>
+      
+      function getQueryVariable() {
+        var query = window.location.search.substring(1);
+        var params = []
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+          var pair = vars[i].split("=");
+          params.push(pair[1])
+        }
+        return params;
+      }
+  
+      var params = getQueryVariable();
+      var cluster = params[0];
+      console.log(cluster);
+      var contents;
+      var flareplot;
+      var panel;
+      
+      create_fingerprint_graph("hbsb");
+      
+      function create_fingerprint_graph(interaction_group) {
+        document.getElementById("maincontent").innerHTML = "";
+        d3.json("/Fingerprints/cluster_" + cluster + "/" + interaction_group + ".json", function(jsonData){
+          contents = jsonData;
+          console.log(contents)
+          flareplot = createFlareplot(600, jsonData, "#maincontent");
+          d3.select("#maincontent div")
+            .style("position","relative")
+            .style("left","50%")
+            .style("margin-left","-300px");
+        
+          var selectorContainer = d3.select("#maincontent").append("div");
+          var selectorAdded = createSelectors(flareplot, selectorContainer.node());
+          if( !selectorAdded ){
+            selectorContainer.remove();
+          }
+          // Create fingerprint panel if frameDict is included in contents
+          frameDict = getFrameDict(contents)
+        
+          if(frameDict){
+            flareplot.framesIntersect([]) //show all interactions to begin with
+            var columnNames = getFingerprintColumns(contents);
+            var fingerprint_list = calcFingerprints(contents);
+            panel = initScrollableFingerprintPanel(
+                "#maincontent", // Container selector
+                columnNames,
+                fingerprint_list,
+                threeStateRowSelection,
+                true, // Show header
+                '70px' // Height of column headers
+            );
+            //panel = initFingerprintPanel("#maincontent", columnNames, threeStateSelection, true, '75px');
+            panel.on("click", updateIntersectFrames)
+          } 
+        });
+      }
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,1502 @@
+[
+  {
+    "id": "5HT1B",
+    "homology": [],
+    "gpcrs": ["5HT1B_HUMAN_41AQ_A", "5HT1B_HUMAN_41AR_A"]
+  },
+  {
+    "id": "5HT2B",
+    "homology": [],
+    "gpcrs": ["5HT2B_HUMAN_4IB4_A", "5HT2B_HUMAN_4NC3_A"]
+  },
+  {
+    "id": "AA2AR",
+    "homology": [],
+    "gpcrs": ["AA2AR_HUMAN_2YDO_A","AA2AR_HUMAN_2YDV_A","AA2AR_HUMAN_3EML_A","AA2AR_HUMAN_3PWH_A","AA2AR_HUMAN_3QAK_A","AA2AR_HUMAN_3REY_A","AA2AR_HUMAN_3RFM_A","AA2AR_HUMAN_3UZA_A","AA2AR_HUMAN_3UZC_A","AA2AR_HUMAN_3VG9_A","AA2AR_HUMAN_3VG9_B","AA2AR_HUMAN_3VG9_C","AA2AR_HUMAN_3VGA_A","AA2AR_HUMAN_3VGA_B","AA2AR_HUMAN_3VGA_C","AA2AR_HUMAN_4EIY_A","AA2AR_HUMAN_4UG2_A","AA2AR_HUMAN_4UG2_B","AA2AR_HUMAN_4UHR_A","AA2AR_HUMAN_5G53_A","AA2AR_HUMAN_5G53_B","AA2AR_HUMAN_5G53_C","AA2AR_HUMAN_5G53_D","AA2AR_HUMAN_5IU4_A","AA2AR_HUMAN_5IU7_A","AA2AR_HUMAN_5IUA_A","AA2AR_HUMAN_5IUB_A","AA2AR_HUMAN_5K2A_A","AA2AR_HUMAN_5K2B_A","AA2AR_HUMAN_5K2C_A","AA2AR_HUMAN_5K2D_A"]
+  },
+  {
+    "id": "ACM1",
+    "homology": ["Human"],
+    "gpcrs": ["ACM1_HUMAN_5CXV_A","ACM1_HUMAN_5CXV_C"]
+  },
+  {
+    "id": "ACM2",
+    "homology": [],
+    "gpcrs": ["ACM2_HUMAN_3UON_A","ACM2_HUMAN_4MQS_A","ACM2_HUMAN_4MQS_B","ACM2_HUMAN_4MQT_A","ACM2_HUMAN_4MQT_B"]
+  },
+  {
+    "id": "ACM3",
+    "homology": ["Human"],
+    "gpcrs": ["ACM3_FIX_4DAJ_A","ACM3_FIX_4DAJ_B","ACM3_FIX_4DAJ_C","ACM3_FIX_4DAJ_D","ACM3_RAT_4U14_A","ACM3_RAT_4U15_A","ACM3_RAT_4U15_B","ACM3_RAT_4U16_A","ACM3_RAT_4U16_B"]
+  },
+  {
+    "id": "ACM4",
+    "homology": ["Human"],
+    "gpcrs": ["ACM4_HUMAN_5DSG_A","ACM4_HUMAN_5DSG_B"]
+  },
+  {
+    "id": "ADRB1",
+    "homology": ["Human"],
+    "gpcrs": ["ADRB1_MELGA_2VT4_A","ADRB1_MELGA_2VT4_B","ADRB1_MELGA_2VT4_C","ADRB1_MELGA_2VT4_D","ADRB1_MELGA_2Y00_A","ADRB1_MELGA_2Y00_B","ADRB1_MELGA_2Y01_A","ADRB1_MELGA_2Y01_B","ADRB1_MELGA_2Y02_A","ADRB1_MELGA_2Y02_B","ADRB1_MELGA_2Y03_A","ADRB1_MELGA_2Y03_B","ADRB1_MELGA_2Y04_A","ADRB1_MELGA_2Y04_B","ADRB1_MELGA_2YCW_A","ADRB1_MELGA_2YCW_B","ADRB1_MELGA_2YCX_A","ADRB1_MELGA_2YCX_B","ADRB1_MELGA_2YCY_A","ADRB1_MELGA_2YCY_B","ADRB1_MELGA_2YCZ_A","ADRB1_MELGA_2YCZ_B","ADRB1_MELGA_3ZPQ_A","ADRB1_MELGA_3ZPQ_B","ADRB1_MELGA_3ZPR_A","ADRB1_MELGA_3ZPR_B","ADRB1_MELGA_4AMI_A","ADRB1_MELGA_4AMI_B","ADRB1_MELGA_4AMJ_A","ADRB1_MELGA_4AMJ_B","ADRB1_MELGA_4BVN_A","ADRB1_MELGA_5A8E_A","ADRB1_MELGA_5F8U_A","ADRB1_MELGA_5F8U_B"]
+  },
+  {
+    "id": "ADRB2",
+    "homology": [],
+    "gpcrs": ["ADRB2_HUMAN_3D4S_A","ADRB2_HUMAN_3NY8_A","ADRB2_HUMAN_3NY9_A","ADRB2_HUMAN_3NYA_A","ADRB2_HUMAN_3P0G_A","ADRB2_HUMAN_3P0G_B","ADRB2_HUMAN_3PDS_A","ADRB2_HUMAN_3SN6_A","ADRB2_HUMAN_3SN6_B","ADRB2_HUMAN_3SN6_G","ADRB2_HUMAN_3SN6_N","ADRB2_HUMAN_4GBR_A","ADRB2_HUMAN_4GBR_B","ADRB2_HUMAN_4LDE_A","ADRB2_HUMAN_4LDE_B","ADRB2_HUMAN_4LDL_A","ADRB2_HUMAN_4LDL_B","ADRB2_HUMAN_4LDO_A","ADRB2_HUMAN_4LDO_B","ADRB2_HUMAN_4QKX_A","ADRB2_HUMAN_4QKX_B","ADRB2_HUMAN_5D5A_A","ADRB2_HUMAN_5D5B_A","ADRB2_HUMAN_5D6L_A","ADRB2_HUMAN_5JQH_A","ADRB2_HUMAN_5JQH_B","ADRB2_HUMAN_5JQH_C","ADRB2_HUMAN_5JQH_D"]
+  },
+  {
+    "id": "AGTR1",
+    "homology": [],
+    "gpcrs": ["AGTR1_HUMAN_4ZUD_A"]
+  },
+  {
+    "id": "AT1R",
+    "homology": [],
+    "gpcrs": ["AT1R_HUMAN_4YAY_A"]
+  },
+  {
+    "id": "CCR5",
+    "homology": [],
+    "gpcrs": ["CCR5_HUMAN_4MBS_A","CCR5_HUMAN_4MBS_B"]
+  },
+  {
+    "id": "CNR1",
+    "homology": ["Human"],
+    "gpcrs": ["CNR1_HUMAN_5TGZ_A"]
+  },
+  {
+    "id": "CXCR4",
+    "homology": [],
+    "gpcrs": ["CXCR4_HUMAN_3ODU_A","CXCR4_HUMAN_3ODU_B","CXCR4_HUMAN_3OE0_A","CXCR4_HUMAN_3OE0_I","CXCR4_HUMAN_3OE6_A","CXCR4_HUMAN_3OE8_A","CXCR4_HUMAN_3OE8_B","CXCR4_HUMAN_3OE8_C","CXCR4_HUMAN_3OE9_A","CXCR4_HUMAN_3OE9_B"]
+  },
+  {
+    "id": "DRD3",
+    "homology": [],
+    "gpcrs": ["DRD3_HUMAN_3PBL_A","DRD3_HUMAN_3PBL_B"]
+  },
+  {
+    "id": "FFAR1",
+    "homology": [],
+    "gpcrs": ["FFAR1_HUMAN_4PHU_A"]
+  },
+  {
+    "id": "HRH1",
+    "homology": [],
+    "gpcrs": ["HRH1_HUMAN_3RZE_A"]
+  },
+  {
+    "id": "LPAR1",
+    "homology": [],
+    "gpcrs": ["LPAR1_HUMAN_4Z34_A","LPAR1_HUMAN_4Z35_A","LPAR1_HUMAN_4Z36_A"]
+  },
+  {
+    "id": "NTR1",
+    "homology": ["Human"],
+    "gpcrs": ["NTR1_RAT_4BUO_A","NTR1_RAT_4BUO_B","NTR1_RAT_4BUO_C","NTR1_RAT_4BUO_D"]
+  },
+  {
+    "id": "OPRD",
+    "homology": [],
+    "gpcrs": ["OPRD_HUMAN_4N6H_A","OPRD_MOUSE_4EJ4_A"]
+  },
+  {
+    "id": "OPRK",
+    "homology": [],
+    "gpcrs": ["OPRK_HUMAN_4DJH_A","OPRK_HUMAN_4DJH_B"]
+  },
+  {
+    "id": "OPRM",
+    "homology": ["Human"],
+    "gpcrs": ["OPRM_MOUSE_4DKL_A","OPRM_MOUSE_5C1M_A"]
+  },
+  {
+    "id": "OPRX",
+    "homology": [],
+    "gpcrs": ["OPRX_HUMAN_4EA3_A","OPRX_HUMAN_4EA3_B","OPRX_HUMAN_5DHG_A","OPRX_HUMAN_5DHG_B","OPRX_HUMAN_5DHH_A","OPRX_HUMAN_5DHH_B"]
+  },
+  {
+    "id": "OPSD",
+    "homology": [],
+    "gpcrs": ["OPSD_BOVIN_1F88_A","OPSD_BOVIN_1F88_B","OPSD_BOVIN_1GZM_A","OPSD_BOVIN_1GZM_B","OPSD_BOVIN_1HZX_A","OPSD_BOVIN_1HZX_B","OPSD_BOVIN_1L9H_A","OPSD_BOVIN_1L9H_B","OPSD_BOVIN_1U19_A","OPSD_BOVIN_1U19_B","OPSD_BOVIN_2G87_A","OPSD_BOVIN_2G87_B","OPSD_BOVIN_2HPY_A","OPSD_BOVIN_2HPY_B","OPSD_BOVIN_2I35_A","OPSD_BOVIN_2J4Y_A","OPSD_BOVIN_2J4Y_B","OPSD_BOVIN_2PED_A","OPSD_BOVIN_2PED_B","OPSD_BOVIN_2X72_A","OPSD_BOVIN_2X72_B","OPSD_BOVIN_3C9L_A","OPSD_BOVIN_3C9M_A","OPSD_BOVIN_3DQB_A","OPSD_BOVIN_3DQB_B","OPSD_BOVIN_3OAX_A","OPSD_BOVIN_3OAX_B","OPSD_BOVIN_3PQR_A","OPSD_BOVIN_3PQR_B","OPSD_BOVIN_3PXO_A","OPSD_BOVIN_4A4M_A","OPSD_BOVIN_4A4M_B","OPSD_BOVIN_4BEY_A","OPSD_BOVIN_4BEY_B","OPSD_BOVIN_4BEZ_A","OPSD_BOVIN_4J4Q_A","OPSD_BOVIN_4J4Q_B","OPSD_BOVIN_4PXF_A","OPSD_BOVIN_4PXF_B","OPSD_BOVIN_4X1H_A","OPSD_BOVIN_4X1H_C","OPSD_BOVIN_5DGY_A","OPSD_BOVIN_5DGY_B","OPSD_BOVIN_5DGY_C","OPSD_BOVIN_5DGY_D","OPSD_BOVIN_5DYS_A","OPSD_BOVIN_5EN0_A","OPSD_BOVIN_5EN0_B","OPSD_TODPA_2Z73_A","OPSD_TODPA_2Z73_B","OPSD_TODPA_2ZIY_A","OPSD_TODPA_3AYM_A","OPSD_TODPA_3AYM_B","OPSD_TODPA_3AYN_A","OPSD_TODPA_3AYN_B","OPSD_TODPA_4WW3_A","OPSD_TODPA_4WW3_B"]
+  },
+  {
+    "id": "OX1R",
+    "homology": ["Human"],
+    "gpcrs": ["OX1R_HUMAN_4ZJ8_A","OX1R_HUMAN_4ZJC_A"]
+  },
+  {
+    "id": "OX2R",
+    "homology": [],
+    "gpcrs": ["OX2R_HUMAN_4S0V_A"]
+  },
+  {
+    "id": "P2RY1",
+    "homology": [],
+    "gpcrs": ["P2RY1_HUMAN_4XNV_A","P2RY1_HUMAN_4XNW_A","P2RY1_HUMAN_4XNW_C"]
+  },
+  {
+    "id": "P2Y12",
+    "homology": [],
+    "gpcrs": ["P2Y12_HUMAN_4NTJ_A","P2Y12_HUMAN_4PXZ_A","P2Y12_HUMAN_4PY0_A"]
+  },
+  {
+    "id": "PAR1",
+    "homology": [],
+    "gpcrs": ["PAR1_HUMAN_3VW7_A"]
+  },
+  {
+    "id": "S1PR1",
+    "homology": [],
+    "gpcrs": ["S1PR1_HUMAN_3V2W_A","S1PR1_HUMAN_3V2Y_A"]
+  },
+  {
+    "id": "5HT1A",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "5HT1D",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "5HT1E",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "5HT1F",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "5HT2A",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "5HT2C",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "5HT4R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "5HT5A",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "5HT6R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "5HT7R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "AA1R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "AA2BR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "AA3R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ACKR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ACKR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ACKR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ACKR4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ACM5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ACTHR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ADA1A",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ADA1B",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ADA1D",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ADA2A",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ADA2B",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ADA2C",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ADRB3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "AGTR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "APJ",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "BKRB1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "BKRB2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "BRS3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "C3AR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "C5AR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "C5AR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCKAR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCR4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCR6",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCR7",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCR8",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCR9",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCR10",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CCRL2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CLTR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CLTR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CML1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CNR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CX3C1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CXCR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CXCR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CXCR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CXCR5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "CXCR6",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "DRD1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "DRD2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "DRD4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "DRD5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "EDNRA",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "EDNRB",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "ETBR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "FFAR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "FFAR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "FFAR4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "FPR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "FPR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "FPR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "FSHR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GALR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GALR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GALR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GASR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GHSR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GNRHR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP101",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP119",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP132",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP135",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP139",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP141",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP142",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP146",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP148",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP149",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP150",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP151",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP152",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP153",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP160",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP161",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP162",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP173",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP174",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP176",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP182",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GP183",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPBAR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPER1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR6",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR12",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR15",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR17",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR18",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR19",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR20",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR21",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR22",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR25",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR26",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR27",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR31",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR32",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR33",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR34",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR35",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR37",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR39",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR42",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR45",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR52",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR55",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR61",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR62",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR63",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR75",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR78",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR82",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR83",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR84",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR85",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GPR88",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "GRPR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "HCAR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "HCAR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "HCAR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "HRH2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "HRH3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "HRH4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "KISSR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LGR4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LGR5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LGR6",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LPAR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LPAR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LPAR4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LPAR5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LPAR6",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LSHR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LT4R1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "LT4R2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MAS",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MAS1L",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MC3R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MC4R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MC5R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MCHR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MCHR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MRGRD",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MRGRF",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MRGRG",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MRGX1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MRGX2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MRGX3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MRGX4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MSHR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MTLR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MTR1A",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MTR1B",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "MTR1L",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NK1R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NK2R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NK3R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NMBR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NMUR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NMUR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NPBW1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NPBW2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NPFF1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NPFF2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NPSR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NPY1R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NPY2R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NPY4R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NPY5R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "NTR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "OGR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "OPN4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "OPN5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "OXER1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "OXGR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "OXYR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "P2RY2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "P2RY4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "P2RY6",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "P2RY8",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "P2Y10",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "P2Y11",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PAR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PAR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PAR4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PD2R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PD2R2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PE2R1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PE2R2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PE2R3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PE2R4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PF2R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PI2R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PKR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PKR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PRLHR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "PSYR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "QRFPR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "RL3R1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "RL3R2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "RXFP1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "RXFP2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "S1PR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "S1PR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "S1PR4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "S1PR5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "SSR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "SSR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "SSR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "SSR4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "SSR5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "SUCR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R10",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R13",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R14",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R16",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R19",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R20",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R30",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R31",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R38",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R39",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R40",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R41",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R42",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R43",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R46",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R50",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "T2R60",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TA2R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TA2R1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TA2R3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TA2R4",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TA2R5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TA2R7",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TA2R8",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TA2R9",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TAAR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TAAR2",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TAAR3",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TAAR5",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TAAR6",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TAAR8",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TAAR9",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TRFR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "TSHR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "UR2R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "V1AR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "V1BR",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "V2R",
+    "homology": ["Human"],
+    "gpcrs": []
+  },
+  {
+    "id": "XCR1",
+    "homology": ["Human"],
+    "gpcrs": []
+  }
+]

@@ -59,10 +59,20 @@
         <title>D3 Test</title>
     </head>
     <body>
+        <input type="hidden" id="refresh" value="no">
+      
         <script type="text/javascript" src="./CollapsibleLists.js"></script>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="toggleSwitchStyle.css" media="screen">
         <div id="searchContainer" class="cf sb">
           <input class="right" type="text" id="searchBox" placeholder="search"/>
+          <label class="switch">
+            <input type="checkbox" id="togBtn">
+            <div class="slider round" onclick="switcher()"> 
+              <span class="on">STATICS</span>
+              <span class="off">DYNAMICS</span>
+            </div>
+          </label>
         </div>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <style> 
@@ -76,8 +86,48 @@
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      
+        <div style="width: 100%;">
+          <div id="tree" style="float:left; width: 70%"></div>
+          <div id= "intermediary" style="float:right; width: 30%"></div>
+        </div>
+        <div style="clear:both"></div>
+
+        <script src="https://d3js.org/d3.v3.js"></script>
+        <!--<script type="text/javascript" src="d3.v3.js"></script>-->
+      
         <script>
+          
+          //CHECK IF REACHED VIA BACKBUTTON
+          $(document).ready(function(e) {
+            var $input = $('#refresh');
+
+            $input.val() == 'yes' ? location.reload(true) : $input.val('yes');
+          });
+          
+          
+          var single = false;
           var counter = 0;
+          
+          function switcher() {
+            if (single === false) {
+              single = true;
+            } else {
+              single = false;
+            }
+            console.log("switch!");
+            document.getElementById("tree").innerHTML = "";
+            document.getElementById("intermediary").innerHTML = "";
+            createAll();
+          }
+          
+        //$(window).bind("backward", function() {
+        //  location.reload();
+        //});
+          
+        
+          
+        function createAll() {
           
           $('#searchContainer').on('keyup', function(e){
             var code = e.which; // recommended to use e.which, it's normalized across browsers
@@ -113,7 +163,7 @@
                 $("#intermediary").append("<div id='collaps" + i + "' class='collapse'></div>");
                 $("#collaps" + i + "").append("<ul id='list" + i + "'></ul>");
                 var li = "<li id=first><a href='"; 
-                var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "'>"+code[i].pdb;
+                var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "&status=" + single + "&singleName=" + code[i].uniprot + "_" + code[i].pdb + "_" + code[i].vmd_chain_id.charAt(0) +  "'>"+code[i].pdb;
                 $("#list" + i + "").append(li.concat(name))
                   .append("<li>".concat("Receptor: " + code[i].receptor))
                   .append("<li>".concat("Uniprot: " + code[i].uniprot))
@@ -140,17 +190,7 @@
               });
             }
         });
-      </script>
-        <div style="width: 100%;">
-          <div id="tree" style="float:left; width: 70%"></div>
-          <div id= "intermediary" style="float:right; width: 30%"></div>
-        </div>
-        <div style="clear:both"></div>
 
-        <script src="https://d3js.org/d3.v3.js"></script>
-        <!--<script type="text/javascript" src="d3.v3.js"></script>-->
-
-        <script>
         var diameter = document.getElementById("tree").offsetWidth;
 
         var tree = d3.layout.tree()
@@ -189,35 +229,55 @@
               .attr("id", "circleClicker")
               .style("fill", function(d) {
                 var color = "white";
-                $.ajax({
-                  url: 'table.json',
-                  async: false,
-                  dataType: 'json',
-                  success: function (data) {
-                    json = data;
-                    for(var i = 0; i < json.length; i++) {
-                      var obj = json[i];
-                      if(obj.uniprot.includes(d.name)) {
-                        if (d.name !== "") {
-                          color = "red";
+                if(single === false) {
+                  $.ajax({
+                    url: 'table.json',
+                    async: false,
+                    dataType: 'json',
+                    success: function (data) {
+                      json = data;
+                      for(var i = 0; i < json.length; i++) {
+                        var obj = json[i];
+                        if(obj.uniprot.includes(d.name)) {
+                          if (d.name !== "") {
+                            color = "magenta";
+                          }
                         }
                       }
                     }
-                  }
-                });
+                  });
+                } else {
+                  $.ajax({
+                    url: 'table_statics.json',
+                    async: false,
+                    dataType: 'json',
+                    success: function (data) {
+                      json = data;
+                      for(var i = 0; i < json.length; i++) {
+                        var obj = json[i];
+                        if(obj.id.includes(d.name.toLocaleUpperCase())) {
+                          if (d.name !== "") {
+                            color = "steelblue";
+                          }
+                        }
+                      }
+                    }
+                  });
+                }
                 return color;
               })
               .style("cursor", "pointer")
               .on("click", function(d) {
                 //window.location = "intermediary.html" + "?name=" + d.name;
+              if (single === false) {
                 var json;
                 var code = [];
                 var j = 0;
+            
                 $.getJSON('table.json').done(function (data) {
                   json = data;
                   for(var i = 0; i < json.length; i++) {
                     var obj = json[i];
-                    console.log(d.name)
                     if(obj.uniprot.includes(d.name)) {
                       code[j] = obj;  
                       j = j + 1;
@@ -236,7 +296,7 @@
                   $("#intermediary").append("<div id='collaps" + i + "' class='collapse'></div>");
                   $("#collaps" + i + "").append("<ul id='list" + i + "'></ul>");
                   var li = "<li id=first><a href='"; 
-                  var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "'>"+code[i].pdb;
+                  var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "&status=" + single + "&singleName=" + code[i].uniprot + "_" + code[i].pdb + "_" + code[i].vmd_chain_id.charAt(0) +  "'>"+code[i].pdb;
                   $("#list" + i + "").append(li.concat(name))
                     .append("<li>".concat("Receptor: " + code[i].receptor))
                     .append("<li>".concat("Uniprot: " + code[i].uniprot))
@@ -261,6 +321,135 @@
                 counter = i;
                 }
               });  
+              } else {
+                var count = 0;
+                var names = [];
+                console.log(d);
+                if (d.children != null) {
+                  count = d.children.length;
+                  for (var i = 0; i < count; i++) {
+                    names.push(d.children[i].name);  
+                  }
+                }
+                var json;
+                var gpcrs = [];
+                var homologues = [];
+                var id = "";
+                var gpcrs_multi = [];
+                var homologues_multi = [];
+                var ids_multi_gpcrs = [];
+                var ids_multi_homologues = [];
+            
+                $.getJSON('table_statics.json').done(function (data) {
+                  json = data;
+                  for(var i = 0; i < json.length; i++) {
+                    var obj = json[i];
+                    if (count == 0) {
+                      if(obj.id.includes(d.name.toLocaleUpperCase())) {
+                        if (d.name !== "") {
+                          gpcrs = obj.gpcrs;
+                          id = obj.id;
+                          homologues = obj.homology;
+                          //console.log(gpcrs);
+                        }
+                      }
+                    } else {
+                      for (var j = 0; j < count; j++) {
+                        if(obj.id.includes(names[j].toLocaleUpperCase())) {
+                          if (names[j] !== "") {
+                            if(obj.gpcrs.length != 0) {
+                              gpcrs_multi = gpcrs_multi.concat(obj.gpcrs);
+                              ids_multi_gpcrs.push(obj.id);
+                            }
+                            if(obj.homology.length != 0) {
+                              homologues_multi = homologues_multi.concat(obj.homology);
+                              ids_multi_homologues.push(obj.id);
+                            }
+                            //console.log(gpcrs);
+                          }
+                        }
+                      }
+                    }
+                  }
+                  console.log(gpcrs_multi)
+                $("#list1").remove();
+                $("#list2").remove();
+                $("#collaps1").remove();
+                $("#collaps2").remove();
+                $(".btn").remove();
+                for (var i = 0; i <= counter; i++) {
+                  $("#list1" + i + "").remove();
+                  $("#collaps1" + i + "").remove();
+                  $("#list2" + i + "").remove();
+                  $("#collaps2" + i + "").remove();
+                }
+                document.getElementById("intermediary").innerHTML = "";
+                counter = 0;
+                if (count == 0) {
+                  if(gpcrs.length > 0) {
+                    $("#intermediary").append("<p>Class A GPCR PDBS</p>");
+                  }
+                  for(var i in gpcrs) {
+                    $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps1" + i + "'>" + gpcrs[i] + "</button>");
+                    $("#intermediary").append("<div id='collaps1" + i + "' class='collapse'></div>");
+                    $("#collaps1" + i + "").append("<ul id='list1" + i + "'></ul>");
+                    var li = "<li id=first><a href='"; 
+                    var name = "radialProt.html?name=" + id + "&plotname=" + gpcrs[i] + "&uniprot=" + "GPCR" + "&status=" + single + "'>" + "Visualization";
+                    $("#list1" + i + "").append(li.concat(name))
+                      .append("<li>".concat("Detail 1: " + "content"))
+                      .append("<li>".concat("Detail 2: " + "content"))
+                    counter = i;
+                  }
+                  counter = 0;
+                  if(homologues.length > 0) {
+                    $("#intermediary").append("<p>Homology Models</p>");
+                  }
+                  for(var i in homologues) {
+                    $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps2" + i + "'>" + homologues[i] + "</button>");
+                    $("#intermediary").append("<div id='collaps2" + i + "' class='collapse'></div>");
+                    $("#collaps2" + i + "").append("<ul id='list2" + i + "'></ul>");
+                    var li = "<li id=first><a href='"; 
+                    var name = "radialProt.html?name=" + id + "&plotname=" + homologues[i] + "&uniprot=" + "HOMOLOGY" + "&status=" + single + "'>" + "Visualization";
+                    $("#list2" + i + "").append(li.concat(name))
+                      .append("<li>".concat("Detail 1: " + "content"))
+                      .append("<li>".concat("Detail 2: " + "content"))
+                    counter = i;
+                  }  
+                } else {
+                  $("#intermediary").append("<button type='button' class='btn btn-info'><a href='fingerprint.html?cluster=" + d.cluster + "'>COMPARE</a></button>");
+                  counter = 0;
+                  for (var j = 0; j < gpcrs_multi.length; j++) {
+                    if(j == 0) {
+                      $("#intermediary").append("<p>Class A GPCR PDBS</p>");
+                    }
+                    $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps1" + j + "'>" + gpcrs_multi[j] + "</button>");
+                    $("#intermediary").append("<div id='collaps1" + j + "' class='collapse'></div>");
+                    $("#collaps1" + i + "").append("<ul id='list1" + j + "'></ul>");
+                    var li = "<li id=first><a href='"; 
+                    var name = "radialProt.html?name=" + ids_multi_gpcrs[j] + "&plotname=" + gpcrs_multi[j] + "&uniprot=" + "GPCR" + "&status=" + single + "'>" + "Visualization";
+                    $("#list1" + i + "").append(li.concat(name))
+                      .append("<li>".concat("Detail 1: " + "content"))
+                      .append("<li>".concat("Detail 2: " + "content"))
+                    counter = j;
+                    }
+                  counter = 0;
+                  for (var j = 0; j < homologues_multi.length; j++) {
+                    if(j == 0) {
+                      $("#intermediary").append("<p>Homology Models</p>");
+                    }
+                    $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps2" + j + "'>" + homologues_multi[j] + "</button>");
+                    $("#intermediary").append("<div id='collaps2" + j + "' class='collapse'></div>");
+                    $("#collaps2" + i + "").append("<ul id='list2" + j + "'></ul>");
+                    var li = "<li id=first><a href='"; 
+                    var name = "radialProt.html?name=" + ids_multi_homologues[j] + "&plotname=" + homologues_multi[j] + "&uniprot=" + "HOMOLOGY" + "&status=" + single + "'>" + "Visualization";
+                    $("#list2" + i + "").append(li.concat(name))
+                      .append("<li>".concat("Detail 1: " + "content"))
+                      .append("<li>".concat("Detail 2: " + "content"))
+                    counter = j;
+                  }  
+                }
+              });  
+              }
           }); 
 
           node.append("text")
@@ -277,6 +466,8 @@
                 var json;
                 var code = [];
                 var j = 0;
+            console.log(single);
+            if(single == false) {
                 $.getJSON('table.json').done(function (data) {
                   json = data;
                   for(var i = 0; i < json.length; i++) {
@@ -287,34 +478,51 @@
                       j = j + 1;
                     }
                   }
-                $("#list").remove()
-                $("#intermediary").append("<ul id='list'></ul>");
-                for(var i in code) {
-                  var li = "<li id=first><a href='"; 
-                  var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "'>"+code[i].pdb;
-                  $("#list").append(li.concat(name))
-                  .append("<li>".concat("Receptor: " + code[i].receptor))
-                  .append("<li>".concat("Uniprot: " + code[i].uniprot))
-                  .append("<li>".concat("State: " + code[i].state))
-                  .append("<li>".concat("Ligand: " + code[i].ligand))
-                  .append("<li>".concat("Publication: " + code[i].publication))
-                  .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
-                  .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
-                  .append("<li>".concat("Top Dir: " + code[i].top_dir))
-                  .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
-                  .append("<li>".concat("Filetype: " + code[i].filetype))
-                  .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
-                  .append("<li>".concat("Strip Water: " + code[i].strip_water))
-                  .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
-                  .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
-                  .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
-                  .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
-                  .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
-                  .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))
-                  .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
-                  .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
+                });
+            } else {
+              console.log("SINGLE");
+              var fs = require('fs');
+              if (fs.existsSync(path)) {
+                // Do something
               }
-              });
+            }
+                $("#list").remove();
+                $("#collaps").remove();
+                $(".btn").remove();
+                for (var i = 0; i <= counter; i++) {
+                  $("#list" + i + "").remove();
+                  $("#collaps" + i + "").remove();
+                }
+                counter = 0;
+                for(var i in code) {
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps" + i + "'>" + code[i].pdb + "</button>");
+                  $("#intermediary").append("<div id='collaps" + i + "' class='collapse'></div>");
+                  $("#collaps" + i + "").append("<ul id='list" + i + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + code[i].pdb + "&plotname=" + code[i].short_exp_cond_description + "&uniprot=" + code[i].uniprot + "&status=" + single + "&singleName=" + code[i].uniprot + "_" + code[i].pdb + "_" + code[i].vmd_chain_id.charAt(0) +  "'>"+code[i].pdb;
+                  $("#list" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Receptor: " + code[i].receptor))
+                    .append("<li>".concat("Uniprot: " + code[i].uniprot))
+                    .append("<li>".concat("State: " + code[i].state))
+                    .append("<li>".concat("Ligand: " + code[i].ligand))
+                    .append("<li>".concat("Publication: " + code[i].publication))
+                    .append("<li>".concat("Condition/Rep: " + code[i]['condition/rep']))
+                    .append("<li>".concat("Sherlock Path: " + code[i].sherlock_path))
+                    .append("<li>".concat("Top Dir: " + code[i].top_dir))
+                    .append("<li>".concat("Traj Dir: " + code[i].traj_dir))
+                    .append("<li>".concat("Filetype: " + code[i].filetype))
+                    .append("<li>".concat("Sim Tool: " + code[i].sim_tool))
+                    .append("<li>".concat("Strip Water: " + code[i].strip_water))
+                    .append("<li>".concat("VMD Chain ID: " + code[i].vmd_chain_id))
+                    .append("<li>".concat("MDTRAJ Chain ID: " + code[i].mdtraj_chain_id))
+                    .append("<li>".concat("Short Exp Cond Description: " + code[i].short_exp_cond_description))
+                    .append("<li>".concat("Lond Exp Cond Description: " + code[i].long_exp_cond_description))
+                    .append("<li>".concat("3.5A Inter Dict Dir: " + code[i]["3.5A_inter_dict_dir"]))
+                    .append("<li>".concat("3.2A Inter Dict Dir: " + code[i]["3.2A_inter_dict_dir"]))                
+                    .append("<li>".concat("Subsampled Traj: " + code[i].subsampled_traj))
+                    .append("<li>".concat("Ligand Resn: " + code[i].ligand_resn));
+                counter = i;
+                }  
           
           }) 
             .append("rect")
@@ -342,6 +550,10 @@
             // return d._children ? "#FF69B4" : d.children ? "#c6dbef" : "#fd8d3c";
           }
         });
+          
+        }
+          
+        createAll();
 
         d3.select(self.frameElement).style("height", diameter - 150 + "px");
         </script>
