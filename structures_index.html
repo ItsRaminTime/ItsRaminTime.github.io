@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+
+        .node circle {
+          fill: #FFF;
+          /*fill: #00B2EE;*/
+          stroke: steelblue;
+          stroke-width: .5px;
+        }
+
+        .node {
+          font: 10px sans-serif;
+        }
+
+        .link {
+          fill: none;
+          stroke: #ccd;
+          stroke-width: 1.5px;
+        }
+          
+        li {
+          font: 10px sans-serif;
+        }
+        
+        #tree {
+          margin-top: 0px;
+        }
+        
+        /* Style the buttons that are used to open and close the accordion panel */
+        button.accordion {
+          background-color: #eee;
+          color: #444;
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          text-align: left;
+          border: none;
+          outline: none;
+          transition: 0.4s;
+        }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        button.accordion.active, button.accordion:hover {
+          background-color: #ddd;
+        }
+
+        /* Style the accordion panel. Note: hidden by default */
+        div.panel {
+          padding: 0 18px;
+          background-color: white;
+          display: none;
+        }
+          
+        </style>
+
+        <title>D3 Test</title>
+    </head>
+    <body>      
+        <script type="text/javascript" src="./CollapsibleLists.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="toggleSwitchStyle.css" media="screen">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style> 
+          .btn {
+            display: block; 
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+          .btn_main {
+            display: block; 
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+          }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      
+        <div style="padding-left: 20px">
+           <h1>Non-Covalent Contacts in GPCRS - Structures</h1>
+        </div>
+      
+        <div style="width: 100%;">
+          <div style="float:left; width: 20%; padding-top: 10px; padding-left: 20px">
+            <button onclick="location.href = 'index.html';" type='button' class='btn_main'>DYNAMICS</button>
+            <h2 style='padding-bottom: 5px'>Receptors</h2>
+            <div id="searchContainer" class="cf sb" style='padding-bottom: 10px'>
+              <input class="right" type="text" id="searchBox" placeholder="search"/>
+            </div>
+            <div id= "intermediary">
+            </div>
+          </div>
+          <div id="tree" style="float:right; width: 80%">
+          </div>
+        </div>
+        <div style="clear:both"></div>
+
+        <script src="https://d3js.org/d3.v3.js"></script>
+        <!--<script type="text/javascript" src="d3.v3.js"></script>-->
+      
+        <script>
+          
+          //CHECK IF REACHED VIA BACKBUTTON
+          $(document).ready(function(e) {
+            var $input = $('#refresh');
+
+            $input.val() == 'yes' ? location.reload(true) : $input.val('yes');
+          });
+          
+          
+          var single = true;
+          var counter = 0;
+          
+        function createAll() {
+          
+          $('#searchContainer').on('keyup', function(e){
+            var code = e.which; // recommended to use e.which, it's normalized across browsers
+            if(code==13)e.preventDefault();
+            if(code==32||code==13||code==188||code==186){
+              //var searchTerm = $("#searchbox").val().toLowerCase();
+              var searchstring = $('#searchBox');
+              searchstring.focus();
+              var searchTerm = searchstring.val();
+              var json;              
+              var count = 0;
+              var names = [];
+              var gpcrs = [];
+              var homologues = [];
+              var id = "";
+            
+              $.getJSON('table_statics.json').done(function (data) {
+                json = data;
+                for(var i = 0; i < json.length; i++) {
+                  var obj = json[i];
+                  if(obj.id.includes(searchTerm.toUpperCase())) {
+                    if (searchTerm !== "") {
+                      gpcrs = obj.gpcrs;
+                      id = obj.id;
+                      homologues = obj.homology;
+                      //console.log(gpcrs);
+                    }
+                  }
+                }
+              $("#list1").remove();
+              $("#list2").remove();
+              $("#collaps1").remove();
+              $("#collaps2").remove();
+              $(".btn").remove();
+              for (var i = 0; i <= counter; i++) {
+                $("#list1" + i + "").remove();
+                $("#collaps1" + i + "").remove();
+                $("#list2" + i + "").remove();
+                $("#collaps2" + i + "").remove();
+              }
+              document.getElementById("intermediary").innerHTML = "";
+              counter = 0;
+              if (count == 0) {
+                if(gpcrs.length > 0) {
+                  $("#intermediary").append("<h4>Class A GPCR PDBS</h4>");
+                }
+                for(var i in gpcrs) {
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps1" + i + "'>" + gpcrs[i] + "</button>");
+                  $("#intermediary").append("<div id='collaps1" + i + "' class='collapse'></div>");
+                  $("#collaps1" + i + "").append("<ul id='list1" + i + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + id + "&plotname=" + gpcrs[i] + "&uniprot=" + "GPCR" + "&status=" + single + "'>" + "Visualization";
+                  $("#list1" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = i;
+                }
+                counter = 0;
+                if(homologues.length > 0) {
+                  $("#intermediary").append("<h4>Homology Models</h4>");
+                }
+                for(var i in homologues) {
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps2" + i + "'>" + id + " Homologue" + "</button>");
+                  $("#intermediary").append("<div id='collaps2" + i + "' class='collapse'></div>");
+                  $("#collaps2" + i + "").append("<ul id='list2" + i + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + id + "&plotname=" + homologues[i] + "&uniprot=" + "HOMOLOGY" + "&status=" + single + "'>" + "Visualization";
+                  $("#list2" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = i;
+                }  
+              } else {
+                $("#intermediary").append("<button type='button' class='btn btn-info'><a href='fingerprint.html?cluster=" + d.cluster + "'>COMPARE</a></button>");
+                counter = 0;
+                for (var j = 0; j < gpcrs_multi.length; j++) {
+                  if(j == 0) {
+                    $("#intermediary").append("<p>Class A GPCR PDBS</p>");
+                  }
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps1" + j + "'>" + gpcrs_multi[j] + "</button>");
+                  $("#intermediary").append("<div id='collaps1" + j + "' class='collapse'></div>");
+                  $("#collaps1" + i + "").append("<ul id='list1" + j + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + ids_multi_gpcrs[j] + "&plotname=" + gpcrs_multi[j] + "&uniprot=" + "GPCR" + "&status=" + single + "'>" + "Visualization";
+                  $("#list1" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = j;
+                  }
+                counter = 0;
+                for (var j = 0; j < homologues_multi.length; j++) {
+                  if(j == 0) {
+                    $("#intermediary").append("<p>Homology Models</p>");
+                  }
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps2" + j + "'>" + homologues_multi[j] + "</button>");
+                  $("#intermediary").append("<div id='collaps2" + j + "' class='collapse'></div>");
+                  $("#collaps2" + i + "").append("<ul id='list2" + j + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + ids_multi_homologues[j] + "&plotname=" + homologues_multi[j] + "&uniprot=" + "HOMOLOGY" + "&status=" + single + "'>" + "Visualization";
+                  $("#list2" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = j;
+                }  
+              }
+            });  
+          }
+        }); 
+
+        var diameter = document.getElementById("tree").offsetWidth;
+
+        var tree = d3.layout.tree()
+            .size([360, diameter/2.3])
+            .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
+
+        var diagonal = d3.svg.diagonal.radial()
+            .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
+
+        var svg = d3.select("#tree").append("svg")
+            .attr("width", diameter)
+            .attr("height", diameter)
+            .append("g")
+            .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+        d3.json("receptors.json", function(error, root) {
+          if (error) throw error;
+
+          var nodes = tree.nodes(root),
+              links = tree.links(nodes);
+
+          var link = svg.selectAll(".link")
+              .data(links)
+            .enter().append("path")
+              .attr("class", "link")
+              .attr("d", diagonal);
+
+          var node = svg.selectAll(".node")
+              .data(nodes)
+            .enter().append("g")
+              .attr("class", "node")
+              .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
+          
+          d3.select(self.frameElement).style("height", diameter - 150 + "px");
+          
+          function load_link(cluster, list_pdbs) {
+            location.href = "fingerprint.html?cluster=" + cluster + "&list_pdbs=" + list_pdbs;
+          }
+
+          node.append("circle")
+              .attr("r", 6.5)
+              .attr("id", "circleClicker")
+              .style("fill", function(d) {
+                var color = "white";
+                $.ajax({
+                  url: 'table_statics.json',
+                  async: false,
+                  dataType: 'json',
+                  success: function (data) {
+                    json = data;
+                    for(var i = 0; i < json.length; i++) {
+                      var obj = json[i];
+                      if(obj.id.includes(d.name.toLocaleUpperCase())) {
+                        if (d.name !== "") {
+                          color = "steelblue";
+                        }
+                      }
+                    }
+                  }
+                });
+                return color;
+              })
+              .style("cursor", "pointer")
+              .on("click", function(d) {
+              var count = 0;
+              var names = [];
+              console.log(d);
+              if (d.children != null) {
+                count = d.children.length;
+                for (var i = 0; i < count; i++) {
+                  names.push(d.children[i].name);  
+                }
+              }
+              var json;
+              var gpcrs = [];
+              var homologues = [];
+              var id = "";
+              var gpcrs_multi = [];
+              var homologues_multi = [];
+              var ids_multi_gpcrs = [];
+              var ids_multi_homologues = [];
+            
+              $.getJSON('table_statics.json').done(function (data) {
+                json = data;
+                for(var i = 0; i < json.length; i++) {
+                  var obj = json[i];
+                  if (count == 0) {
+                    if(obj.id.includes(d.name.toLocaleUpperCase())) {
+                      if (d.name !== "") {
+                        gpcrs = obj.gpcrs;
+                        id = obj.id;
+                        homologues = obj.homology;
+                        //console.log(gpcrs);
+                      }
+                    }
+                  } else {
+                    for (var j = 0; j < count; j++) {
+                      if(obj.id.includes(names[j].toLocaleUpperCase())) {
+                        if (names[j] !== "") {
+                          if(obj.gpcrs.length != 0) {
+                            gpcrs_multi = gpcrs_multi.concat(obj.gpcrs);
+                            ids_multi_gpcrs.push(obj.id);
+                          }
+                          if(obj.homology.length != 0) {
+                            homologues_multi = homologues_multi.concat(obj.homology);
+                            ids_multi_homologues.push(obj.id);
+                          }
+                          //console.log(gpcrs);
+                         }
+                      }
+                    }
+                  }
+                }
+                console.log(gpcrs_multi)
+              $("#list1").remove();
+              $("#list2").remove();
+              $("#collaps1").remove();
+              $("#collaps2").remove();
+              $(".btn").remove();
+              for (var i = 0; i <= counter; i++) {
+                $("#list1" + i + "").remove();
+                $("#collaps1" + i + "").remove();
+                $("#list2" + i + "").remove();
+                $("#collaps2" + i + "").remove();
+              }
+              document.getElementById("intermediary").innerHTML = "";
+              counter = 0;
+              if (count == 0) {
+                if(gpcrs.length > 0) {
+                  $("#intermediary").append("<h4>Class A GPCR PDBS</h4>");
+                }
+                for(var i in gpcrs) {
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps1" + i + "'>" + gpcrs[i] + "</button>");
+                  $("#intermediary").append("<div id='collaps1" + i + "' class='collapse'></div>");
+                  $("#collaps1" + i + "").append("<ul id='list1" + i + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + id + "&plotname=" + gpcrs[i] + "&uniprot=" + "GPCR" + "&status=" + single + "'>" + "Visualization";
+                  $("#list1" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = i;
+                }
+                counter = 0;
+                if(homologues.length > 0) {
+                  $("#intermediary").append("<h4>Homology Models</h4>");
+                }
+                for(var i in homologues) {
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps2" + i + "'>" + id + " Homologue" + "</button>");
+                  $("#intermediary").append("<div id='collaps2" + i + "' class='collapse'></div>");
+                  $("#collaps2" + i + "").append("<ul id='list2" + i + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + id + "&plotname=" + homologues[i] + "&uniprot=" + "HOMOLOGY" + "&status=" + single + "'>" + "Visualization";
+                  $("#list2" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = i;
+                }  
+              } else {
+                list_pdbs = "";
+                for (var k = 0; k < gpcrs_multi.length; k++) {
+                  if (k !== gpcrs_multi.length - 1) {
+                    list_pdbs = list_pdbs + gpcrs_multi[k].split("_")[2] + ";";
+                  } else {
+                    list_pdbs = list_pdbs + gpcrs_multi[k].split("_")[2];
+                  }
+                }
+                $("#intermediary").append("<button type='button' id='comparebtn' class='btn btn-info'>COMPARE</input>");
+                document.getElementById("comparebtn").addEventListener("click", function () {load_link(d.cluster, list_pdbs)}, false);
+                counter = 0;
+                console.log(gpcrs_multi);
+                console.log(list_pdbs);
+                for (var j = 0; j < gpcrs_multi.length; j++) {
+                  if(j == 0) {
+                    $("#intermediary").append("<p>Class A GPCR PDBS</p>");
+                  }
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps1" + j + "'>" + gpcrs_multi[j] + "</button>");
+                  $("#intermediary").append("<div id='collaps1" + j + "' class='collapse'></div>");
+                  $("#collaps1" + i + "").append("<ul id='list1" + j + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + ids_multi_gpcrs[j] + "&plotname=" + gpcrs_multi[j] + "&uniprot=" + "GPCR" + "&status=" + single + "'>" + "Visualization";
+                  $("#list1" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = j;
+                  }
+                counter = 0;
+                for (var j = 0; j < homologues_multi.length; j++) {
+                  if(j == 0) {
+                    $("#intermediary").append("<p>Homology Models</p>");
+                  }
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps2" + j + "'>" + homologues_multi[j] + "</button>");
+                  $("#intermediary").append("<div id='collaps2" + j + "' class='collapse'></div>");
+                  $("#collaps2" + i + "").append("<ul id='list2" + j + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + ids_multi_homologues[j] + "&plotname=" + homologues_multi[j] + "&uniprot=" + "HOMOLOGY" + "&status=" + single + "'>" + "Visualization";
+                  $("#list2" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = j;
+                }  
+              }
+            });  
+          }); 
+          
+          node.append("text")
+              .attr("dy", ".31em")
+              .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+              .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+              .text(function(d) { return d.name; });
+            
+          node
+            .append("a")
+            //.attr("xlink:href", function (d) { return "intermediary.html" + "?name=" + d.name; })
+            .on("click", function(d) {
+            var count = 0;
+              var names = [];
+              console.log(d);
+              if (d.children != null) {
+                count = d.children.length;
+                for (var i = 0; i < count; i++) {
+                  names.push(d.children[i].name);  
+                }
+              }
+              var json;
+              var gpcrs = [];
+              var homologues = [];
+              var id = "";
+              var gpcrs_multi = [];
+              var homologues_multi = [];
+              var ids_multi_gpcrs = [];
+              var ids_multi_homologues = [];
+            
+              $.getJSON('table_statics.json').done(function (data) {
+                json = data;
+                for(var i = 0; i < json.length; i++) {
+                  var obj = json[i];
+                  if (count == 0) {
+                    if(obj.id.includes(d.name.toLocaleUpperCase())) {
+                      if (d.name !== "") {
+                        gpcrs = obj.gpcrs;
+                        id = obj.id;
+                        homologues = obj.homology;
+                        //console.log(gpcrs);
+                      }
+                    }
+                  } else {
+                    for (var j = 0; j < count; j++) {
+                      if(obj.id.includes(names[j].toLocaleUpperCase())) {
+                        if (names[j] !== "") {
+                          if(obj.gpcrs.length != 0) {
+                            gpcrs_multi = gpcrs_multi.concat(obj.gpcrs);
+                            ids_multi_gpcrs.push(obj.id);
+                          }
+                          if(obj.homology.length != 0) {
+                            homologues_multi = homologues_multi.concat(obj.homology);
+                            ids_multi_homologues.push(obj.id);
+                          }
+                          //console.log(gpcrs);
+                         }
+                      }
+                    }
+                  }
+                }
+                console.log(gpcrs_multi)
+              $("#list1").remove();
+              $("#list2").remove();
+              $("#collaps1").remove();
+              $("#collaps2").remove();
+              $(".btn").remove();
+              for (var i = 0; i <= counter; i++) {
+                $("#list1" + i + "").remove();
+                $("#collaps1" + i + "").remove();
+                $("#list2" + i + "").remove();
+                $("#collaps2" + i + "").remove();
+              }
+              document.getElementById("intermediary").innerHTML = "";
+              counter = 0;
+              if (count == 0) {
+                if(gpcrs.length > 0) {
+                  $("#intermediary").append("<h4>Class A GPCR PDBS</h4>");
+                }
+                for(var i in gpcrs) {
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps1" + i + "'>" + gpcrs[i] + "</button>");
+                  $("#intermediary").append("<div id='collaps1" + i + "' class='collapse'></div>");
+                  $("#collaps1" + i + "").append("<ul id='list1" + i + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + id + "&plotname=" + gpcrs[i] + "&uniprot=" + "GPCR" + "&status=" + single + "'>" + "Visualization";
+                  $("#list1" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = i;
+                }
+                counter = 0;
+                if(homologues.length > 0) {
+                  $("#intermediary").append("<h4>Homology Models</h4>");
+                }
+                for(var i in homologues) {
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps2" + i + "'>" + id + " Homologue" + "</button>");
+                  $("#intermediary").append("<div id='collaps2" + i + "' class='collapse'></div>");
+                  $("#collaps2" + i + "").append("<ul id='list2" + i + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + id + "&plotname=" + homologues[i] + "&uniprot=" + "HOMOLOGY" + "&status=" + single + "'>" + "Visualization";
+                  $("#list2" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = i;
+                }  
+              } else {
+                $("#intermediary").append("<button type='button' class='btn btn-info'><a href='fingerprint.html?cluster=" + d.cluster + "'>COMPARE</a></button>");
+                counter = 0;
+                for (var j = 0; j < gpcrs_multi.length; j++) {
+                  if(j == 0) {
+                    $("#intermediary").append("<p>Class A GPCR PDBS</p>");
+                  }
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps1" + j + "'>" + gpcrs_multi[j] + "</button>");
+                  $("#intermediary").append("<div id='collaps1" + j + "' class='collapse'></div>");
+                  $("#collaps1" + i + "").append("<ul id='list1" + j + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + ids_multi_gpcrs[j] + "&plotname=" + gpcrs_multi[j] + "&uniprot=" + "GPCR" + "&status=" + single + "'>" + "Visualization";
+                  $("#list1" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = j;
+                  }
+                counter = 0;
+                for (var j = 0; j < homologues_multi.length; j++) {
+                  if(j == 0) {
+                    $("#intermediary").append("<p>Homology Models</p>");
+                  }
+                  $("#intermediary").append("<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#collaps2" + j + "'>" + homologues_multi[j] + "</button>");
+                  $("#intermediary").append("<div id='collaps2" + j + "' class='collapse'></div>");
+                  $("#collaps2" + i + "").append("<ul id='list2" + j + "'></ul>");
+                  var li = "<li id=first><a href='"; 
+                  var name = "radialProt.html?name=" + ids_multi_homologues[j] + "&plotname=" + homologues_multi[j] + "&uniprot=" + "HOMOLOGY" + "&status=" + single + "'>" + "Visualization";
+                  $("#list2" + i + "").append(li.concat(name))
+                    .append("<li>".concat("Detail 1: " + "content"))
+                    .append("<li>".concat("Detail 2: " + "content"))
+                  counter = j;
+                }  
+              }
+            });  
+          }) 
+            .append("rect")
+            .attr("class", "clickable")
+            .attr("cursor", "pointer")
+            .attr("y", -6)
+            .attr("x", function (d) { return d.children || d._children ? -60 : 10; })
+            .attr("width", 50) //2*4.5)
+            .attr("height", 12)
+            .style("fill", "lightsteelblue")
+            .style("fill-opacity", 0);
+
+          function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++ ) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+          }
+
+          function coloring(d) {
+            return getRandomColor()
+            // return "#FF69B4"
+            // return d._children ? "#FF69B4" : d.children ? "#c6dbef" : "#fd8d3c";
+          }
+        });
+          
+        }
+          
+        createAll();
+        </script>
+    </body>
+</html>
