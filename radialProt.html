@@ -49,9 +49,7 @@
 <body>
 <section class="main-head">
   <h1 class="main-title">Flare-plot</h1>
-  <p class="main-description">
-    Here is a network of molecular interactions. Click a label on the
-    circle and the structure on the right will highlight the dynamic interactions.
+  <p id="main-desc" class="main-description">
   </p>
 </section>
 
@@ -105,6 +103,9 @@
   console.log(uniprot);
   var single = params[3];
   console.log(single);
+      
+  document.getElementById("main-desc").innerHTML = "Here is a network of molecular interactions for " + param + ". Click a label on the circle and the structure on the right will highlight the dynamic interactions.";
+
       
           var interaction_group = 'hbsb'
           var compare_interaction_group = "hbsb"

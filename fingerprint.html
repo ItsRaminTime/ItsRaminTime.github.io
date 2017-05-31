@@ -8,6 +8,7 @@
   <title>GPCR Fingerprint</title>
   
   <script src="https://d3js.org/d3.v3.js"></script>
+  <link rel="stylesheet" type="text/css" href="dropdown.css" media="screen">
   
   <!-- Javascript libs -->
   <script type="text/javascript" src="./flareplot-main.js"></script>
@@ -24,11 +25,16 @@
   
   <script type="text/javascript" src="./parse.js"></script>
   <script type="text/javascript" src="./main.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
   
   <script
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./parse.js"></script>
+  <script type="text/javascript" src="pv.min.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
     
   <!-- FlarePlot javascript files -->
   <script src="http://cdn.rawgit.com/GPCRviz/FlarePlot/master/flareplot-main.js"></script>
@@ -38,7 +44,23 @@
     
 </head>
   <body>
-    <div class="container" id="maincontent"></div>
+    
+    <h1 id="header" style='text-align: center'></h1>
+    <div style="width: 100%;">
+      <div class="container" id="maincontent" style="float:left; width: 45%; padding-top: 10px;"></div>
+      <div style="float:left; width: 10%;">
+        <div class="dropdown" style="postion: center;">
+          <button onclick="drop()" class="dropbtn" style="padding-right: 30px; padding-left: 30px;">Protein PDBS</button>
+          <div id="myDropdown" class="dropdown-content">
+          </div>
+        </div>
+      </div>
+      <div id="pviewerEncompasser" style="float:right; width: 45%;">
+        <div id='picked-atom-label' style='text-align:center;'>Currently Selected Atom:</div>
+        <div id='picked-atom-name' style='text-align:center;'></div>
+        <div id="pviewer" ></div>
+      </div>
+    </div>
 
     <script>
       
@@ -56,10 +78,42 @@
       var params = getQueryVariable();
       var cluster = params[0];
       console.log(cluster);
+      var list_pdbs = params[1].split(";");
+      console.log(list_pdbs);
+      var unique_pdbs = [];
+      $.each(list_pdbs, function(i, el){
+        if($.inArray(el, unique_pdbs) === -1) unique_pdbs.push(el);
+      });
+      list_pdbs = unique_pdbs;
+      console.log(list_pdbs);
+      for (var i = 0; i < list_pdbs.length; i++) {
+        var id = "" + list_pdbs[i];
+        $("#myDropdown").append("<a id='" + id + "'>" + id + "</a>");
+        console.log(id);
+        document.getElementById(id).addEventListener("click", (function(t){return function(){change_pdb(t);};})(id), false);
+      }
       var contents;
       var flareplot;
       var panel;
+      document.getElementById("header").innerHTML = "GPCR Fingerprints for Cluster #" + cluster;
       
+      
+     
+      function drop_mol(index) {
+        var name = "myDropdown_" + index + "";
+        document.getElementById(name).classList.toggle("show");
+      } 
+        
+      /* When the user clicks on the button, 
+      toggle between hiding and showing the dropdown content */
+      function drop() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+      
+      function change_pdb(pdb_name) {
+        loadMOR(pdb_name);
+      }
+            
       create_fingerprint_graph("hbsb");
       
       function create_fingerprint_graph(interaction_group) {
@@ -98,6 +152,114 @@
           } 
         });
       }
+      
+      
+      //PDB
+      // override the default options with something less restrictive.
+      var options = {
+        width: 500,
+        height: 800,
+        antialias: true,
+        quality : 'medium',
+      };
+
+      var gpcrdb_numbers_file = "gpcrdb_numbers.txt";
+
+      var nameToResiTable = {};
+
+      $.ajax({
+        url : "gpcrdb_numbers.txt",
+        dataType: "text",
+        success : function (data) {
+          var value_array = [];
+          var num = "";
+          var lines = data.split('\n');
+          for (var i = 0; i < lines.length; i++) {
+            var tabs = lines[i].split('\t');
+            if (tabs[0].toLowerCase() !== uniprot) {
+              //i = i + 459;
+            } else {
+              if (tabs[4] !== "None") {
+                value_array.push(tabs[1]);
+                value_array.push("");
+                num = tabs[4].substring(0, tabs[4].indexOf(".")) + tabs[4].substring(tabs[4].indexOf(".") + 3, tabs[4].length);
+                nameToResiTable[num] = value_array;
+                value_array = [];
+                num = "";
+              }
+            }
+          }
+        }
+      }); 
+
+      // insert the viewer under the Dom element with id 'gl'.
+        var viewer = pv.Viewer(document.getElementById('pviewer'), options);
+
+        function setColorForAtom(go, atom, color) {
+        var view = go.structure().createEmptyView();
+        view.addAtom(atom);
+        go.colorBy(pv.color.uniform(color), view);
+    }
+
+    // variable to store the previously picked atom. Required for resetting the color
+    // whenever the mouse moves.
+    var prevPicked = null;
+    // add mouse move event listener to the div element containing the viewer. Whenever
+    // the mouse moves, use viewer.pick() to get the current atom under the cursor.
+
+    viewer.on('click', function(picked, ev) {
+        var rect = viewer.boundingClientRect();
+        var picked = viewer.pick({ x : ev.clientX - rect.left,
+                                   y : ev.clientY - rect.top });
+        if (prevPicked !== null && picked !== null &&
+            picked.target() === prevPicked.atom) {
+          return;
+        }
+        if (prevPicked !== null) {
+          // reset color of previously picked atom.
+          setColorForAtom(prevPicked.node, prevPicked.atom, prevPicked.color);
+        }
+        if (picked !== null) {
+          var atom = picked.target();
+          document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
+          // get RGBA color and store in the color array, so we know what it was
+          // before changing it to the highlight color.
+          var color = [0,0,0,0];
+          picked.node().getColorForAtom(atom, color);
+          prevPicked = { atom : atom, color : color, node : picked.node() };
+
+          setColorForAtom(picked.node(), atom, 'red');
+        } else {
+          document.getElementById('picked-atom-name').innerHTML = '&nbsp;';
+          prevPicked = null;
+        }
+        viewer.requestRedraw();
+
+      document.getElementById('picked-atom-name').innerHTML = atom.qualifiedName();
+      var atomNum = atom.qualifiedName().match(/\d+/)[0];
+      toggleResi(atomNum);
+    });
+
+      var struc;
+        var a;
+
+
+      function loadMOR(name) {
+        // asynchronously load the PDB file for the dengue methyl transferase
+        // from the server and display it in the viewer.
+        pv.io.fetchPdb("Proteins/" + name + ".pdb", function(structure) {
+          struc = structure;
+          a = viewer.trace('protein', structure, { color : color.ssSuccession() });
+          var ligands = structure.select({ rnames : ['YCM', '4VO', 'OLC', 'CLR', 'P04', 'P6G'] });
+          viewer.ballsAndSticks('ligands', ligands);
+          viewer.fitTo(structure);
+          viewer.setRotation([1,0,0,0,0,1,0,-1,0]);
+        });
+      }
+
+      // load the methyl transferase once the DOM has finished loading. That's
+      // the earliest point the WebGL context is available.
+      document.addEventListener('DOMContentLoaded', loadMOR(list_pdbs[0]));
     </script>
     
   </body>
