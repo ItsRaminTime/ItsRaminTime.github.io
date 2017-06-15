@@ -40,7 +40,7 @@
   
     
   <!-- FlarePlot javascript files -->
-  <script src="http://cdn.rawgit.com/GPCRviz/FlarePlot/master/flareplot-main.js"></script>
+  <script type="text/javascript" src="./flareplot-main.js"></script>
 
   <!-- FlarePlot styling -->
   <link href="http://cdn.rawgit.com/GPCRviz/FlarePlot/master/flareplot-main.css" rel="stylesheet">
@@ -59,25 +59,8 @@
 <section class="main-content">
   <div class="evoBundleChart">
     
-    <div class="dropdown">
-      <button onclick="drop()" class="dropbtn">Interactions</button>
-      <div id="myDropdown" class="dropdown-content">
-        <a onclick="store_group('hbbb')">hbbb</a>
-        <a onclick="store_group('hbsb')">hbsb</a>
-        <a onclick="store_group('hbss')">hbss</a>
-        <a onclick="store_group('hlb')">hlb</a>
-        <a onclick="store_group('hls')">hls</a>
-        <a onclick="store_group('lwb')">lwb</a>
-        <a onclick="store_group('lwb2')">lwb2</a>
-        <a onclick="store_group('pc')">pc</a>
-        <a onclick="store_group('ps')">ps</a>
-        <a onclick="store_group('sb')">sb</a>
-        <a onclick="store_group('ts')">ts</a>
-        <a onclick="store_group('vdw')">vdw</a>
-        <a onclick="store_group('water-network')">water-network</a>
-        <a onclick="store_group('wb')">wb</a>
-        <a onclick="store_group('wb2')">wb2</a>
-      </div>
+    <div id="dropDiv" class="dropdown">
+      <button onclick='drop()' class='dropbtn' style="visibility:hidden; padding-top: 50px;">Interactions</button>
     </div>
     
     <script>
@@ -96,15 +79,33 @@
   
   var params = getQueryVariable("name");
   var param = params[0];
-  console.log(param);
   var plot_name = params[1];
-  console.log(plot_name);
   var uniprot = params[2];
-  console.log(uniprot);
   var single = params[3];
-  console.log(single);
+  var new_uniprot = params[4];
       
   document.getElementById("main-desc").innerHTML = "Here is a network of molecular interactions for " + param + ". Click a label on the circle and the structure on the right will highlight the dynamic interactions.";
+      
+          var list = ["hbbb", "hbsb", "hbss", "hlb", "hls", "lwb", "lwb2", "pc", "ps", "sb", "ts", "vdw", "water-network", "wb", "wb2"];
+          var first_interaction = true;
+
+      
+          for (var i = 0; i < list.length; i++) {
+            var http = new XMLHttpRequest();
+            http.open('HEAD', "/Interactions/Multi Frame/" + list[i] + "/" + plot_name + ".json", false);
+            http.send();
+            if (http.status!=404) {
+              if(first_interaction === true) {
+                document.getElementById("dropDiv").innerHTML = "";
+                $("#dropDiv").append("<button onclick='drop()' class='dropbtn'>Interactions</button><div id='myDropdown' class='dropdown-content'></div>");
+                first_interaction = false;
+              }
+              $("#myDropdown").append("<a id='" + list[i] + "'>" + list[i] + "</a>");
+              document.getElementById(list[i]).addEventListener("click", (function(t){return function(){store_group(t);};})(list[i]), false);
+            } else {
+              //console.log("DOESN'T EXIST!");
+            }       
+          }
 
       
           var interaction_group = 'hbsb'
@@ -124,25 +125,29 @@
           function store_group(group_name) {
             interaction_group = group_name;
             document.getElementById("evobundlediv").innerHTML = "";
+            document.getElementById("evocontrols").innerHTML = "";
+            $("#evocontrols").append("<span  id='controls'></span><input id='timeRange' type='range' min='0' max='1000' value='0' /><span id='timeLabel'>0</span>");
+            document.getElementById("bbox").innerHTML = "";
+            $("#bbox").append("<button class='deselectButton'>Deselect All</button><button class='summaryButton fr'>Summarize</button><button class='trackButton  fr'>Tracks</button><button class='switchButton fr'>Switch cluster</button><button class='sortButton fr'>Sort clustered chart</button><button class='sortWithoutButton fr'>Sort chart</button>");
             if(single === "false") {
-    d3.text("/Interactions/Multi Frame/" + interaction_group + "/" + plot_name + ".json", function(rawtext){
-      //load_dataset(rawtext);
-      create_bundle(rawtext, "evobundlediv", false, false, null);
-    });
-  } else {
-    if (uniprot === "GPCR") {
-      d3.json("/Interactions/Single Frame/" + param + "/Class A GPCR PDBS/" + plot_name + "/" + plot_name + "_" + interaction_group + ".json", function(jsonData){
-        var plot = createFlareplot(500, jsonData, "#evobundlediv");
-      });
-    } else {
-      d3.json("/Interactions/Single Frame/" + param + "/Homology Models/" + plot_name + "/" + param + "_" + plot_name + "_" + interaction_group + ".json", function(jsonData){
-        var plot = createFlareplot(500, jsonData, "#evobundlediv");
-      });
-    }
-  }  
+              d3.text("/Interactions/Multi Frame/" + interaction_group + "/" + plot_name + ".json", function(rawtext){
+                //load_dataset(rawtext);
+                create_bundle(rawtext, "evobundlediv", false, false, null);
+              });
+            } else {
+              if (new_uniprot === "GPCR") {
+                d3.json("/Interactions/Single Frame/" + param + "/Class A GPCR PDBS/" + plot_name + "/" + plot_name + "_" + interaction_group + ".json", function(jsonData){
+                  var plot = createFlareplot(650, jsonData, "#evobundlediv");
+                });
+              } else {
+                d3.json("/Interactions/Single Frame/" + param + "/Homology Models/" + plot_name + "/" + param + "_" + plot_name + "_" + interaction_group + ".json", function(jsonData){
+                  var plot = createFlareplot(650, jsonData, "#evobundlediv");
+                });
+              }
+            }  
           }
     
-          function store_group_two(group_number, term) {
+         /* function store_group_two(group_number, term) {
             var list = ["hbbb", "hbsb", "hbss", "hlb", "hls", "lwb", "lwb2", "pc", "ps", "sb", "ts", "vdw", "water-network", "wb", "wb2"];
             var new_interaction_group = list[group_number];
             document.getElementById("evobundlediv").innerHTML = "";
@@ -161,7 +166,7 @@
               //load_dataset(rawtext);
               create_bundle(rawtext, "evobundlediv_three", true, true, intersection_frame);
             });
-          }
+          } 
       
         var frame_one_json, frame_two_json;
         function create_intersection_set() {
@@ -245,6 +250,8 @@
             frame_one_json["nodes"] = new_nodes;
             return frame_one_json;
         }
+        
+        */
 
       // Close the dropdown menu if the user clicks outside of it
       window.onclick = function(event) {
@@ -261,7 +268,7 @@
     }
     
         
-          $('#searchContainer').on('keyup', function(e){
+    /*      $('#searchContainer').on('keyup', function(e){
             var code = e.which; // recommended to use e.which, it's normalized across browsers
             var searchTerm = "";
             if(code==13)e.preventDefault();
@@ -310,54 +317,26 @@
                 }
               });
             }
-        });
+        });*/
 
     </script>
     
     <div id="evobundlediv">
 
     </div>
-    
-    <div id="evobundlediv_two">
 
-    </div>
-    
-    <div id="evobundlediv_three">
-
-    </div>
     <!--<div class="tensionControl">Tension: <input style="" type="range" min="0" max="100" value="85" /></div>-->
     <div id="evocontrols">
-      <span  id="controls"></span>
-      <input id="timeRange" type="range" min="0" max="1000" value="0" />
-      <span id="timeLabel">0</span>
     </div>
 
-    <div class="buttonBox">
-      <button class="deselectButton">
-        Deselect All
-      </button>
-      <button class="summaryButton">
-        Summarize
-      </button>
-      <button class="trackButton  fr">
-        Tracks
-      </button>
-      <button class="switchButton fr">
-        Switch cluster
-      </button>
-      <button class="sortButton fr">
-        Sort clustered chart
-      </button>
-      <button class="sortWithoutButton fr">
-        Sort chart
-      </button>
+    <div id="bbox" class="buttonBox">
     </div>
 
   </div>
   
   <div id="pviewerEncompasser">
-    <div id='picked-atom-label' style='text-align:center;'>Currently Selected Atom:</div>
-    <div id='picked-atom-name' style='text-align:center;'></div>
+    <div id='picked-atom-label' style='margin-right: 10%; padding-top: 20px; text-align:center;'>Currently Selected Atom:</div>
+    <div id='picked-atom-name' style='margin-right: 10%; text-align:center;'></div>
     <div id="pviewer" ></div>
   </div>
     
@@ -373,33 +352,15 @@
     antialias: true,
     quality : 'medium',
   };
-    
-  function getQueryVariable()
-  {
-    var query = window.location.search.substring(1);
-    var params = []
-    var vars = query.split("&");
-    for (var i=0;i<vars.length;i++) {
-      var pair = vars[i].split("=");
-      params.push(pair[1])
-    }
-    return params;
-  }
   
-  var params = getQueryVariable("name");
-  var param = params[0];
-  console.log(param);
-  var plot_name = params[1];
-  console.log(plot_name);
-  var uniprot = params[2];
-  console.log(uniprot);
-  var single = params[3];
-  console.log(single);
+  if(single === "false") {
+    $("#evocontrols").append("<span  id='controls'></span><input id='timeRange' type='range' min='0' max='1000' value='0' /><span id='timeLabel'>0</span>");   $("#bbox").append("<button class='deselectButton'>Deselect All</button><button class='summaryButton fr'>Summarize</button><button class='trackButton  fr'>Tracks</button><button class='switchButton fr'>Switch cluster</button><button class='sortButton fr'>Sort clustered chart</button><button class='sortWithoutButton fr'>Sort chart</button>");
+  }
   
   var gpcrdb_numbers_file = "gpcrdb_numbers.txt";
   
   var nameToResiTable = {};
-  
+
   $.ajax({
     url : "gpcrdb_numbers.txt",
     dataType: "text",
@@ -409,7 +370,7 @@
       var lines = data.split('\n');
       for (var i = 0; i < lines.length; i++) {
         var tabs = lines[i].split('\t');
-        if (tabs[0].toLowerCase() !== uniprot) {
+        if (tabs[0].toLowerCase() !== uniprot.toLowerCase()) {
           //i = i + 459;
         } else {
           if (tabs[4] !== "None") {
@@ -500,13 +461,13 @@ viewer.on('click', function(picked, ev) {
       create_bundle(rawtext, "evobundlediv", false, false, null);
     });
   } else {
-    if (uniprot === "GPCR") {
+    if (new_uniprot === "GPCR") {
       d3.json("/Interactions/Single Frame/" + param + "/Class A GPCR PDBS/" + plot_name + "/" + plot_name + "_" + interaction_group + ".json", function(jsonData){
-        var plot = createFlareplot(500, jsonData, "#evobundlediv");
+        var plot = createFlareplot(650, jsonData, "#evobundlediv");
       });
     } else {
       d3.json("/Interactions/Single Frame/" + param + "/Homology Models/" + plot_name + "/" + param + "_" + plot_name + "_" + interaction_group + ".json", function(jsonData){
-        var plot = createFlareplot(500, jsonData, "#evobundlediv");
+        var plot = createFlareplot(650, jsonData, "#evobundlediv");
       });
     }
   }  
@@ -846,7 +807,36 @@ viewer.on('click', function(picked, ev) {
     });
 
   }
+  
+  
+  function updateInteractions_static(links){
+    viewer.rm('interactions');
+    var cm = viewer.customMesh('interactions');
+    console.log(links);
+    console.log(toggledNodes);
+    links.forEach(function(d){
+      console.log(d);
+      var connection = d.key.split("-");
+      var name1 = connection[0];
+      var name2 = connection[1];
+      if( name1 in toggledNodes || name2 in toggledNodes ){
+        var resi1 = nameToResi(name1);
+        var resi2 = nameToResi(name2);
+        if(resi1!==undefined && resi2!==undefined){
+          console.log(resi1);
+          var atom1 = struc.atom('A.'+resi1+'.CA');
+          console.log(struc);
+          console.log(atom1);
+          var atom2 = struc.atom('A.'+resi2+'.CA');
+          var thickness = 0.5;
 
+          cm.addTube(atom1.pos(), atom2.pos(), thickness, {cap:false, color:'black'});
+        }
+
+      }
+    });
+  }
+  
   tickListeners.push(updateInteractions);
 
   function indexToClusterColor(idx){
@@ -877,5 +867,5 @@ viewer.on('click', function(picked, ev) {
       geom.colorBy(clusterCol());
     }
   }
-  clusterListeners.push(updateColors);
+  //clusterListeners.push(updateColors);
 </script>

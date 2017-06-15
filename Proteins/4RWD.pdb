@@ -2,9 +2,9 @@ HEADER    MEMBRANE PROTEIN                        02-DEC-14   4RWD
 TITLE     XFEL STRUCTURE OF THE HUMAN DELTA OPIOID RECEPTOR IN COMPLEX WITH A   
 TITLE    2 BIFUNCTIONAL PEPTIDE                                                 
 COMPND    MOL_ID: 1;                                                            
-COMPND   2 MOLECULE: CHIMERA PROTEIN OF HUMAN DELTA-TYPE OPIOID RECEPTOR AND    
-COMPND   3 ESCHERICHIA COLI SOLUBLE CYTOCHROME B562;                            
-COMPND   4 CHAIN: A, B;                                                         
+COMPND   2 MOLECULE: SOLUBLE CYTOCHROME B562,DELTA-TYPE OPIOID RECEPTOR;        
+COMPND   3 CHAIN: A, B;                                                         
+COMPND   4 SYNONYM: CYTOCHROME B-562;                                           
 COMPND   5 ENGINEERED: YES;                                                     
 COMPND   6 MUTATION: YES;                                                       
 COMPND   7 MOL_ID: 2;                                                           
@@ -12,9 +12,9 @@ COMPND   8 MOLECULE: BIFUNCTIONAL PEPTIDE;
 COMPND   9 CHAIN: G, H;                                                         
 COMPND  10 ENGINEERED: YES                                                      
 SOURCE    MOL_ID: 1;                                                            
-SOURCE   2 ORGANISM_SCIENTIFIC: HOMO SAPIENS, ESCHERICHIA COLI;                 
-SOURCE   3 ORGANISM_TAXID: 9606, 562;                                           
-SOURCE   4 GENE: OPRD, OPRD1, CYBC;                                             
+SOURCE   2 ORGANISM_SCIENTIFIC: ESCHERICHIA COLI, HOMO SAPIENS;                 
+SOURCE   3 ORGANISM_TAXID: 562, 9606;                                           
+SOURCE   4 GENE: CYBC, OPRD, OPRD1, CYBC;                                       
 SOURCE   5 EXPRESSION_SYSTEM: SPODOPTERA FRUGIPERDA;                            
 SOURCE   6 EXPRESSION_SYSTEM_TAXID: 7108;                                       
 SOURCE   7 EXPRESSION_SYSTEM_STRAIN: SF9;                                       
@@ -34,6 +34,7 @@ AUTHOR   3 S.BOUTET,M.MESSERSCHMIDT,G.J.WILLIAMS,C.GATI,O.M.YEFANOV,T.A.WHITE,
 AUTHOR   4 D.OBERTHUER,M.METZ,C.H.YOON,A.BARTY,H.N.CHAPMAN,S.BASU,J.COE,        
 AUTHOR   5 C.E.CONRAD,R.FROMME,P.FROMME,D.TOURWE,P.W.SCHILLER,B.L.ROTH,         
 AUTHOR   6 S.BALLET,V.KATRITCH,R.C.STEVENS,V.CHEREZOV,GPCR NETWORK (GPCR)       
+REVDAT   3   07-JUN-17 4RWD    1       COMPND SOURCE REMARK                     
 REVDAT   2   01-APR-15 4RWD    1       JRNL                                     
 REVDAT   1   14-JAN-15 4RWD    0                                                
 JRNL        AUTH   G.FENALTI,N.A.ZATSEPIN,C.BETTI,P.GIGUERE,G.W.HAN,            
@@ -159,8 +160,8 @@ REMARK   3  NCS RESTRAINTS STATISTICS
 REMARK   3   NCS TYPE: LOCAL                                                    
 REMARK   3   NUMBER OF DIFFERENT NCS PAIRS  : 2                                 
 REMARK   3  GROUP  CHAIN1    RANGE     CHAIN2     RANGE    COUNT RMS  WEIGHT    
-REMARK   3    1      A    39   331       B    39    331    16560  0.06  0.05    
-REMARK   3    2      A  1001  1106       B  1001   1106     6178  0.06  0.05    
+REMARK   3    1     A    39    331       B    39    331   16560  0.06  0.05     
+REMARK   3    2     A  1001   1106       B  1001   1106    6178  0.06  0.05     
 REMARK   3                                                                      
 REMARK   3  TLS DETAILS                                                         
 REMARK   3   NUMBER OF TLS GROUPS  : 4                                          
@@ -250,7 +251,7 @@ REMARK   4
 REMARK   4 4RWD COMPLIES WITH FORMAT V. 3.30, 13-JUL-11                         
 REMARK 100                                                                      
 REMARK 100 THIS ENTRY HAS BEEN PROCESSED BY RCSB ON 10-DEC-14.                  
-REMARK 100 THE RCSB ID CODE IS RCSB087877.                                      
+REMARK 100 THE DEPOSITION ID IS D_1000087877.                                   
 REMARK 200                                                                      
 REMARK 200 EXPERIMENTAL DETAILS                                                 
 REMARK 200  EXPERIMENT TYPE                : X-RAY DIFFRACTION                  
@@ -281,7 +282,7 @@ REMARK 200  REJECTION CRITERIA  (SIGMA(I)) : NULL
 REMARK 200                                                                      
 REMARK 200 OVERALL.                                                             
 REMARK 200  COMPLETENESS FOR RANGE     (%) : 100.0                              
-REMARK 200  DATA REDUNDANCY                : 560.000                            
+REMARK 200  DATA REDUNDANCY                : 560.0                              
 REMARK 200  R MERGE                    (I) : 0.11800                            
 REMARK 200  R SYM                      (I) : NULL                               
 REMARK 200  <I/SIGMA(I)> FOR THE DATA SET  : 6.0000                             
@@ -290,7 +291,7 @@ REMARK 200 IN THE HIGHEST RESOLUTION SHELL.
 REMARK 200  HIGHEST RESOLUTION SHELL, RANGE HIGH (A) : 2.70                     
 REMARK 200  HIGHEST RESOLUTION SHELL, RANGE LOW  (A) : 2.80                     
 REMARK 200  COMPLETENESS FOR SHELL     (%) : 100.0                              
-REMARK 200  DATA REDUNDANCY IN SHELL       : 209.00                             
+REMARK 200  DATA REDUNDANCY IN SHELL       : 209.0                              
 REMARK 200  R MERGE FOR SHELL          (I) : 0.87900                            
 REMARK 200  R SYM FOR SHELL            (I) : NULL                               
 REMARK 200  <I/SIGMA(I)> FOR SHELL         : 1.300                              
@@ -588,10 +589,10 @@ REMARK 900 RELATED ID: 4N6H   RELATED DB: PDB
 REMARK 900 RELATED ID: 4EJ4   RELATED DB: PDB                                   
 REMARK 900 RELATED ID: 4RWA   RELATED DB: PDB                                   
 REMARK 900 RELATED ID: GPCR-39   RELATED DB: TARGETTRACK                        
-DBREF  4RWD A 1001    41  UNP    P0ABE7   C562_ECOLX      23    128             
-DBREF  4RWD A   39   338  UNP    P41143   OPRD_HUMAN      39    338             
-DBREF  4RWD B 1001    41  UNP    P0ABE7   C562_ECOLX      23    128             
-DBREF  4RWD B   39   338  UNP    P41143   OPRD_HUMAN      39    338             
+DBREF  4RWD A 1001  1106  UNP    P0ABE7   C562_ECOLX      23    128             
+DBREF  4RWD A   39   338  PDB    4RWD     4RWD            39    338             
+DBREF  4RWD B 1001  1106  UNP    P0ABE7   C562_ECOLX      23    128             
+DBREF  4RWD B   39   338  PDB    4RWD     4RWD            39    338             
 DBREF  4RWD G    1     5  PDB    4RWD     4RWD             1      5             
 DBREF  4RWD H    1     5  PDB    4RWD     4RWD             1      5             
 SEQADV 4RWD GLY A  996  UNP  P0ABE7              EXPRESSION TAG                 
@@ -601,7 +602,7 @@ SEQADV 4RWD THR A  999  UNP  P0ABE7              EXPRESSION TAG
 SEQADV 4RWD MET A 1000  UNP  P0ABE7              EXPRESSION TAG                 
 SEQADV 4RWD TRP A 1007  UNP  P0ABE7    MET    29 ENGINEERED MUTATION            
 SEQADV 4RWD ILE A 1102  UNP  P0ABE7    HIS   124 ENGINEERED MUTATION            
-SEQADV 4RWD LEU A 1106  UNP  P0ABE7    ARG   138 ENGINEERED MUTATION            
+SEQADV 4RWD LEU A 1106  UNP  P0ABE7    ARG   128 ENGINEERED MUTATION            
 SEQADV 4RWD GLY B  996  UNP  P0ABE7              EXPRESSION TAG                 
 SEQADV 4RWD GLY B  997  UNP  P0ABE7              EXPRESSION TAG                 
 SEQADV 4RWD THR B  998  UNP  P0ABE7              EXPRESSION TAG                 
@@ -609,7 +610,7 @@ SEQADV 4RWD THR B  999  UNP  P0ABE7              EXPRESSION TAG
 SEQADV 4RWD MET B 1000  UNP  P0ABE7              EXPRESSION TAG                 
 SEQADV 4RWD TRP B 1007  UNP  P0ABE7    MET    29 ENGINEERED MUTATION            
 SEQADV 4RWD ILE B 1102  UNP  P0ABE7    HIS   124 ENGINEERED MUTATION            
-SEQADV 4RWD LEU B 1106  UNP  P0ABE7    ARG   138 ENGINEERED MUTATION            
+SEQADV 4RWD LEU B 1106  UNP  P0ABE7    ARG   128 ENGINEERED MUTATION            
 SEQRES   1 A  411  GLY GLY THR THR MET ALA ASP LEU GLU ASP ASN TRP GLU          
 SEQRES   2 A  411  THR LEU ASN ASP ASN LEU LYS VAL ILE GLU LYS ALA ASP          
 SEQRES   3 A  411  ASN ALA ALA GLN VAL LYS ASP ALA LEU THR LYS MET ARG          

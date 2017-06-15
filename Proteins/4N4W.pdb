@@ -1,27 +1,28 @@
 HEADER    MEMBRANE PROTEIN, TRANSPORT PROTEIN     08-OCT-13   4N4W              
 TITLE     STRUCTURE OF THE HUMAN SMOOTHENED RECEPTOR IN COMPLEX WITH SANT-1.    
 COMPND    MOL_ID: 1;                                                            
-COMPND   2 MOLECULE: CHIMERA PROTEIN OF SMOOTHENED RECEPTOR_BRIL AND CYTOCHROME 
-COMPND   3 B(562);                                                              
-COMPND   4 CHAIN: A;                                                            
-COMPND   5 FRAGMENT: CHIMERA OF CYTOCHROME B(562) AND SMOOTHENED RESIDUES 190-  
-COMPND   6 555 OF UNP Q99835;                                                   
-COMPND   7 SYNONYM: SMO, PROTEIN GX;                                            
-COMPND   8 ENGINEERED: YES;                                                     
-COMPND   9 MUTATION: YES                                                        
+COMPND   2 MOLECULE: CYTOCHROME B(562),SMOOTHENED HOMOLOG;                      
+COMPND   3 CHAIN: A;                                                            
+COMPND   4 FRAGMENT: RESIDUES 190-555;                                          
+COMPND   5 SYNONYM: SMO,PROTEIN GX;                                             
+COMPND   6 ENGINEERED: YES;                                                     
+COMPND   7 MUTATION: YES                                                        
 SOURCE    MOL_ID: 1;                                                            
-SOURCE   2 ORGANISM_SCIENTIFIC: HOMO SAPIENS, SHIGELLA FLEXNERI;                
-SOURCE   3 ORGANISM_TAXID: 9606, 373384;                                        
-SOURCE   4 GENE: SMO, SMOH, SMO_HUMAN, CYBC;                                    
-SOURCE   5 EXPRESSION_SYSTEM: SPODOPTERA FRUGIPERDA;                            
-SOURCE   6 EXPRESSION_SYSTEM_TAXID: 7108;                                       
-SOURCE   7 EXPRESSION_SYSTEM_STRAIN: SF9;                                       
-SOURCE   8 EXPRESSION_SYSTEM_PLASMID: PFASTBAC                                  
+SOURCE   2 ORGANISM_SCIENTIFIC: SHIGELLA FLEXNERI 5 STR. 8401, HOMO SAPIENS;    
+SOURCE   3 ORGANISM_COMMON: HUMAN;                                              
+SOURCE   4 ORGANISM_TAXID: 373384, 9606;                                        
+SOURCE   5 STRAIN: 8401;                                                        
+SOURCE   6 GENE: CYBC, SFV_4255, SMO, SMOH;                                     
+SOURCE   7 EXPRESSION_SYSTEM: SPODOPTERA FRUGIPERDA;                            
+SOURCE   8 EXPRESSION_SYSTEM_TAXID: 7108;                                       
+SOURCE   9 EXPRESSION_SYSTEM_STRAIN: SF9;                                       
+SOURCE  10 EXPRESSION_SYSTEM_PLASMID: PFASTBAC                                  
 KEYWDS    HUMAN SMOOTHENED RECEPTOR, ANTITUMOR AGENT, NOVEL PROTEIN             
 KEYWDS   2 ENGINEERING, GPCR NETWORK, MEMBRANE PROTEIN, PSI-BIOLOGY, STRUCTURAL 
 KEYWDS   3 GENOMICS, GPCR, MEMBRANE, TRANSPORT PROTEIN                          
 EXPDTA    X-RAY DIFFRACTION                                                     
 AUTHOR    C.WANG,H.WU,G.W.HAN,V.CHEREZOV,R.C.STEVENS,GPCR NETWORK (GPCR)        
+REVDAT   3   07-JUN-17 4N4W    1       COMPND SOURCE REMARK                     
 REVDAT   2   30-JUL-14 4N4W    1       JRNL                                     
 REVDAT   1   22-JAN-14 4N4W    0                                                
 JRNL        AUTH   C.WANG,H.WU,T.EVRON,E.VARDY,G.W.HAN,X.P.HUANG,S.J.HUFEISEN,  
@@ -46,7 +47,7 @@ REMARK   3  DATA USED IN REFINEMENT.
 REMARK   3   RESOLUTION RANGE HIGH (ANGSTROMS) : 2.80                           
 REMARK   3   RESOLUTION RANGE LOW  (ANGSTROMS) : 49.35                          
 REMARK   3   DATA CUTOFF            (SIGMA(F)) : 0.000                          
-REMARK   3   COMPLETENESS FOR RANGE        (%) : 93.0                           
+REMARK   3   COMPLETENESS FOR RANGE        (%) : 93.1                           
 REMARK   3   NUMBER OF REFLECTIONS             : 15986                          
 REMARK   3                                                                      
 REMARK   3  FIT TO DATA USED IN REFINEMENT.                                     
@@ -184,7 +185,7 @@ REMARK   4
 REMARK   4 4N4W COMPLIES WITH FORMAT V. 3.30, 13-JUL-11                         
 REMARK 100                                                                      
 REMARK 100 THIS ENTRY HAS BEEN PROCESSED BY RCSB ON 18-OCT-13.                  
-REMARK 100 THE RCSB ID CODE IS RCSB082755.                                      
+REMARK 100 THE DEPOSITION ID IS D_1000082755.                                   
 REMARK 200                                                                      
 REMARK 200 EXPERIMENTAL DETAILS                                                 
 REMARK 200  EXPERIMENT TYPE                : X-RAY DIFFRACTION                  
@@ -406,6 +407,7 @@ REMARK 610 THE FOLLOWING RESIDUES HAVE MISSING ATOMS (M=MODEL NUMBER;
 REMARK 610 RES=RESIDUE NAME; C=CHAIN IDENTIFIER; SSEQ=SEQUENCE NUMBER;          
 REMARK 610 I=INSERTION CODE):                                                   
 REMARK 610   M RES C SSEQI                                                      
+REMARK 610     NAG A  601                                                       
 REMARK 610     OLC A  608                                                       
 REMARK 610     OLC A  609                                                       
 REMARK 620                                                                      
@@ -460,7 +462,7 @@ REMARK 900
 REMARK 900 RELATED ENTRIES                                                      
 REMARK 900 RELATED ID: 4JKV   RELATED DB: PDB                                   
 REMARK 900 RELATED ID: GPCR-131   RELATED DB: TARGETTRACK                       
-DBREF  4N4W A    1   199  UNP    Q0SXH8   Q0SXH8_SHIF8    23    128             
+DBREF  4N4W A    1   106  UNP    Q0SXH8   Q0SXH8_SHIF8    23    128             
 DBREF  4N4W A  190   555  UNP    Q99835   SMO_HUMAN      190    555             
 SEQADV 4N4W GLY A   -2  UNP  Q0SXH8              EXPRESSION TAG                 
 SEQADV 4N4W GLY A   -1  UNP  Q0SXH8              EXPRESSION TAG                 
@@ -8059,5 +8061,5 @@ CONECT 3698 3697 3699
 CONECT 3699 3698 3700                                                           
 CONECT 3700 3699                                                                
 CONECT 3706 3651                                                                
-MASTER      427    0   11   18    4    0   11    6 3688    1  141   37          
+MASTER      428    0   11   18    4    0   11    6 3688    1  141   37          
 END                                                                             

@@ -1071,6 +1071,7 @@ function transitionToSummary(){
 
     //Initialize empty two-dim array
     var n = graph.nodes.length;
+    nodes = graph.nodes;
     var countMatrix = new Array(n);
     for(var i=0;i<n;i++) {
         countMatrix[i] = new Array(n);
